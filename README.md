@@ -3,7 +3,7 @@
 	<img src="https://user-images.githubusercontent.com/30529572/92081025-fabe6f00-edb1-11ea-9169-4a8a61a5dd45.png" alt="DSC VIT"/>
 </a>
 	<h2 align="center">VITTY</h2>
-	<h4 align="center">Android App<h4>
+	<h4 align="center">Android App</h4>
 </p>
 
 ---
