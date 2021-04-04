@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
+            android:alpha="0.7"
+            android:scaleType="centerCrop"
+            android:src="@drawable/intro_background"
+            android:contentDescription="@string/todo" />
+
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/intro_pager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+    </RelativeLayout>
+
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/intro_tabs"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/background"
+        app:tabGravity="center"
+        app:tabIndicatorGravity="stretch"
+        app:tabMode="fixed"
+        app:tabRippleColor="@null"
+        app:tabSelectedTextColor="@color/tab_selected"
+        app:tabTextAppearance="@style/TabTextAppearance2"
+        app:tabTextColor="@color/intro_tab" />
+
+    <Button
+        android:id="@+id/next_button"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="40dp"
+        android:layout_marginBottom="30dp"
+        android:backgroundTint="@color/tab_selected"
+        android:fontFamily="@font/poppins_600"
+        android:padding="15dp"
+        android:src="@drawable/ic_login_google"
+        android:text="@string/next"
+        android:textAllCaps="false"
+        android:textSize="19sp"
+        tools:visibility="visible" />
+
+    <ImageButton
+        android:id="@+id/google_login"
+        android:layout_width="match_parent"
+        android:layout_height="58dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="21dp"
+        android:layout_marginEnd="40dp"
+        android:layout_marginBottom="36dp"
+        android:background="@drawable/google_login_button"
+        android:fontFamily="@font/poppins_600"
+        android:padding="15dp"
+        android:src="@drawable/ic_login_google"
+        android:textAllCaps="false"
+        android:textSize="18sp"
+        android:visibility="gone"
+        tools:visibility="visible"
+        android:contentDescription="@string/todo" />
+
+
+</LinearLayout>

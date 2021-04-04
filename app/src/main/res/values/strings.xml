@@ -1,4 +1,18 @@
 <resources>
     <string name="app_name">VITTY</string>
-    <string name="lorem_ipsum">Lorem Ipsum</string>
+    <string name="active_background">Active period background</string>
+    <string name="exp_background">Expanded background</string>
+    <string name="sample_course">Java Programming - ELA</string>
+    <string name="sample_time">8:00 AM - 9:40 AM</string>
+    <string name="down_arrow">Down arrow</string>
+    <string name="sample_slot">C1 + TC1</string>
+    <string name="sample_class_id">SJT 304</string>
+    <string name="next">Next</string>
+    <string name="greeting">Hello, Anonymous</string>
+    <string name="done">Done</string>
+    <string name="no_classes_today">No classes today!</string>
+    <string name="no_classes_today_subtext">Up for some Valorant Grind?</string>
+    <string name="intro1_title">Never miss a class!</string>
+    <string name="intro1_subtitle">Notifications to remind you about your classes but it\'s your wish if you want to attend it or not :)</string>
+    <string name="todo">TODO</string>
 </resources>

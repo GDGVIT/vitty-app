@@ -10,13 +10,19 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.VITTY">
-        <activity android:name=".ui.schedule.ScheduleActivity">
+        <activity android:name=".ui.instructions.InstructionsActivity" />
+        <activity
+            android:name=".ui.auth.AuthActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".ui.schedule.ScheduleActivity"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

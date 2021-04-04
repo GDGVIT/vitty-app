@@ -5,7 +5,11 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="tab_back">#071F33</color>
-    <color name="tab_selected">#BF126AFC</color>
+    <color name="tab_selected">#E6126AFC</color>
     <color name="tab_selected_2">#1A126AFC</color>
     <color name="background">#041727</color>
+    <color name="translucent">#5B7CA1</color>
+    <color name="border_1">#AD5B7CA1</color>
+    <color name="border_2">#1A5B7CA1</color>
+    <color name="intro_tab">#082F63</color>
 </resources>
