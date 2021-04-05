@@ -35,6 +35,4 @@ class ScheduleActivity : FragmentActivity() {
 //            viewPager.currentItem = viewPager.currentItem - 1
 //        }
 //    }
-
-
 }

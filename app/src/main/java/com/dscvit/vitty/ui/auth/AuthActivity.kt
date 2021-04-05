@@ -69,7 +69,6 @@ class AuthActivity : AppCompatActivity() {
             startActivity(intent)
             finish()
         }
-
     }
 
     override fun onBackPressed() {

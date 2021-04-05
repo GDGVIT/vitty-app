@@ -15,4 +15,7 @@
     <string name="intro1_title">Never miss a class!</string>
     <string name="intro1_subtitle">Notifications to remind you about your classes but it\'s your wish if you want to attend it or not :)</string>
     <string name="todo">TODO</string>
+    <string name="appwidget_text">EXAMPLE</string>
+    <string name="your_next_class">Your Next Class</string>
+    <string name="today_schedule">Today\'s Schedule</string>
 </resources>

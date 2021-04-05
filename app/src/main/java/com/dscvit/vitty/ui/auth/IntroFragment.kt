@@ -19,5 +19,4 @@ class IntroFragment : Fragment() {
 
         return root
     }
-
 }

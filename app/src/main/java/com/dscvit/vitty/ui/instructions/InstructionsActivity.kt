@@ -30,6 +30,5 @@ class InstructionsActivity : AppCompatActivity() {
             startActivity(intent)
             finish()
         }
-
     }
 }

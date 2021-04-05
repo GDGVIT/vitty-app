@@ -54,5 +54,4 @@ class PeriodAdapter(private val dataset: ArrayList<String>) :
     }
 
     override fun getItemCount() = dataset.size
-
 }

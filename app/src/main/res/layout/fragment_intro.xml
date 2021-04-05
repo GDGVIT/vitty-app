@@ -13,9 +13,9 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:adjustViewBounds="true"
+        android:contentDescription="@string/todo"
         android:scaleType="fitCenter"
-        android:src="@drawable/get_notified"
-        android:contentDescription="@string/todo" />
+        android:src="@drawable/get_notified" />
 
     <TextView
         android:id="@+id/heading"

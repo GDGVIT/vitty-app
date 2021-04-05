@@ -31,7 +31,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/tab_back"
-                app:tabGravity="fill"
                 app:tabIndicator="@drawable/tab_selected_background"
                 app:tabIndicatorColor="@color/tab_selected"
                 app:tabIndicatorGravity="stretch"
