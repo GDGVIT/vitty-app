@@ -14,4 +14,5 @@
     <color name="intro_tab">#082F63</color>
     <color name="next_class">#99126AFC</color>
     <color name="next_class_2">#1A126AFC</color>
+    <color name="transparent">#00000000</color>
 </resources>

@@ -55,7 +55,6 @@
             android:paddingTop="22dp"
             android:paddingBottom="12dp">
 
-
             <TextView
                 android:id="@+id/course_name"
                 android:layout_width="wrap_content"

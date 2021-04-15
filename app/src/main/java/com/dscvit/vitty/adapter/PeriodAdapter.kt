@@ -1,37 +1,43 @@
-package com.dscvit.vitty.ui.schedule
+package com.dscvit.vitty.adapter
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.LinearLayout
-import android.widget.TextView
+import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.dscvit.vitty.R
+import com.dscvit.vitty.databinding.CardPeriodBinding
+import com.dscvit.vitty.model.PeriodDetails
 
-class PeriodAdapter(private val dataset: ArrayList<String>) :
+class PeriodAdapter(private val dataSet: ArrayList<PeriodDetails>) :
     RecyclerView.Adapter<PeriodAdapter.ViewHolder>() {
 
     private var previousExpandedPosition = -1
     private var mExpandedPosition = -1
 
-    class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-//        val timePeriod: TextView = view.findViewById(R.id.period_time)
-        val courseName: TextView = view.findViewById(R.id.course_name)
-        val arrow: ImageView = view.findViewById(R.id.arrow_faq)
-        val moreInfo: LinearLayout = view.findViewById(R.id.more_info)
-        val expandedBackground: ImageView = view.findViewById(R.id.expanded_background)
+    class ViewHolder(private val binding: CardPeriodBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+        val arrow = binding.arrowMoreInfo
+        val moreInfo = binding.moreInfo
+        val expandedBackground = binding.expandedBackground
+        fun bind(data: PeriodDetails) {
+            binding.periodDetails = data
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.card_period, parent, false)
-        return ViewHolder(view)
+        return ViewHolder(
+            DataBindingUtil.inflate(
+                LayoutInflater.from(parent.context),
+                R.layout.card_period,
+                parent,
+                false
+            )
+        )
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.courseName.text = dataset[position]
-
+        holder.bind(dataSet[position])
         val isExpanded = position == mExpandedPosition
         if (isExpanded) {
             holder.expandedBackground.visibility = View.VISIBLE
@@ -53,5 +59,5 @@ class PeriodAdapter(private val dataset: ArrayList<String>) :
         }
     }
 
-    override fun getItemCount() = dataset.size
+    override fun getItemCount() = dataSet.size
 }

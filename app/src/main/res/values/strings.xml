@@ -8,7 +8,7 @@
     <string name="sample_slot">C1 + TC1</string>
     <string name="sample_class_id">SJT 304</string>
     <string name="next">Next</string>
-    <string name="greeting">Hello, Anonymous</string>
+    <string name="greeting">Hello,</string>
     <string name="done">Done</string>
     <string name="no_classes_today">No classes today!</string>
     <string name="no_classes_today_subtext">Up for some Valorant Grind?</string>
@@ -18,4 +18,8 @@
     <string name="appwidget_text">EXAMPLE</string>
     <string name="your_next_class">Your Next Class</string>
     <string name="today_schedule">Today\'s Schedule</string>
+    <string name="instructions">Instructions come here</string>
+    <string name="logout">Logout</string>
+    <string name="logout_msg">Are you sure?</string>
+    <string name="cancel">Cancel</string>
 </resources>

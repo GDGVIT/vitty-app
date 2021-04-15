@@ -15,7 +15,7 @@
         <item name="android:fontFamily">@font/poppins_400</item>
         <item name="android:textColor">@color/translucent</item>
         <item name="android:windowBackground">@color/background</item>
-
+        <item name="android:itemBackground">@color/tab_back</item>
         <item name="android:navigationBarColor">@color/background</item>
     </style>
 

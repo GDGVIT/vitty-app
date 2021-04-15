@@ -1,9 +1,10 @@
-package com.dscvit.vitty.ui.schedule
+package com.dscvit.vitty.adapter
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
+import com.dscvit.vitty.ui.schedule.DayFragment
 
 class DayAdapter(fa: FragmentActivity) : FragmentStateAdapter(fa) {
     private val numPages = 7

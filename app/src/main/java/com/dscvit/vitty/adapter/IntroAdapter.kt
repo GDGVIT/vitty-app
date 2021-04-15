@@ -1,9 +1,10 @@
-package com.dscvit.vitty.ui.auth
+package com.dscvit.vitty.adapter
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
+import com.dscvit.vitty.ui.auth.IntroFragment
 
 class IntroAdapter(fa: FragmentActivity) : FragmentStateAdapter(fa) {
     private val numPages = 3

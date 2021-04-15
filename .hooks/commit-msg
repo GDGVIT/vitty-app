@@ -6,7 +6,7 @@ echo "$matched_str"
 if [ "$matched_str" != "" ];
 then
   echo "Linting Kotlin Files"
-  ./gradlew ktLintFormat
+  gradlew ktLintFormat
   git add .
 	exit 0
 else
