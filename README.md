@@ -2,8 +2,8 @@
 <a href="https://dscvit.com">
 	<img src="https://user-images.githubusercontent.com/30529572/92081025-fabe6f00-edb1-11ea-9169-4a8a61a5dd45.png" alt="DSC VIT"/>
 </a>
-	<h2 align="center"> < Insert Project Title Here > </h2>
-	<h4 align="center"> < Insert Project Description Here > <h4>
+	<h2 align="center">VITTY</h2>
+	<h4 align="center">Android App for Time Table</h4>
 </p>
 
 ---
@@ -15,46 +15,36 @@
 
 
 ## Features
-- [ ]  < feature >
-- [ ]  < feature >
-- [ ]  < feature >
-- [ ]  < feature >
+- [ ]  Easy access to timetable
+- [ ]  Home screen widgets
+- [ ]  Notifications for classes
 
 <br>
 
 ## Dependencies
- - < dependency >
- - < dependency >
+ - Android SDK
+ - Android Studio
 
 
 ## Running
 
-
-< directions to install > 
-```bash
-< insert code >
-```
-
-< directions to execute >
-
-```bash
-< insert code >
-```
+- Import the project in Android Studio
+- Run the project using the automatically added APP configuration
 
 ## Contributors
 
 <table>
 	<tr align="center">
 		<td>
-		John Doe
+		Yajat Malhotra
 		<p align="center">
-			<img src = "https://dscvit.com/images/dsc-logo-square.svg" width="150" height="150" alt="Your Name Here (Insert Your Image Link In Src">
+			<img src = "https://avatars.githubusercontent.com/u/68477362?s=460&u=3512e6223472e97a050f292478d125602c371fec&v=4" width="150" height="150" alt="Yajat Malhotra">
 		</p>
 			<p align="center">
-				<a href = "https://github.com/person1">
+				<a href = "https://github.com/iamyajat">
 					<img src = "http://www.iconninja.com/files/241/825/211/round-collaboration-social-github-code-circle-network-icon.svg" width="36" height = "36" alt="GitHub"/>
 				</a>
-				<a href = "https://www.linkedin.com/in/person1">
+				<a href = "https://www.linkedin.com/in/iamyajat">
 					<img src = "http://www.iconninja.com/files/863/607/751/network-linkedin-social-connection-circular-circle-media-icon.svg" width="36" height="36" alt="LinkedIn"/>
 				</a>
 			</p>
