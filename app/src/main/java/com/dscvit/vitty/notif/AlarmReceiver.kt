@@ -5,7 +5,7 @@ import android.content.Context
 import android.content.Intent
 
 class AlarmReceiver : BroadcastReceiver() {
-    var i = 0;
+    var i = 0
     override fun onReceive(context: Context?, intent: Intent?) {
 
         if (context != null) {

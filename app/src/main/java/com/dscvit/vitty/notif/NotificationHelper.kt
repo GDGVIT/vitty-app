@@ -11,7 +11,6 @@ import androidx.core.app.NotificationManagerCompat
 import com.dscvit.vitty.R
 import com.dscvit.vitty.ui.schedule.ScheduleActivity
 
-
 object NotificationHelper {
     fun createNotificationChannel(
         context: Context,

@@ -78,7 +78,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
-                        android:text="@={periodDetails.time}"
+                        android:text="@{periodDetails.startTime.toString()}"
                         android:textSize="15sp"
                         tools:text="@string/sample_time" />
                 </LinearLayout>

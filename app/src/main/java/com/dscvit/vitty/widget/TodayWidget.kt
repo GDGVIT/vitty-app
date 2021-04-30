@@ -1,4 +1,4 @@
-package com.dscvit.vitty.ui.widgets
+package com.dscvit.vitty.widget
 
 import android.appwidget.AppWidgetManager
 import android.appwidget.AppWidgetProvider
