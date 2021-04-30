@@ -6,7 +6,19 @@ plugins {
     id 'org.jlleitschuh.gradle.ktlint' version '10.0.0'
 }
 
+def keystorePropertiesFile = rootProject.file("keystore.properties")
+def keystoreProperties = new Properties()
+keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
+
 android {
+    signingConfigs {
+        release {
+            keyAlias keystoreProperties['keyAlias']
+            keyPassword keystoreProperties['keyPassword']
+            storeFile file(keystoreProperties['storeFile'])
+            storePassword keystoreProperties['storePassword']
+        }
+    }
     compileSdkVersion 30
     buildToolsVersion "30.0.3"
 
@@ -17,6 +29,7 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        signingConfig signingConfigs.release
     }
 
     buildTypes {
@@ -50,12 +63,15 @@ dependencies {
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.1'
 
     // Firebase
-    implementation platform('com.google.firebase:firebase-bom:27.0.0')
+    implementation platform('com.google.firebase:firebase-bom:27.1.0')
     implementation 'com.google.firebase:firebase-analytics-ktx'
 
     // Firebase Auth
     implementation 'com.google.firebase:firebase-auth-ktx'
     implementation 'com.google.android.gms:play-services-auth:19.0.0'
+
+    // Firestore
+    implementation 'com.google.firebase:firebase-firestore:22.1.2'
 
     // Loading Animations
     implementation 'com.github.ybq:Android-SpinKit:1.4.0'
