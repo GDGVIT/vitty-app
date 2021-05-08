@@ -29,6 +29,18 @@ object NotificationHelper {
         }
     }
 
+    fun deleteNotificationChannel(
+        context: Context,
+        name: String,
+    ) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            val channelId = "${context.packageName}-$name"
+            val notificationManager: NotificationManager =
+                context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+            notificationManager.deleteNotificationChannel(channelId)
+        }
+    }
+
     fun sendNotification(
         context: Context,
         title: String,
@@ -48,7 +60,7 @@ object NotificationHelper {
                 NotificationCompat.BigTextStyle()
                     .bigText(bigText)
             )
-            .setPriority(NotificationCompat.PRIORITY_MAX)
+            .setPriority(NotificationCompat.PRIORITY_HIGH)
             .setContentIntent(pendingIntent)
             .setAutoCancel(true)
 
