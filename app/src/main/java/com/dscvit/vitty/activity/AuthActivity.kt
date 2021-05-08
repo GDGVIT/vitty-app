@@ -1,4 +1,4 @@
-package com.dscvit.vitty.ui.auth
+package com.dscvit.vitty.activity
 
 import android.content.Context
 import android.content.Intent
@@ -11,7 +11,6 @@ import androidx.viewpager2.widget.ViewPager2
 import com.dscvit.vitty.R
 import com.dscvit.vitty.adapter.IntroAdapter
 import com.dscvit.vitty.databinding.ActivityAuthBinding
-import com.dscvit.vitty.ui.instructions.InstructionsActivity
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInClient

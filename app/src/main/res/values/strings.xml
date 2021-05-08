@@ -22,4 +22,5 @@
     <string name="logout">Logout</string>
     <string name="logout_msg">Are you sure?</string>
     <string name="cancel">Cancel</string>
+    <string name="notifications">Notifications</string>
 </resources>

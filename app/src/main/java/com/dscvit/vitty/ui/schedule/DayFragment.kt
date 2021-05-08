@@ -23,6 +23,7 @@ class DayFragment : Fragment() {
     private var fragID = -1
     private lateinit var sharedPref: SharedPreferences
     private val db = FirebaseFirestore.getInstance()
+    private val days = listOf("monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday")
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -47,7 +48,7 @@ class DayFragment : Fragment() {
             db.collection("users")
                 .document(uid)
                 .collection("timetable")
-                .document("monday")
+                .document(days[fragID])
                 .collection("periods")
                 .get()
                 .addOnSuccessListener { result ->
@@ -75,6 +76,7 @@ class DayFragment : Fragment() {
     private fun scheduleSetup() {
         binding.apply {
             if (courseList.isNotEmpty()) {
+                dayList.scheduleLayoutAnimation()
                 dayList.adapter = PeriodAdapter(courseList)
                 dayList.layoutManager = LinearLayoutManager(context)
             } else {

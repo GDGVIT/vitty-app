@@ -32,9 +32,9 @@
                 android:resource="@xml/next_class_widget_info" />
         </receiver>
 
-        <activity android:name=".ui.instructions.InstructionsActivity" />
+        <activity android:name=".activity.InstructionsActivity" />
         <activity
-            android:name=".ui.auth.AuthActivity"
+            android:name=".activity.AuthActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -43,7 +43,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ui.schedule.ScheduleActivity"
+            android:name=".activity.ScheduleActivity"
             android:screenOrientation="portrait" />
 
         <receiver android:name=".notif.AlarmReceiver" />
