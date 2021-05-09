@@ -121,6 +121,7 @@ class AuthActivity : AppCompatActivity() {
                 putString("email", email)
                 putString("token", token)
                 putString("uid", uid)
+                putInt("update_no", 0)
                 apply()
             }
         }

@@ -12,7 +12,6 @@ import com.dscvit.vitty.notif.NotificationHelper
 import com.google.firebase.firestore.FirebaseFirestore
 import timber.log.Timber
 
-
 class InstructionsActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityInstructionsBinding
@@ -97,6 +96,4 @@ class InstructionsActivity : AppCompatActivity() {
         for (i in array.indices) editor.putString(arrayName + "_" + i, array[i])
         return editor.commit()
     }
-
-
 }

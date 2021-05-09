@@ -1,13 +1,15 @@
 package com.dscvit.vitty.widget
 
+import android.app.PendingIntent
 import android.appwidget.AppWidgetManager
 import android.appwidget.AppWidgetProvider
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.widget.RemoteViews
 import com.dscvit.vitty.R
+import com.dscvit.vitty.activity.AuthActivity
 import com.dscvit.vitty.model.PeriodDetails
-import com.dscvit.vitty.notif.NotificationHelper
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.runBlocking
@@ -30,19 +32,19 @@ class NextClassWidget : AppWidgetProvider() {
         }
     }
 
-    override fun onAppWidgetOptionsChanged(
-        context: Context?,
-        appWidgetManager: AppWidgetManager?,
-        appWidgetId: Int,
-        newOptions: Bundle?
-    ) {
-        super.onAppWidgetOptionsChanged(context, appWidgetManager, appWidgetId, newOptions)
+//    override fun onAppWidgetOptionsChanged(
+//        context: Context?,
+//        appWidgetManager: AppWidgetManager?,
+//        appWidgetId: Int,
+//        newOptions: Bundle?
+//    ) {
+//        super.onAppWidgetOptionsChanged(context, appWidgetManager, appWidgetId, newOptions)
 //        if (context != null) {
 //            if (appWidgetManager != null) {
 //                updateNextClassWidget(context, appWidgetManager, appWidgetId, null)
 //            }
 //        }
-    }
+//    }
 
     override fun onEnabled(context: Context) {
         // Enter relevant functionality for when the first widget is created
@@ -61,6 +63,9 @@ internal fun updateNextClassWidget(
 ) {
     // Construct the RemoteViews object
     val views = RemoteViews(context.packageName, R.layout.next_class_widget)
+    val intent = Intent(context, AuthActivity::class.java)
+    val pendingIntent = PendingIntent.getActivity(context, 0, intent, 0)
+    views.setOnClickPendingIntent(R.id.class_next,pendingIntent)
     val days = listOf("monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday")
     val calendar: Calendar = Calendar.getInstance()
     val d = when (calendar.get(Calendar.DAY_OF_WEEK)) {
@@ -100,8 +105,6 @@ internal fun updateNextClassWidget(
         }
         views.setTextViewText(R.id.slot_id, pd.slot)
         views.setTextViewText(R.id.class_id, pd.roomNo)
-
-
     }
 
     // Instruct the widget manager to update the widget
@@ -166,7 +169,6 @@ suspend fun fetchData(
                                     simpleDateFormat.format(calendar.time).toUpperCase(Locale.ROOT)
                                 Timber.d("LOL: $sTime")
                             }
-
                         } catch (e: Exception) {
                             pd.courseName = ""
                             pd.roomNo = ":)"
@@ -178,6 +180,5 @@ suspend fun fetchData(
                 .addOnFailureListener { e ->
                     Timber.d("Error: $e")
                 }
-
         }
     }

@@ -32,21 +32,36 @@
                 android:resource="@xml/next_class_widget_info" />
         </receiver>
 
-        <activity android:name=".activity.InstructionsActivity" />
+        <activity android:name=".activity.InstructionsActivity"
+            android:screenOrientation="fullSensor" />
+
         <activity
             android:name=".activity.AuthActivity"
-            android:screenOrientation="portrait">
+            android:screenOrientation="fullSensor">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity
             android:name=".activity.ScheduleActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="fullSensor" />
 
         <receiver android:name=".notif.AlarmReceiver" />
+
+        <service
+            android:name=".service.MyFirebaseMessagingService"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+
+        <service
+            android:name=".service.TodayWidgetService"
+            android:permission="android.permission.BIND_REMOTEVIEWS" />
 
     </application>
 
