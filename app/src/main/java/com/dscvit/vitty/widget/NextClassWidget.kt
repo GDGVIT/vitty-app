@@ -5,7 +5,6 @@ import android.appwidget.AppWidgetManager
 import android.appwidget.AppWidgetProvider
 import android.content.Context
 import android.content.Intent
-import android.os.Bundle
 import android.widget.RemoteViews
 import com.dscvit.vitty.R
 import com.dscvit.vitty.activity.AuthActivity
@@ -65,7 +64,7 @@ internal fun updateNextClassWidget(
     val views = RemoteViews(context.packageName, R.layout.next_class_widget)
     val intent = Intent(context, AuthActivity::class.java)
     val pendingIntent = PendingIntent.getActivity(context, 0, intent, 0)
-    views.setOnClickPendingIntent(R.id.class_next,pendingIntent)
+    views.setOnClickPendingIntent(R.id.class_next, pendingIntent)
     val days = listOf("monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday")
     val calendar: Calendar = Calendar.getInstance()
     val d = when (calendar.get(Calendar.DAY_OF_WEEK)) {

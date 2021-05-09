@@ -6,14 +6,6 @@ import android.content.Intent
 import android.widget.RemoteViews
 import android.widget.RemoteViewsService
 import com.dscvit.vitty.R
-import com.dscvit.vitty.util.Constants.PERIODS
-import com.dscvit.vitty.util.Constants.TIME_SLOTS
-import com.google.firebase.firestore.FirebaseFirestore
-import kotlinx.coroutines.coroutineScope
-import kotlinx.coroutines.runBlocking
-import timber.log.Timber
-import java.text.SimpleDateFormat
-import java.util.*
 
 class TodayWidgetService : RemoteViewsService() {
     override fun onGetViewFactory(intent: Intent): RemoteViewsFactory {
@@ -28,18 +20,13 @@ class AppWidgetListView(
     private val context: Context,
     intent: Intent,
 ) : RemoteViewsService.RemoteViewsFactory {
-    private var dataList: ArrayList<String>
-    private var timeList: ArrayList<String>
+    private var dataList: Array<String?>
+    private var timeList: Array<String?>
     private var appWidgetId: Int
-    private val intent1: Intent = intent
 
     init {
-        val sharedPref = context.getSharedPreferences("login_info", Context.MODE_PRIVATE)!!
-        var upNo = sharedPref.getInt("update_no", 0)
-        val bundle1 = intent.getBundleExtra(PERIODS)!!
-        val bundle2 = intent.getBundleExtra(TIME_SLOTS)!!
-        dataList = bundle1.getStringArrayList(PERIODS)!!
-        timeList = bundle2.getStringArrayList(TIME_SLOTS)!!
+        dataList = loadArray("courses_today", context)
+        timeList = loadArray("time_today", context)
         appWidgetId = intent.getIntExtra(
             AppWidgetManager.EXTRA_APPWIDGET_ID,
             AppWidgetManager.INVALID_APPWIDGET_ID
@@ -47,15 +34,14 @@ class AppWidgetListView(
     }
 
     override fun onCreate() {
-
+        fetch()
     }
 
     override fun onDataSetChanged() {
-        fetch(intent1)
+        fetch()
     }
 
     override fun onDestroy() {
-        return dataList.clear()
     }
 
     override fun getCount(): Int {
@@ -85,18 +71,16 @@ class AppWidgetListView(
         return true
     }
 
-    private fun fetch(intent: Intent){
-        if (intent.extras != null) {
-            if (intent.extras!!.containsKey(PERIODS)) {
-                val bundle1 = intent.getBundleExtra(PERIODS)!!
-                val bundle2 = intent.getBundleExtra(TIME_SLOTS)!!
-                dataList = bundle1.getStringArrayList(PERIODS)!!
-                timeList = bundle2.getStringArrayList(TIME_SLOTS)!!
-                appWidgetId = intent.getIntExtra(
-                    AppWidgetManager.EXTRA_APPWIDGET_ID,
-                    AppWidgetManager.INVALID_APPWIDGET_ID
-                )
-            }
-        }
+    private fun fetch() {
+        dataList = loadArray("courses_today", context)
+        timeList = loadArray("time_today", context)
+    }
+
+    private fun loadArray(arrayName: String, context: Context): Array<String?> {
+        val prefs = context.getSharedPreferences("login_info", Context.MODE_PRIVATE)
+        val size = prefs.getInt(arrayName + "_size", 0)
+        val array = arrayOfNulls<String>(size)
+        for (i in 0 until size) array[i] = prefs.getString(arrayName + "_" + i, null)
+        return array
     }
 }

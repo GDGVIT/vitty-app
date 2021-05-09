@@ -34,7 +34,6 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
         super.onNewToken(p0)
     }
 
-
     private fun fetchFirestore(
         context: Context,
         day: String,
@@ -116,5 +115,4 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
                     }
             }
         }
-
 }

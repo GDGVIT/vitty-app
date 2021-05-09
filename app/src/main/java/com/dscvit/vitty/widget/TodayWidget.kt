@@ -1,7 +1,6 @@
 package com.dscvit.vitty.widget
 
 import android.app.PendingIntent
-import android.app.PendingIntent.FLAG_UPDATE_CURRENT
 import android.appwidget.AppWidgetManager
 import android.appwidget.AppWidgetProvider
 import android.content.Context
@@ -21,7 +20,6 @@ import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
 
-
 /**
  * Implementation of App Widget functionality.
  */
@@ -37,19 +35,19 @@ class TodayWidget : AppWidgetProvider() {
         }
     }
 
-    override fun onAppWidgetOptionsChanged(
-        context: Context?,
-        appWidgetManager: AppWidgetManager?,
-        appWidgetId: Int,
-        newOptions: Bundle?
-    ) {
-        super.onAppWidgetOptionsChanged(context, appWidgetManager, appWidgetId, newOptions)
-        if (context != null) {
-            if (appWidgetManager != null) {
-                updateTodayWidget(context, appWidgetManager, appWidgetId, null, null)
-            }
-        }
-    }
+//    override fun onAppWidgetOptionsChanged(
+//        context: Context?,
+//        appWidgetManager: AppWidgetManager?,
+//        appWidgetId: Int,
+//        newOptions: Bundle?
+//    ) {
+//        super.onAppWidgetOptionsChanged(context, appWidgetManager, appWidgetId, newOptions)
+//        if (context != null) {
+//            if (appWidgetManager != null) {
+//                updateTodayWidget(context, appWidgetManager, appWidgetId, null, null)
+//            }
+//        }
+//    }
 
     override fun onEnabled(context: Context) {
         // Enter relevant functionality for when the first widget is created
@@ -88,6 +86,9 @@ internal fun updateTodayWidget(
     if (courseList == null) {
         fetchTodayFirestore(context, days[d], appWidgetManager, appWidgetId)
     } else if (courseList.isNotEmpty()) {
+        saveArray(courseList, "courses_today", context)
+        saveArray(timeList!!, "time_today", context)
+
         val serviceIntent = Intent(context, TodayWidgetService::class.java)
         serviceIntent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetId)
         val bundle1 = Bundle()
@@ -100,8 +101,8 @@ internal fun updateTodayWidget(
             TIME_SLOTS,
             timeList
         )
-        serviceIntent.putExtra(PERIODS, bundle1)
-        serviceIntent.putExtra(TIME_SLOTS, bundle2)
+//        serviceIntent.putExtra(PERIODS, bundle1)
+//        serviceIntent.putExtra(TIME_SLOTS, bundle2)
         views.setRemoteAdapter(R.id.periods, serviceIntent)
 
         // Button Intent
@@ -115,6 +116,14 @@ internal fun updateTodayWidget(
 
     // Instruct the widget manager to update the widget
     appWidgetManager.updateAppWidget(appWidgetId, views)
+}
+
+private fun saveArray(array: ArrayList<String>, arrayName: String, context: Context): Boolean {
+    val prefs = context.getSharedPreferences("login_info", 0)
+    val editor = prefs.edit()
+    editor.putInt(arrayName + "_size", array.size)
+    for (i in array.indices) editor.putString(arrayName + "_" + i, array[i])
+    return editor.commit()
 }
 
 fun fetchTodayFirestore(
@@ -170,4 +179,3 @@ suspend fun fetchTodayData(
                 }
         }
     }
-
