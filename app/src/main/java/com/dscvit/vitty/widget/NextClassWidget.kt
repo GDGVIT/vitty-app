@@ -95,14 +95,13 @@ internal fun updateNextClassWidget(
         } else {
             views.setTextViewText(
                 R.id.course_name,
-                "No More Classes Today"
+                context.getString(R.string.no_more_classes_today)
             )
             views.setTextViewText(
                 R.id.period_time,
                 context.getString(R.string.no_classes_today_subtext)
             )
         }
-        views.setTextViewText(R.id.slot_id, pd.slot)
         views.setTextViewText(R.id.class_id, pd.roomNo)
     }
 
@@ -132,7 +131,8 @@ suspend fun fetchData(
         val db = FirebaseFirestore.getInstance()
         val sharedPref = context.getSharedPreferences("login_info", Context.MODE_PRIVATE)!!
         val uid = sharedPref.getString("uid", "")
-        if (uid != null) {
+        var pd = PeriodDetails()
+        if (uid != null && uid != "") {
             db.collection("users")
                 .document(uid)
                 .collection("timetable")
@@ -140,15 +140,20 @@ suspend fun fetchData(
                 .collection("periods")
                 .get()
                 .addOnSuccessListener { result ->
-                    var pd = PeriodDetails()
                     for (document in result) {
                         try {
                             calendar.add(Calendar.MINUTE, -15)
                             val start = Calendar.getInstance()
-                            start.time = document.getTimestamp("startTime")!!.toDate()
+                            val s = Calendar.getInstance()
+                            s.time = document.getTimestamp("startTime")!!.toDate()
+                            start[Calendar.HOUR] = s[Calendar.HOUR]
+                            start[Calendar.MINUTE] = s[Calendar.MINUTE]
                             if (start.time > calendar.time) {
                                 val end = Calendar.getInstance()
-                                end.time = document.getTimestamp("endTime")!!.toDate()
+                                val e = Calendar.getInstance()
+                                e.time = document.getTimestamp("endTime")!!.toDate()
+                                end[Calendar.HOUR] = e[Calendar.HOUR]
+                                end[Calendar.MINUTE] = e[Calendar.MINUTE]
                                 if (end.time > calendar.time) {
                                     pd = PeriodDetails(
                                         document.getString("courseName")!!,
@@ -161,7 +166,6 @@ suspend fun fetchData(
                                 }
                             } else {
                                 pd.courseName = ""
-                                pd.roomNo = ":)"
                                 val simpleDateFormat =
                                     SimpleDateFormat("h:mm a", Locale.getDefault())
                                 val sTime: String =
@@ -170,7 +174,6 @@ suspend fun fetchData(
                             }
                         } catch (e: Exception) {
                             pd.courseName = ""
-                            pd.roomNo = ":)"
                             Timber.d("F: $e")
                         }
                     }
@@ -179,5 +182,8 @@ suspend fun fetchData(
                 .addOnFailureListener { e ->
                     Timber.d("Error: $e")
                 }
+        } else {
+            pd.courseName = ""
+            updateNextClassWidget(context, appWidgetManager, appWidgetId, pd)
         }
     }

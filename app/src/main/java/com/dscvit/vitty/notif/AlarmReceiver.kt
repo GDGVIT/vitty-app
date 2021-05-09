@@ -8,13 +8,18 @@ class AlarmReceiver : BroadcastReceiver() {
     var i = 0
     override fun onReceive(context: Context?, intent: Intent?) {
 
+        var name = ""
+        if (intent != null) {
+            name = intent.getStringExtra("CLASS_NAME").toString()
+        }
+
         if (context != null) {
             NotificationHelper.sendNotification(
                 context,
-                "Cool Notif Title",
-                "Sekrt Msg",
-                "WOW this is such a cool notification. I love it! WOWOW Mazza aa gaya!",
-                "Notify",
+                name,
+                name,
+                "WOW this is such a cool notification. $name. I love it! WOWOW Mazza aa gaya!",
+                "Other",
                 i++
             )
         }

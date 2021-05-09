@@ -148,7 +148,7 @@ suspend fun fetchTodayData(
         val uid = sharedPref.getString("uid", "")
         val courseList: ArrayList<String> = ArrayList()
         val timeList: ArrayList<String> = ArrayList()
-        if (uid != null) {
+        if (uid != null && uid != "") {
             db.collection("users")
                 .document(uid)
                 .collection("timetable")
@@ -177,5 +177,7 @@ suspend fun fetchTodayData(
                 .addOnFailureListener { e ->
                     Timber.d("Error: $e")
                 }
+        } else {
+            updateTodayWidget(context, appWidgetManager, appWidgetId, courseList, timeList)
         }
     }

@@ -13,7 +13,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.VITTY">
-        <receiver android:name="com.dscvit.vitty.widget.TodayWidget">
+
+        <receiver android:name="com.dscvit.vitty.widget.TodayWidget" android:label="Today's Schedule">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
             </intent-filter>
@@ -22,7 +23,8 @@
                 android:name="android.appwidget.provider"
                 android:resource="@xml/today_widget_info" />
         </receiver>
-        <receiver android:name="com.dscvit.vitty.widget.NextClassWidget">
+
+        <receiver android:name="com.dscvit.vitty.widget.NextClassWidget" android:label="Next Class">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
             </intent-filter>
@@ -32,12 +34,13 @@
                 android:resource="@xml/next_class_widget_info" />
         </receiver>
 
-        <activity android:name=".activity.InstructionsActivity"
+        <activity
+            android:name=".activity.InstructionsActivity"
             android:screenOrientation="fullSensor" />
 
         <activity
             android:name=".activity.AuthActivity"
-            android:screenOrientation="fullSensor">
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -47,7 +50,7 @@
 
         <activity
             android:name=".activity.ScheduleActivity"
-            android:screenOrientation="fullSensor" />
+            android:screenOrientation="portrait" />
 
         <receiver android:name=".notif.AlarmReceiver" />
 

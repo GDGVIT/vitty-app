@@ -11,6 +11,7 @@
     <string name="greeting">Hello,</string>
     <string name="done">Done</string>
     <string name="no_classes_today">No classes today!</string>
+    <string name="no_more_classes_today">No More Classes Today</string>
     <string name="no_classes_today_subtext">Up for some Valorant Grind?</string>
     <string name="intro1_title">Never miss a class!</string>
     <string name="intro1_subtitle">Notifications to remind you about your classes but it\'s your wish if you want to attend it or not :)</string>
@@ -23,4 +24,7 @@
     <string name="logout_msg">Are you sure?</string>
     <string name="cancel">Cancel</string>
     <string name="notifications">Notifications</string>
+    <string name="sign_in_fail">Google sign in failed :(</string>
+    <string name="follow_instructions">Please follow the instructions!</string>
+    <string name="updated">Updating…</string>
 </resources>

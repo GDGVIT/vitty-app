@@ -11,6 +11,11 @@ import androidx.viewpager2.widget.ViewPager2
 import com.dscvit.vitty.R
 import com.dscvit.vitty.adapter.IntroAdapter
 import com.dscvit.vitty.databinding.ActivityAuthBinding
+import com.dscvit.vitty.util.Constants.EMAIL
+import com.dscvit.vitty.util.Constants.NAME
+import com.dscvit.vitty.util.Constants.TOKEN
+import com.dscvit.vitty.util.Constants.UID
+import com.dscvit.vitty.util.Constants.USER_INFO
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
@@ -20,7 +25,6 @@ import com.google.android.gms.tasks.Task
 import com.google.android.material.tabs.TabLayoutMediator
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
-import timber.log.Timber
 
 class AuthActivity : AppCompatActivity() {
 
@@ -107,26 +111,23 @@ class AuthActivity : AppCompatActivity() {
     }
 
     private fun logoutFailed() {
-        Toast.makeText(this, "Google sign in failed :(", Toast.LENGTH_LONG).show()
+        Toast.makeText(this, getString(R.string.sign_in_fail), Toast.LENGTH_LONG).show()
         binding.loadingView.visibility = View.GONE
         binding.introPager.currentItem = 0
         loginClick = false
     }
 
     private fun saveInfo(name: String?, email: String?, token: String?, uid: String?) {
-        val sharedPref = getSharedPreferences("login_info", Context.MODE_PRIVATE)
+        val sharedPref = getSharedPreferences(USER_INFO, Context.MODE_PRIVATE)
         if (sharedPref != null) {
             with(sharedPref.edit()) {
-                putString("name", name)
-                putString("email", email)
-                putString("token", token)
-                putString("uid", uid)
-                putInt("update_no", 0)
+                putString(NAME, name)
+                putString(EMAIL, email)
+                putString(TOKEN, token)
+                putString(UID, uid)
                 apply()
             }
         }
-        Timber.d("Name: $name, Email: $email")
-        Timber.d("Saved info!")
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

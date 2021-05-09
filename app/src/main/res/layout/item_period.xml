@@ -3,9 +3,9 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginStart="15dp"
-    android:layout_marginTop="8dp"
+    android:layout_marginTop="5dp"
     android:layout_marginEnd="15dp"
-    android:layout_marginBottom="7dp"
+    android:layout_marginBottom="10dp"
     android:background="@drawable/today_list_background"
     android:orientation="vertical">
 
@@ -16,10 +16,10 @@
         android:layout_marginTop="15dp"
         android:fontFamily="@font/poppins_600"
         android:paddingStart="25dp"
-        android:paddingEnd="25dp"
+        android:paddingEnd="30dp"
         android:text="@string/sample_course"
         android:textColor="@color/white"
-        android:textSize="18sp" />
+        android:textSize="16sp" />
 
     <TextView
         android:id="@+id/period_time"
@@ -30,6 +30,6 @@
         android:paddingStart="25dp"
         android:paddingEnd="25dp"
         android:text="@string/sample_time"
-        android:textSize="16sp" />
+        android:textSize="15sp" />
 
 </LinearLayout>

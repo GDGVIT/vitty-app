@@ -2,6 +2,7 @@ package com.dscvit.vitty.activity
 
 import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
@@ -15,20 +16,51 @@ import androidx.fragment.app.FragmentActivity
 import com.dscvit.vitty.R
 import com.dscvit.vitty.adapter.DayAdapter
 import com.dscvit.vitty.databinding.ActivityScheduleBinding
+import com.dscvit.vitty.util.Constants.TIMETABLE_AVAILABLE
+import com.dscvit.vitty.util.Constants.UID
+import com.dscvit.vitty.util.Constants.UPDATE
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.tabs.TabLayoutMediator
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
 import java.util.*
 
 class ScheduleActivity : FragmentActivity() {
 
     private lateinit var binding: ActivityScheduleBinding
     private val days = listOf("Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun")
+    private lateinit var prefs: SharedPreferences
+    private var uid = ""
+    private val db = FirebaseFirestore.getInstance()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_schedule)
+        prefs = getSharedPreferences("login_info", 0)
+        uid = prefs.getString("uid", "").toString()
         pageSetup(this)
+    }
+
+    override fun onStart() {
+        super.onStart()
+        setupOnStart()
+    }
+
+    private fun setupOnStart() {
+        db.collection("users")
+            .document(uid)
+            .get()
+            .addOnSuccessListener { document ->
+                if (document.getBoolean("isUpdated") == true) {
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                        prefs.edit().putInt(TIMETABLE_AVAILABLE, 0).apply()
+                        prefs.edit().putInt(UPDATE, 1).apply()
+                        val intent = Intent(this, InstructionsActivity::class.java)
+                        startActivity(intent)
+                        finish()
+                    }
+                }
+            }
     }
 
     private fun pageSetup(context: Context) {
@@ -104,6 +136,9 @@ class ScheduleActivity : FragmentActivity() {
         }
 
         logout.setOnClickListener {
+            prefs.edit().putInt(TIMETABLE_AVAILABLE, 0).apply()
+            prefs.edit().putInt(UPDATE, 0).apply()
+            prefs.edit().putString(UID, "").apply()
             FirebaseAuth.getInstance().signOut()
             val intent = Intent(this, AuthActivity::class.java)
             startActivity(intent)

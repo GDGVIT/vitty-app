@@ -8,5 +8,5 @@ data class PeriodDetails(
     var startTime: Timestamp = Timestamp(Date()),
     var endTime: Timestamp = Timestamp(Date()),
     var slot: String = "",
-    var roomNo: String = ":)",
+    var roomNo: String = "",
 )
