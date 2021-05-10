@@ -1,5 +1,7 @@
 package com.dscvit.vitty.ui.schedule
 
+import android.content.Context
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -11,13 +13,18 @@ import com.dscvit.vitty.R
 import com.dscvit.vitty.adapter.PeriodAdapter
 import com.dscvit.vitty.databinding.FragmentDayBinding
 import com.dscvit.vitty.model.PeriodDetails
-import kotlin.random.Random
+import com.google.firebase.firestore.FirebaseFirestore
+import timber.log.Timber
 
 class DayFragment : Fragment() {
 
     private lateinit var binding: FragmentDayBinding
     private val courseList: ArrayList<PeriodDetails> = ArrayList()
     private var fragID = -1
+    private lateinit var sharedPref: SharedPreferences
+    private val db = FirebaseFirestore.getInstance()
+    private val days =
+        listOf("monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday")
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -31,38 +38,51 @@ class DayFragment : Fragment() {
             false
         )
         fragID = arguments!!.getString("frag_id")?.toInt()!!
-        generateDummyTimetable(fragID)
-        scheduleSetup()
+        getData()
         return binding.root
     }
 
-    private fun generateDummyTimetable(fragID: Int) {
-        if (fragID != -1) {
-            for (i in (6 - fragID) downTo 2) {
-                val c = getRandomString(Random.nextInt(8) + 5)
-                val s = "A1 + TA1"
-                val t = "6:00 AM - 9:00 PM"
-                val r = "ACB 10"
-                courseList.add(PeriodDetails(c, t, s, r))
-            }
+    private fun getData() {
+        sharedPref = activity?.getSharedPreferences("login_info", Context.MODE_PRIVATE)!!
+        val uid = sharedPref.getString("uid", "")
+        if (uid != null) {
+            db.collection("users")
+                .document(uid)
+                .collection("timetable")
+                .document(days[fragID])
+                .collection("periods")
+                .get()
+                .addOnSuccessListener { result ->
+                    for (document in result) {
+                        try {
+                            val pd = PeriodDetails(
+                                document.getString("courseName")!!,
+                                document.getTimestamp("startTime")!!,
+                                document.getTimestamp("endTime")!!,
+                                document.getString("slot")!!,
+                                document.getString("location")!!
+                            )
+                            courseList.add(pd)
+                        } catch (e: Exception) {
+                        }
+                    }
+                    scheduleSetup()
+                }
+                .addOnFailureListener { e ->
+                    Timber.d("Auth error: $e")
+                }
         }
     }
 
     private fun scheduleSetup() {
         binding.apply {
             if (courseList.isNotEmpty()) {
+                dayList.scheduleLayoutAnimation()
                 dayList.adapter = PeriodAdapter(courseList)
                 dayList.layoutManager = LinearLayoutManager(context)
             } else {
                 noPeriod.visibility = View.VISIBLE
             }
         }
-    }
-
-    private fun getRandomString(length: Int): String {
-        val charset = ('a'..'z') + ('A'..'Z') + ('0'..'9')
-
-        return List(length) { charset.random() }
-            .joinToString("")
     }
 }

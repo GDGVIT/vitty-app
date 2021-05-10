@@ -1,6 +1,6 @@
 <p align="center">
 <a href="https://dscvit.com">
-	<img src="https://user-images.githubusercontent.com/30529572/92081025-fabe6f00-edb1-11ea-9169-4a8a61a5dd45.png" alt="DSC VIT"/>
+	<img src="https://user-images.githubusercontent.com/30529572/72455010-fb38d400-37e7-11ea-9c1e-8cdeb5f5906e.png" alt="DSC VIT"/>
 </a>
 	<h2 align="center">VITTY</h2>
 	<h4 align="center">Android App for Time Table</h4>
@@ -15,8 +15,8 @@
 
 
 ## Features
-- [ ]  Easy access to timetable
-- [ ]  Home screen widgets
+- [x]  Easy access to timetable
+- [x]  Home screen widgets
 - [ ]  Notifications for classes
 
 <br>

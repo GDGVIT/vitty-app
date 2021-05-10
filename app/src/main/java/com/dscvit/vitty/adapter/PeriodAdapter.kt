@@ -8,6 +8,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.dscvit.vitty.R
 import com.dscvit.vitty.databinding.CardPeriodBinding
 import com.dscvit.vitty.model.PeriodDetails
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
 
 class PeriodAdapter(private val dataSet: ArrayList<PeriodDetails>) :
     RecyclerView.Adapter<PeriodAdapter.ViewHolder>() {
@@ -20,6 +23,7 @@ class PeriodAdapter(private val dataSet: ArrayList<PeriodDetails>) :
         val arrow = binding.arrowMoreInfo
         val moreInfo = binding.moreInfo
         val expandedBackground = binding.expandedBackground
+        val periodTime = binding.periodTime
         fun bind(data: PeriodDetails) {
             binding.periodDetails = data
         }
@@ -38,6 +42,16 @@ class PeriodAdapter(private val dataSet: ArrayList<PeriodDetails>) :
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bind(dataSet[position])
+
+        val startTime: Date = dataSet[position].startTime.toDate() as Date
+        val simpleDateFormat = SimpleDateFormat("h:mm a", Locale.getDefault())
+        val sTime: String = simpleDateFormat.format(startTime).toUpperCase(Locale.ROOT)
+
+        val endTime: Date = dataSet[position].endTime.toDate() as Date
+        val eTime: String = simpleDateFormat.format(endTime).toUpperCase(Locale.ROOT)
+
+        holder.periodTime.text = "$sTime - $eTime"
+
         val isExpanded = position == mExpandedPosition
         if (isExpanded) {
             holder.expandedBackground.visibility = View.VISIBLE

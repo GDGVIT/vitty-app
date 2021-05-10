@@ -6,8 +6,8 @@
 
             <gradient
                 android:angle="45"
-                android:endColor="@color/border_1"
                 android:centerColor="@color/border_2"
+                android:endColor="@color/border_1"
                 android:startColor="@color/border_1"
                 android:type="linear" />
 
@@ -20,7 +20,7 @@
         android:left="1dp"
         android:right="1dp"
         android:top="1dp">
-        <shape android:shape="rectangle" >
+        <shape android:shape="rectangle">
             <corners android:radius="14dp" />
             <solid android:color="@color/tab_back" />
         </shape>

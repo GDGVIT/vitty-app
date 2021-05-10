@@ -12,5 +12,5 @@
 /captures
 .externalNativeBuild
 .cxx
-local.properties
 /app/google-services.json
+/keystore.properties

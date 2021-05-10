@@ -13,7 +13,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.VITTY">
-        <receiver android:name=".ui.widgets.TodayWidget">
+
+        <receiver
+            android:name="com.dscvit.vitty.widget.TodayWidget"
+            android:label="Today's Schedule">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
             </intent-filter>
@@ -22,7 +25,10 @@
                 android:name="android.appwidget.provider"
                 android:resource="@xml/today_widget_info" />
         </receiver>
-        <receiver android:name=".ui.widgets.NextClassWidget">
+
+        <receiver
+            android:name="com.dscvit.vitty.widget.NextClassWidget"
+            android:label="Next Class">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
             </intent-filter>
@@ -32,9 +38,12 @@
                 android:resource="@xml/next_class_widget_info" />
         </receiver>
 
-        <activity android:name=".ui.instructions.InstructionsActivity" />
         <activity
-            android:name=".ui.auth.AuthActivity"
+            android:name=".activity.InstructionsActivity"
+            android:screenOrientation="fullSensor" />
+
+        <activity
+            android:name=".activity.AuthActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -42,9 +51,25 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity
-            android:name=".ui.schedule.ScheduleActivity"
+            android:name=".activity.ScheduleActivity"
             android:screenOrientation="portrait" />
+
+        <receiver android:name=".notif.AlarmReceiver" />
+
+        <service
+            android:name=".service.MyFirebaseMessagingService"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+
+        <service
+            android:name=".service.TodayWidgetService"
+            android:permission="android.permission.BIND_REMOTEVIEWS" />
+
     </application>
 
 </manifest>

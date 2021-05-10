@@ -3,8 +3,8 @@
     android:initialKeyguardLayout="@layout/today_widget"
     android:initialLayout="@layout/today_widget"
     android:minWidth="250dp"
-    android:minHeight="280dp"
-    android:previewImage="@drawable/next_class_widget_preview"
+    android:minHeight="200dp"
+    android:previewImage="@drawable/today_widget_preview"
     android:resizeMode="horizontal|vertical"
-    android:updatePeriodMillis="1800000"
+    android:updatePeriodMillis="28800000"
     android:widgetCategory="home_screen" />

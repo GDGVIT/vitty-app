@@ -1,4 +1,4 @@
-package com.dscvit.vitty.ui.auth
+package com.dscvit.vitty.activity
 
 import android.content.Context
 import android.content.Intent
@@ -11,7 +11,11 @@ import androidx.viewpager2.widget.ViewPager2
 import com.dscvit.vitty.R
 import com.dscvit.vitty.adapter.IntroAdapter
 import com.dscvit.vitty.databinding.ActivityAuthBinding
-import com.dscvit.vitty.ui.instructions.InstructionsActivity
+import com.dscvit.vitty.util.Constants.EMAIL
+import com.dscvit.vitty.util.Constants.NAME
+import com.dscvit.vitty.util.Constants.TOKEN
+import com.dscvit.vitty.util.Constants.UID
+import com.dscvit.vitty.util.Constants.USER_INFO
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
@@ -21,15 +25,14 @@ import com.google.android.gms.tasks.Task
 import com.google.android.material.tabs.TabLayoutMediator
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
-import timber.log.Timber
 
 class AuthActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityAuthBinding
+
     private val SIGNIN: Int = 1
     private lateinit var mGoogleSignInClient: GoogleSignInClient
     private lateinit var mGoogleSignInOptions: GoogleSignInOptions
-
     private lateinit var firebaseAuth: FirebaseAuth
 
     private val pages = listOf("○", "○", "○")
@@ -38,9 +41,9 @@ class AuthActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_auth)
+        firebaseAuth = FirebaseAuth.getInstance()
         configureGoogleSignIn()
         setupUI()
-        firebaseAuth = FirebaseAuth.getInstance()
     }
 
     override fun onStart() {
@@ -94,8 +97,10 @@ class AuthActivity : AppCompatActivity() {
 
         binding.loginButton.setOnClickListener {
             login()
-            binding.introPager.isUserInputEnabled = false
-            binding.introPager.unregisterOnPageChangeCallback(pageChangeCallback)
+            if (loginClick) {
+                binding.introPager.isUserInputEnabled = false
+                binding.introPager.unregisterOnPageChangeCallback(pageChangeCallback)
+            }
         }
     }
 
@@ -105,18 +110,24 @@ class AuthActivity : AppCompatActivity() {
         startActivityForResult(signInIntent, SIGNIN)
     }
 
-    private fun saveInfo(name: String?, email: String?, token: String?) {
-        val sharedPref = getSharedPreferences("login_info", Context.MODE_PRIVATE)
+    private fun logoutFailed() {
+        Toast.makeText(this, getString(R.string.sign_in_fail), Toast.LENGTH_LONG).show()
+        binding.loadingView.visibility = View.GONE
+        binding.introPager.currentItem = 0
+        loginClick = false
+    }
+
+    private fun saveInfo(name: String?, email: String?, token: String?, uid: String?) {
+        val sharedPref = getSharedPreferences(USER_INFO, Context.MODE_PRIVATE)
         if (sharedPref != null) {
             with(sharedPref.edit()) {
-                putString("name", name)
-                putString("email", email)
-                putString("token", token)
+                putString(NAME, name)
+                putString(EMAIL, email)
+                putString(TOKEN, token)
+                putString(UID, uid)
                 apply()
             }
         }
-        Timber.d("Name: $name, Email: $email")
-        Timber.d("Saved info!")
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -129,7 +140,7 @@ class AuthActivity : AppCompatActivity() {
                     firebaseAuthWithGoogle(account)
                 }
             } catch (e: ApiException) {
-                Toast.makeText(this, "Google sign in failed:(", Toast.LENGTH_LONG).show()
+                logoutFailed()
             }
         }
     }
@@ -139,14 +150,14 @@ class AuthActivity : AppCompatActivity() {
         firebaseAuth.signInWithCredential(credential).addOnCompleteListener {
             if (it.isSuccessful) {
                 loginClick = true
-                saveInfo(acct.displayName, acct.email, acct.idToken)
+                val uid = firebaseAuth.currentUser?.uid
+                saveInfo(acct.displayName, acct.email, acct.idToken, uid)
                 val intent = Intent(this, InstructionsActivity::class.java)
                 binding.loadingView.visibility = View.GONE
                 startActivity(intent)
                 finish()
             } else {
-                binding.loadingView.visibility = View.GONE
-                Toast.makeText(this, "Google sign in failed:(", Toast.LENGTH_LONG).show()
+                logoutFailed()
             }
         }
     }
