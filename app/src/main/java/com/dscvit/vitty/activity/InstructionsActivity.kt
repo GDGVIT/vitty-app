@@ -22,8 +22,7 @@ import com.dscvit.vitty.util.Constants.UPDATE
 import com.dscvit.vitty.util.Constants.USER_INFO
 import com.google.firebase.firestore.FirebaseFirestore
 import timber.log.Timber
-import java.util.*
-import kotlin.collections.ArrayList
+import java.util.Calendar
 
 class InstructionsActivity : AppCompatActivity() {
 

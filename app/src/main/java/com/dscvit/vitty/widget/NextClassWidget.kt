@@ -14,7 +14,9 @@ import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.runBlocking
 import timber.log.Timber
 import java.text.SimpleDateFormat
-import java.util.*
+import java.util.Calendar
+import java.util.Date
+import java.util.Locale
 
 /**
  * Implementation of App Widget functionality.
@@ -142,18 +144,20 @@ suspend fun fetchData(
                 .addOnSuccessListener { result ->
                     for (document in result) {
                         try {
-                            calendar.add(Calendar.MINUTE, -15)
                             val start = Calendar.getInstance()
                             val s = Calendar.getInstance()
                             s.time = document.getTimestamp("startTime")!!.toDate()
-                            start[Calendar.HOUR] = s[Calendar.HOUR]
+                            start[Calendar.HOUR_OF_DAY] = s[Calendar.HOUR_OF_DAY]
                             start[Calendar.MINUTE] = s[Calendar.MINUTE]
+                            Timber.d("$calendar")
+                            Timber.d("$start")
                             if (start.time > calendar.time) {
                                 val end = Calendar.getInstance()
                                 val e = Calendar.getInstance()
                                 e.time = document.getTimestamp("endTime")!!.toDate()
-                                end[Calendar.HOUR] = e[Calendar.HOUR]
+                                end[Calendar.HOUR_OF_DAY] = e[Calendar.HOUR_OF_DAY]
                                 end[Calendar.MINUTE] = e[Calendar.MINUTE]
+                                Timber.d("$end")
                                 if (end.time > calendar.time) {
                                     pd = PeriodDetails(
                                         document.getString("courseName")!!,

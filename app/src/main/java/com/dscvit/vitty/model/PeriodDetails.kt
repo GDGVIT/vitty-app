@@ -1,7 +1,7 @@
 package com.dscvit.vitty.model
 
 import com.google.firebase.Timestamp
-import java.util.*
+import java.util.Date
 
 data class PeriodDetails(
     var courseName: String = "",

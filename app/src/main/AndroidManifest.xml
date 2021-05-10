@@ -14,7 +14,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.VITTY">
 
-        <receiver android:name="com.dscvit.vitty.widget.TodayWidget" android:label="Today's Schedule">
+        <receiver
+            android:name="com.dscvit.vitty.widget.TodayWidget"
+            android:label="Today's Schedule">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
             </intent-filter>
@@ -24,7 +26,9 @@
                 android:resource="@xml/today_widget_info" />
         </receiver>
 
-        <receiver android:name="com.dscvit.vitty.widget.NextClassWidget" android:label="Next Class">
+        <receiver
+            android:name="com.dscvit.vitty.widget.NextClassWidget"
+            android:label="Next Class">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
             </intent-filter>

@@ -23,7 +23,8 @@ class DayFragment : Fragment() {
     private var fragID = -1
     private lateinit var sharedPref: SharedPreferences
     private val db = FirebaseFirestore.getInstance()
-    private val days = listOf("monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday")
+    private val days =
+        listOf("monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday")
 
     override fun onCreateView(
         inflater: LayoutInflater,

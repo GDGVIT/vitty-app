@@ -9,8 +9,8 @@ import com.dscvit.vitty.R
 import com.dscvit.vitty.databinding.CardPeriodBinding
 import com.dscvit.vitty.model.PeriodDetails
 import java.text.SimpleDateFormat
-import java.util.*
-import kotlin.collections.ArrayList
+import java.util.Date
+import java.util.Locale
 
 class PeriodAdapter(private val dataSet: ArrayList<PeriodDetails>) :
     RecyclerView.Adapter<PeriodAdapter.ViewHolder>() {
