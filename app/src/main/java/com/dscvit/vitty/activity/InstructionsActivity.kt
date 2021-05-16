@@ -22,7 +22,7 @@ import com.dscvit.vitty.util.Constants.UPDATE
 import com.dscvit.vitty.util.Constants.USER_INFO
 import com.google.firebase.firestore.FirebaseFirestore
 import timber.log.Timber
-import java.util.Calendar
+import java.util.Date
 
 class InstructionsActivity : AppCompatActivity() {
 
@@ -52,6 +52,7 @@ class InstructionsActivity : AppCompatActivity() {
                 .show()
         }
         if (prefs.getInt(TIMETABLE_AVAILABLE, 0) == 1) {
+            setAlarm(15)
             val intent = Intent(this, ScheduleActivity::class.java)
             startActivity(intent)
             finish()
@@ -134,6 +135,7 @@ class InstructionsActivity : AppCompatActivity() {
             .document(uid)
             .set(updated)
             .addOnSuccessListener {
+                setAlarm(15)
                 val intent = Intent(this, ScheduleActivity::class.java)
                 startActivity(intent)
                 finish()
@@ -143,19 +145,28 @@ class InstructionsActivity : AppCompatActivity() {
             }
     }
 
-    private fun setAlarm(calendar: Calendar, name: String) {
+    private fun setAlarm(minutesDelay: Long) {
+
+//        val am = getSystemService(ALARM_SERVICE) as AlarmManager
+//        val i = Intent(this, AlarmReceiver::class.java)
+//        val pi = PendingIntent.getBroadcast(
+//            this, 1, i, PendingIntent.FLAG_UPDATE_CURRENT
+//        )
+//        am.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, 60000, pi)
 
         val intent = Intent(this, AlarmReceiver::class.java)
         intent.addFlags(Intent.FLAG_RECEIVER_FOREGROUND)
-        intent.putExtra("CLASS_NAME", name)
 
-        val pendingIntent = PendingIntent.getBroadcast(this, 0, intent, 0)
+        val pendingIntent =
+            PendingIntent.getBroadcast(this, 1, intent, PendingIntent.FLAG_UPDATE_CURRENT)
         val alarmManager = getSystemService(ALARM_SERVICE) as AlarmManager
+
+        val date = Date().time
 
         alarmManager.setRepeating(
             AlarmManager.RTC_WAKEUP,
-            calendar.timeInMillis,
-            1000 * 60 * 60 * 24 * 7,
+            date,
+            1000 * 60 * minutesDelay,
             pendingIntent
         )
     }
