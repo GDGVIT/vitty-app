@@ -7,6 +7,8 @@ import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Build
 import android.os.Bundle
+import android.os.PowerManager
+import android.provider.Settings
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -16,6 +18,7 @@ import com.dscvit.vitty.databinding.ActivityInstructionsBinding
 import com.dscvit.vitty.notif.AlarmReceiver
 import com.dscvit.vitty.notif.NotificationHelper
 import com.dscvit.vitty.util.Constants.NOTIFICATION_CHANNELS
+import com.dscvit.vitty.util.Constants.NOTIF_DELAY
 import com.dscvit.vitty.util.Constants.TIMETABLE_AVAILABLE
 import com.dscvit.vitty.util.Constants.UID
 import com.dscvit.vitty.util.Constants.UPDATE
@@ -52,7 +55,7 @@ class InstructionsActivity : AppCompatActivity() {
                 .show()
         }
         if (prefs.getInt(TIMETABLE_AVAILABLE, 0) == 1) {
-            setAlarm(15)
+            setAlarm()
             val intent = Intent(this, ScheduleActivity::class.java)
             startActivity(intent)
             finish()
@@ -135,25 +138,29 @@ class InstructionsActivity : AppCompatActivity() {
             .document(uid)
             .set(updated)
             .addOnSuccessListener {
-                setAlarm(15)
-                val intent = Intent(this, ScheduleActivity::class.java)
-                startActivity(intent)
-                finish()
+                setAlarm()
+                val pm: PowerManager = getSystemService(Context.POWER_SERVICE) as PowerManager
+                if (!pm.isIgnoringBatteryOptimizations(packageName)) {
+                    Toast.makeText(
+                        this,
+                        "Please turn off the Battery Optimization Settings for VITTY to receive notifications on time.",
+                        Toast.LENGTH_LONG
+                    ).show()
+                    val pmIntent = Intent()
+                    pmIntent.action = Settings.ACTION_IGNORE_BATTERY_OPTIMIZATION_SETTINGS
+                    startActivity(pmIntent)
+                } else {
+                    val intent = Intent(this, ScheduleActivity::class.java)
+                    startActivity(intent)
+                    finish()
+                }
             }
             .addOnFailureListener { e ->
                 Timber.d("Error: $e")
             }
     }
 
-    private fun setAlarm(minutesDelay: Long) {
-
-//        val am = getSystemService(ALARM_SERVICE) as AlarmManager
-//        val i = Intent(this, AlarmReceiver::class.java)
-//        val pi = PendingIntent.getBroadcast(
-//            this, 1, i, PendingIntent.FLAG_UPDATE_CURRENT
-//        )
-//        am.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, 60000, pi)
-
+    private fun setAlarm() {
         val intent = Intent(this, AlarmReceiver::class.java)
         intent.addFlags(Intent.FLAG_RECEIVER_FOREGROUND)
 
@@ -166,7 +173,7 @@ class InstructionsActivity : AppCompatActivity() {
         alarmManager.setRepeating(
             AlarmManager.RTC_WAKEUP,
             date,
-            1000 * 60 * minutesDelay,
+            (1000 * 60 * NOTIF_DELAY).toLong(),
             pendingIntent
         )
     }

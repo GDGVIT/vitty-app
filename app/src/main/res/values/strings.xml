@@ -27,4 +27,5 @@
     <string name="sign_in_fail">Google sign in failed :(</string>
     <string name="follow_instructions">Please follow the instructions!</string>
     <string name="updated">Updating…</string>
+    <string name="battery">Battery</string>
 </resources>

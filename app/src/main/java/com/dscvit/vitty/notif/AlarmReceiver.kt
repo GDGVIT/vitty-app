@@ -1,9 +1,14 @@
 package com.dscvit.vitty.notif
 
+import android.app.AlarmManager
+import android.app.PendingIntent
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.dscvit.vitty.model.PeriodDetails
+import com.dscvit.vitty.util.Constants
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.runBlocking
@@ -15,6 +20,23 @@ import java.util.Locale
 
 class AlarmReceiver : BroadcastReceiver() {
     override fun onReceive(context: Context?, intent: Intent?) {
+        if (intent?.action == Intent.ACTION_BOOT_COMPLETED) {
+            Toast.makeText(context, "VITTY Started!", Toast.LENGTH_LONG).show()
+            val i = Intent(context, AlarmReceiver::class.java)
+            i.addFlags(Intent.FLAG_RECEIVER_FOREGROUND)
+            val pendingIntent =
+                PendingIntent.getBroadcast(context, 1, intent, PendingIntent.FLAG_UPDATE_CURRENT)
+            val alarmManager =
+                context?.getSystemService(AppCompatActivity.ALARM_SERVICE) as AlarmManager
+            val date = Date().time
+            alarmManager.setRepeating(
+                AlarmManager.RTC_WAKEUP,
+                date,
+                (1000 * 60 * Constants.NOTIF_DELAY).toLong(),
+                pendingIntent
+            )
+            context.startService(i)
+        }
         val days =
             listOf("monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday")
         val calendar: Calendar = Calendar.getInstance()
@@ -29,7 +51,6 @@ class AlarmReceiver : BroadcastReceiver() {
             else -> 0
         }
         fetchFirestore(context!!, days[d], calendar)
-
     }
 
     private fun sendNotif(
@@ -136,5 +157,4 @@ class AlarmReceiver : BroadcastReceiver() {
                 pd.courseName = ""
             }
         }
-
 }
