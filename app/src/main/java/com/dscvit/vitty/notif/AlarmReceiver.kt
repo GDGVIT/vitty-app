@@ -5,7 +5,6 @@ import android.app.PendingIntent
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.dscvit.vitty.model.PeriodDetails
 import com.dscvit.vitty.util.Constants
@@ -21,11 +20,11 @@ import java.util.Locale
 class AlarmReceiver : BroadcastReceiver() {
     override fun onReceive(context: Context?, intent: Intent?) {
         if (intent?.action == Intent.ACTION_BOOT_COMPLETED) {
-            Toast.makeText(context, "VITTY Started!", Toast.LENGTH_LONG).show()
+//            Toast.makeText(context, "VITTY Started!", Toast.LENGTH_LONG).show()
             val i = Intent(context, AlarmReceiver::class.java)
             i.addFlags(Intent.FLAG_RECEIVER_FOREGROUND)
             val pendingIntent =
-                PendingIntent.getBroadcast(context, 1, intent, PendingIntent.FLAG_UPDATE_CURRENT)
+                PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT)
             val alarmManager =
                 context?.getSystemService(AppCompatActivity.ALARM_SERVICE) as AlarmManager
             val date = Date().time
@@ -61,8 +60,7 @@ class AlarmReceiver : BroadcastReceiver() {
     ) {
 
         val diff = start.timeInMillis - calendar.timeInMillis
-        Timber.d("DIFFF: $diff")
-        if (diff < 1000 * 60 * 30 && diff > -(1000 * 60 * 5)) {
+        if (diff < 1000 * 60 * 20 && diff > -(1000 * 60 * 5)) {
             val startTime: Date = pd.startTime.toDate()
             val simpleDateFormat = SimpleDateFormat("h:mm a", Locale.getDefault())
             val sTime: String = simpleDateFormat.format(startTime).uppercase(Locale.ROOT)

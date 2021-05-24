@@ -17,7 +17,6 @@ import com.dscvit.vitty.R
 import com.dscvit.vitty.databinding.FragmentInstructionsBinding
 import com.dscvit.vitty.model.UserDetails
 
-
 class InstructionsFragment : Fragment() {
     private lateinit var binding: FragmentInstructionsBinding
     private lateinit var sharedPref: SharedPreferences

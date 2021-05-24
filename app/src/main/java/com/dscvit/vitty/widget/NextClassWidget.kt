@@ -33,20 +33,6 @@ class NextClassWidget : AppWidgetProvider() {
         }
     }
 
-//    override fun onAppWidgetOptionsChanged(
-//        context: Context?,
-//        appWidgetManager: AppWidgetManager?,
-//        appWidgetId: Int,
-//        newOptions: Bundle?
-//    ) {
-//        super.onAppWidgetOptionsChanged(context, appWidgetManager, appWidgetId, newOptions)
-//        if (context != null) {
-//            if (appWidgetManager != null) {
-//                updateNextClassWidget(context, appWidgetManager, appWidgetId, null)
-//            }
-//        }
-//    }
-
     override fun onEnabled(context: Context) {
         // Enter relevant functionality for when the first widget is created
     }
@@ -82,13 +68,12 @@ internal fun updateNextClassWidget(
     if (pd == null) {
         fetchFirestore(context, days[d], calendar, appWidgetManager, appWidgetId)
     } else {
-//        views.setTextViewText(R.id.course_name, calendar.get(Calendar.MINUTE).toString())
         val startTime: Date = pd.startTime.toDate()
         val simpleDateFormat = SimpleDateFormat("h:mm a", Locale.getDefault())
-        val sTime: String = simpleDateFormat.format(startTime).toUpperCase(Locale.ROOT)
+        val sTime: String = simpleDateFormat.format(startTime).uppercase(Locale.ROOT)
 
         val endTime: Date = pd.endTime.toDate()
-        val eTime: String = simpleDateFormat.format(endTime).toUpperCase(Locale.ROOT)
+        val eTime: String = simpleDateFormat.format(endTime).uppercase(Locale.ROOT)
 
         if (pd.courseName != "") {
             views.setTextViewText(R.id.course_name, pd.courseName)
@@ -172,7 +157,7 @@ suspend fun fetchData(
                                 val simpleDateFormat =
                                     SimpleDateFormat("h:mm a", Locale.getDefault())
                                 val sTime: String =
-                                    simpleDateFormat.format(calendar.time).toUpperCase(Locale.ROOT)
+                                    simpleDateFormat.format(calendar.time).uppercase(Locale.ROOT)
                                 Timber.d("LOL: $sTime")
                             }
                         } catch (e: Exception) {
