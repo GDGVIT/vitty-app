@@ -17,7 +17,7 @@
 ## Features
 - [x]  Easy access to timetable
 - [x]  Home screen widgets
-- [ ]  Notifications for classes
+- [x]  Notifications for classes
 
 <br>
 

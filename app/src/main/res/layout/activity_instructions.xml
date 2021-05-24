@@ -48,7 +48,6 @@
                 android:backgroundTint="@color/tab_selected"
                 android:fontFamily="@font/poppins_600"
                 android:letterSpacing="0"
-                android:padding="15dp"
                 android:src="@drawable/ic_login_google"
                 android:text="@string/done"
                 android:textAllCaps="false"

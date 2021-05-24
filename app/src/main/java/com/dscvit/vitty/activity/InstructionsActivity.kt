@@ -7,6 +7,8 @@ import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Build
 import android.os.Bundle
+import android.os.PowerManager
+import android.provider.Settings
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -16,13 +18,14 @@ import com.dscvit.vitty.databinding.ActivityInstructionsBinding
 import com.dscvit.vitty.notif.AlarmReceiver
 import com.dscvit.vitty.notif.NotificationHelper
 import com.dscvit.vitty.util.Constants.NOTIFICATION_CHANNELS
+import com.dscvit.vitty.util.Constants.NOTIF_DELAY
 import com.dscvit.vitty.util.Constants.TIMETABLE_AVAILABLE
 import com.dscvit.vitty.util.Constants.UID
 import com.dscvit.vitty.util.Constants.UPDATE
 import com.dscvit.vitty.util.Constants.USER_INFO
 import com.google.firebase.firestore.FirebaseFirestore
 import timber.log.Timber
-import java.util.Calendar
+import java.util.Date
 
 class InstructionsActivity : AppCompatActivity() {
 
@@ -52,6 +55,7 @@ class InstructionsActivity : AppCompatActivity() {
                 .show()
         }
         if (prefs.getInt(TIMETABLE_AVAILABLE, 0) == 1) {
+            setAlarm()
             val intent = Intent(this, ScheduleActivity::class.java)
             startActivity(intent)
             finish()
@@ -134,28 +138,42 @@ class InstructionsActivity : AppCompatActivity() {
             .document(uid)
             .set(updated)
             .addOnSuccessListener {
-                val intent = Intent(this, ScheduleActivity::class.java)
-                startActivity(intent)
-                finish()
+                setAlarm()
+                val pm: PowerManager = getSystemService(Context.POWER_SERVICE) as PowerManager
+                if (!pm.isIgnoringBatteryOptimizations(packageName)) {
+                    Toast.makeText(
+                        this,
+                        "Please turn off the Battery Optimization Settings for VITTY to receive notifications on time.",
+                        Toast.LENGTH_LONG
+                    ).show()
+                    val pmIntent = Intent()
+                    pmIntent.action = Settings.ACTION_IGNORE_BATTERY_OPTIMIZATION_SETTINGS
+                    startActivity(pmIntent)
+                } else {
+                    val intent = Intent(this, ScheduleActivity::class.java)
+                    startActivity(intent)
+                    finish()
+                }
             }
             .addOnFailureListener { e ->
                 Timber.d("Error: $e")
             }
     }
 
-    private fun setAlarm(calendar: Calendar, name: String) {
-
+    private fun setAlarm() {
         val intent = Intent(this, AlarmReceiver::class.java)
         intent.addFlags(Intent.FLAG_RECEIVER_FOREGROUND)
-        intent.putExtra("CLASS_NAME", name)
 
-        val pendingIntent = PendingIntent.getBroadcast(this, 0, intent, 0)
+        val pendingIntent =
+            PendingIntent.getBroadcast(this, 1, intent, PendingIntent.FLAG_UPDATE_CURRENT)
         val alarmManager = getSystemService(ALARM_SERVICE) as AlarmManager
+
+        val date = Date().time
 
         alarmManager.setRepeating(
             AlarmManager.RTC_WAKEUP,
-            calendar.timeInMillis,
-            1000 * 60 * 60 * 24 * 7,
+            date,
+            (1000 * 60 * NOTIF_DELAY).toLong(),
             pendingIntent
         )
     }

@@ -8,6 +8,7 @@ import android.content.Intent
 import android.os.Build
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
+import androidx.core.content.ContextCompat
 import com.dscvit.vitty.R
 import com.dscvit.vitty.activity.ScheduleActivity
 
@@ -53,7 +54,8 @@ object NotificationHelper {
         val intent = Intent(context, ScheduleActivity::class.java)
         val pendingIntent: PendingIntent = PendingIntent.getActivity(context, 0, intent, 0)
         val builder = NotificationCompat.Builder(context, channelId)
-            .setSmallIcon(R.drawable.ic_pizza)
+            .setSmallIcon(R.drawable.ic_notif)
+            .setColor(ContextCompat.getColor(context, R.color.background))
             .setContentTitle(title)
             .setContentText(text)
             .setStyle(

@@ -1,11 +1,11 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/today_widget"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/widget_background"
     android:padding="@dimen/widget_margin"
     android:theme="@style/ThemeOverlay.VITTY.AppWidgetContainer">
-
 
     <LinearLayout
         android:id="@+id/widget_header"

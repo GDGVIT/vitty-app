@@ -6,10 +6,12 @@ import android.content.SharedPreferences
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
+import android.os.PowerManager
 import android.provider.Settings
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.Button
+import android.widget.Toast
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.FragmentActivity
@@ -96,6 +98,26 @@ class ScheduleActivity : FragmentActivity() {
                         intent.data = uri
                         startActivity(intent)
                     }
+                    true
+                }
+                R.id.battery -> {
+                    val pm: PowerManager = getSystemService(Context.POWER_SERVICE) as PowerManager
+                    if (!pm.isIgnoringBatteryOptimizations(packageName)) {
+                        Toast.makeText(
+                            this,
+                            "Please turn off the Battery Optimization Settings for VITTY to receive notifications on time.",
+                            Toast.LENGTH_LONG
+                        ).show()
+                    } else {
+                        Toast.makeText(
+                            this,
+                            "Please keep the Battery Optimization Settings for VITTY turned off to receive notifications on time.",
+                            Toast.LENGTH_LONG
+                        ).show()
+                    }
+                    val pmIntent = Intent()
+                    pmIntent.action = Settings.ACTION_IGNORE_BATTERY_OPTIMIZATION_SETTINGS
+                    startActivity(pmIntent)
                     true
                 }
                 else -> false
