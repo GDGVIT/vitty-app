@@ -47,10 +47,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="10dp"
-                        android:alpha="0.8"
                         android:fontFamily="@font/poppins_500"
                         android:text="@string/account_details"
-                        android:textColor="@color/white"
+                        android:textColor="@color/translucent_head"
                         android:textSize="16sp" />
 
                     <TextView
@@ -175,6 +174,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="25dp"
                 android:layout_marginTop="30dp"
+                android:textColor="@color/translucent_imp"
                 android:fontFamily="@font/poppins_500"
                 android:layout_marginEnd="25dp"
                 android:lineSpacingExtra="3dp"
@@ -187,6 +187,7 @@
                 android:layout_marginStart="25dp"
                 android:layout_marginTop="12dp"
                 android:layout_marginBottom="10dp"
+                android:textColor="@color/translucent_imp"
                 android:fontFamily="@font/poppins_500"
                 android:layout_marginEnd="25dp"
                 android:lineSpacingExtra="3dp"
