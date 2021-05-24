@@ -43,12 +43,12 @@ class PeriodAdapter(private val dataSet: ArrayList<PeriodDetails>) :
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bind(dataSet[position])
 
-        val startTime: Date = dataSet[position].startTime.toDate() as Date
+        val startTime: Date = dataSet[position].startTime.toDate()
         val simpleDateFormat = SimpleDateFormat("h:mm a", Locale.getDefault())
-        val sTime: String = simpleDateFormat.format(startTime).toUpperCase(Locale.ROOT)
+        val sTime: String = simpleDateFormat.format(startTime).uppercase(Locale.ROOT)
 
-        val endTime: Date = dataSet[position].endTime.toDate() as Date
-        val eTime: String = simpleDateFormat.format(endTime).toUpperCase(Locale.ROOT)
+        val endTime: Date = dataSet[position].endTime.toDate()
+        val eTime: String = simpleDateFormat.format(endTime).uppercase(Locale.ROOT)
 
         holder.periodTime.text = "$sTime - $eTime"
 

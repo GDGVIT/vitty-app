@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
@@ -12,53 +13,184 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        tools:context=".ui.instructions.InstructionsFragment">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            tools:context=".ui.instructions.InstructionsFragment">
+            android:orientation="vertical">
 
-            <LinearLayout
+            <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="25dp"
-                android:orientation="horizontal">
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="20dp"
+                app:cardBackgroundColor="@color/background">
 
-                <TextView
-                    android:id="@+id/greetings"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/greeting" />
+                <ImageView
+                    android:id="@+id/expanded_background"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:contentDescription="@string/exp_background"
+                    android:src="@drawable/expanded_background" />
 
-                <TextView
-                    android:id="@+id/username"
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="5dp"
-                    android:fontFamily="@font/poppins_500"
-                    android:text="@={userDetails.name}" />
-            </LinearLayout>
+                    android:layout_margin="15dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/greetings"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp"
+                        android:alpha="0.8"
+                        android:fontFamily="@font/poppins_500"
+                        android:text="@string/account_details"
+                        android:textColor="@color/white"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:id="@+id/username"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="5dp"
+                        android:text="@{`Name: `+userDetails.name}"
+                        tools:text="Name: Yajat Malhotra" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@{`Email: `+userDetails.email}"
+                        tools:text="Email: me@iamyajat.co" />
+                </LinearLayout>
+
+            </com.google.android.material.card.MaterialCardView>
 
 
             <TextView
+                android:id="@+id/instructions1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="25dp"
                 android:layout_marginEnd="25dp"
-                android:layout_marginBottom="10dp"
-                android:text="@={userDetails.email}" />
+                android:layout_marginBottom="5dp"
+                android:text="@string/instructions_1" />
 
             <TextView
-                android:id="@+id/instructions"
+                android:id="@+id/instructions1_link"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="25dp"
                 android:layout_marginEnd="25dp"
+                android:fontFamily="@font/poppins_500"
+                android:text="@string/instructions_1_link" />
+
+            <TextView
+                android:id="@+id/instructions2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="25dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="25dp"
+                android:lineSpacingExtra="3dp"
+                android:text="@string/instructions_2" />
+
+            <TextView
+                android:id="@+id/instructions3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="25dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="25dp"
+                android:lineSpacingExtra="3dp"
+                android:text="@string/instructions_3" />
+
+            <TextView
+                android:id="@+id/instructions3a"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="35dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="25dp"
+                android:lineSpacingExtra="3dp"
+                android:text="@string/instructions_3_a" />
+
+            <TextView
+                android:id="@+id/instructions3b"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="35dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="25dp"
+                android:lineSpacingExtra="3dp"
+                android:text="@string/instructions_3_b" />
+
+            <TextView
+                android:id="@+id/instructions4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="25dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="25dp"
+                android:lineSpacingExtra="3dp"
+                android:text="@string/instructions_4" />
+
+            <TextView
+                android:id="@+id/instructions5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="25dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="25dp"
+                android:lineSpacingExtra="3dp"
+                android:text="@string/instructions_5" />
+
+            <TextView
+                android:id="@+id/instructions5a"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="35dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="25dp"
+                android:lineSpacingExtra="3dp"
+                android:text="@string/instructions_5_a" />
+
+            <TextView
+                android:id="@+id/instructions5b"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="35dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="25dp"
+                android:lineSpacingExtra="3dp"
+                android:text="@string/instructions_5_b" />
+
+            <TextView
+                android:id="@+id/instructions6"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="25dp"
+                android:layout_marginTop="30dp"
+                android:fontFamily="@font/poppins_500"
+                android:layout_marginEnd="25dp"
+                android:lineSpacingExtra="3dp"
+                android:text="@string/instructions_6" />
+
+            <TextView
+                android:id="@+id/instructions7"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="25dp"
+                android:layout_marginTop="12dp"
                 android:layout_marginBottom="10dp"
-                android:layout_weight="1"
-                android:text="@string/instructions" />
+                android:fontFamily="@font/poppins_500"
+                android:layout_marginEnd="25dp"
+                android:lineSpacingExtra="3dp"
+                android:text="@string/instructions_7" />
 
         </LinearLayout>
     </ScrollView>

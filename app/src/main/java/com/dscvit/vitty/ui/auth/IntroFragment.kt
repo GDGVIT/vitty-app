@@ -15,7 +15,7 @@ class IntroFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         val root = inflater.inflate(R.layout.fragment_intro, container, false)
-        val fragID = arguments!!.getString("frag_id")?.toInt()
+        val fragID = requireArguments().getString("frag_id")?.toInt()
         return root
     }
 }

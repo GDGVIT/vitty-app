@@ -65,7 +65,7 @@ class AlarmReceiver : BroadcastReceiver() {
         if (diff < 1000 * 60 * 30 && diff > -(1000 * 60 * 5)) {
             val startTime: Date = pd.startTime.toDate()
             val simpleDateFormat = SimpleDateFormat("h:mm a", Locale.getDefault())
-            val sTime: String = simpleDateFormat.format(startTime).toUpperCase(Locale.ROOT)
+            val sTime: String = simpleDateFormat.format(startTime).uppercase(Locale.ROOT)
 
             if (context != null) {
                 NotificationHelper.sendNotification(
@@ -140,7 +140,7 @@ class AlarmReceiver : BroadcastReceiver() {
                                         SimpleDateFormat("h:mm a", Locale.getDefault())
                                     val sTime: String =
                                         simpleDateFormat.format(calendar.time)
-                                            .toUpperCase(Locale.ROOT)
+                                            .uppercase(Locale.ROOT)
                                     Timber.d("LOL: $sTime")
                                 }
                             } catch (e: Exception) {
@@ -150,8 +150,8 @@ class AlarmReceiver : BroadcastReceiver() {
                         }
                         sendNotif(context, pd, calendar, start)
                     }
-                    .addOnFailureListener { e ->
-                        Timber.d("Error: $e")
+                    .addOnFailureListener { err ->
+                        Timber.d("Error: $err")
                     }
             } else {
                 pd.courseName = ""
