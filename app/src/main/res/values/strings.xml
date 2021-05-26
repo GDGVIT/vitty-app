@@ -13,8 +13,12 @@
     <string name="no_classes_today">No classes today!</string>
     <string name="no_more_classes_today">No More Classes Today</string>
     <string name="no_classes_today_subtext">Up for some Valorant Grind?</string>
-    <string name="intro1_title">Never miss a class!</string>
-    <string name="intro1_subtitle">Notifications to remind you about your classes but it\'s your wish if you want to attend it or not :)</string>
+    <string name="intro1_title">Never miss a class</string>
+    <string name="intro1_subtitle">Notifications to remind you about your classes on the app and extension</string>
+    <string name="intro2_title">Get a sneak peek</string>
+    <string name="intro2_subtitle">View your upcoming classes and timetable via the widget</string>
+    <string name="intro3_title">Upload once, view everywhere</string>
+    <string name="intro3_subtitle">Instant sync across all of your devices via the app and extension</string>
     <string name="todo">TODO</string>
     <string name="appwidget_text">EXAMPLE</string>
     <string name="your_next_class">Your Next Class</string>

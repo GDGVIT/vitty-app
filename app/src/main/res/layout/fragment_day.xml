@@ -41,6 +41,7 @@
                 android:layout_marginEnd="20dp"
                 android:fontFamily="@font/poppins_700"
                 android:text="@string/no_classes_today"
+                android:textAlignment="center"
                 android:textColor="@color/white"
                 android:textSize="24sp" />
 
@@ -53,6 +54,7 @@
                 android:layout_marginEnd="20dp"
                 android:fontFamily="@font/poppins_300"
                 android:text="@string/no_classes_today_subtext"
+                android:textAlignment="center"
                 android:textColor="@color/white"
                 android:textSize="20sp" />
         </RelativeLayout>
