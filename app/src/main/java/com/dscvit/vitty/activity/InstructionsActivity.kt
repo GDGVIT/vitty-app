@@ -51,7 +51,7 @@ class InstructionsActivity : AppCompatActivity() {
         super.onStart()
         if (prefs.getInt(UPDATE, 0) == 1) {
             createNotificationChannels()
-            Toast.makeText(this, getString(R.string.updated), Toast.LENGTH_LONG)
+            Toast.makeText(this, getString(R.string.updated), Toast.LENGTH_SHORT)
                 .show()
         }
         if (prefs.getInt(TIMETABLE_AVAILABLE, 0) == 1) {
@@ -113,8 +113,6 @@ class InstructionsActivity : AppCompatActivity() {
                     }
                     saveArray(newNotifChannels, NOTIFICATION_CHANNELS, this)
 
-                    prefs.edit().putInt(TIMETABLE_AVAILABLE, 1).apply()
-                    prefs.edit().putInt(UPDATE, 0).apply()
                     if (day == "sunday")
                         tellUpdated()
                 }
@@ -130,6 +128,8 @@ class InstructionsActivity : AppCompatActivity() {
     }
 
     private fun tellUpdated() {
+        prefs.edit().putInt(TIMETABLE_AVAILABLE, 1).apply()
+        prefs.edit().putInt(UPDATE, 0).apply()
         val updated = hashMapOf(
             "isTimetableAvailable" to true,
             "isUpdated" to false

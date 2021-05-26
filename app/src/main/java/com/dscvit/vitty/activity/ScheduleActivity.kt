@@ -54,13 +54,11 @@ class ScheduleActivity : FragmentActivity() {
             .get()
             .addOnSuccessListener { document ->
                 if (document.getBoolean("isUpdated") == true) {
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                        prefs.edit().putInt(TIMETABLE_AVAILABLE, 0).apply()
-                        prefs.edit().putInt(UPDATE, 1).apply()
-                        val intent = Intent(this, InstructionsActivity::class.java)
-                        startActivity(intent)
-                        finish()
-                    }
+                    prefs.edit().putInt(TIMETABLE_AVAILABLE, 0).apply()
+                    prefs.edit().putInt(UPDATE, 1).apply()
+                    val intent = Intent(this, InstructionsActivity::class.java)
+                    startActivity(intent)
+                    finish()
                 }
             }
     }
@@ -129,7 +127,7 @@ class ScheduleActivity : FragmentActivity() {
                         Intent.EXTRA_TEXT,
                         getString(R.string.share_text)
                     )
-                    startActivity(Intent.createChooser(shareIntent, "send to"))
+                    startActivity(Intent.createChooser(shareIntent, "Share"))
                     true
                 }
                 else -> false
