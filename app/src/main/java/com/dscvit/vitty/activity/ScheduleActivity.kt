@@ -120,6 +120,18 @@ class ScheduleActivity : FragmentActivity() {
                     startActivity(pmIntent)
                     true
                 }
+                R.id.share -> {
+                    val shareIntent = Intent().apply {
+                        action = Intent.ACTION_SEND
+                        type = "text/plain"
+                    }
+                    shareIntent.putExtra(
+                        Intent.EXTRA_TEXT,
+                        getString(R.string.share_text)
+                    )
+                    startActivity(Intent.createChooser(shareIntent, "send to"))
+                    true
+                }
                 else -> false
             }
         }

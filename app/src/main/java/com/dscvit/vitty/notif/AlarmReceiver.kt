@@ -20,7 +20,6 @@ import java.util.Locale
 class AlarmReceiver : BroadcastReceiver() {
     override fun onReceive(context: Context?, intent: Intent?) {
         if (intent?.action == Intent.ACTION_BOOT_COMPLETED) {
-//            Toast.makeText(context, "VITTY Started!", Toast.LENGTH_LONG).show()
             val i = Intent(context, AlarmReceiver::class.java)
             i.addFlags(Intent.FLAG_RECEIVER_FOREGROUND)
             val pendingIntent =

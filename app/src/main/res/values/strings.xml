@@ -19,7 +19,8 @@
     <string name="appwidget_text">EXAMPLE</string>
     <string name="your_next_class">Your Next Class</string>
     <string name="today_schedule">Today\'s Schedule</string>
-    <string name="share">Download the VITTY extention and app now!\nExtension: https://dscv.it/vitty-extension\nAndroid App: https://dscv.it/vitty-app</string>
+    <string name="share">Share</string>
+    <string name="share_text">Download the VITTY extension and app now!\nExtension: https://dscv.it/vitty-extension\nAndroid App: https://dscv.it/vitty-app</string>
     <string name="instructions_1">1. Download the Chrome Extension from:</string>
     <string name="instructions_1_link"><u>https://dscv.it/vitty-extension</u></string>
     <string name="instructions_2">2. Log in with the same Google Account as shown above.</string>
