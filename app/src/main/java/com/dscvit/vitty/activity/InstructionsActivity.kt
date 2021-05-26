@@ -9,9 +9,12 @@ import android.os.Build
 import android.os.Bundle
 import android.os.PowerManager
 import android.provider.Settings
+import android.view.LayoutInflater
 import android.view.View
+import android.widget.Button
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.content.res.AppCompatResources
 import androidx.databinding.DataBindingUtil
 import com.dscvit.vitty.R
 import com.dscvit.vitty.databinding.ActivityInstructionsBinding
@@ -23,6 +26,8 @@ import com.dscvit.vitty.util.Constants.TIMETABLE_AVAILABLE
 import com.dscvit.vitty.util.Constants.UID
 import com.dscvit.vitty.util.Constants.UPDATE
 import com.dscvit.vitty.util.Constants.USER_INFO
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import timber.log.Timber
 import java.util.Date
@@ -41,6 +46,8 @@ class InstructionsActivity : AppCompatActivity() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_instructions)
         prefs = getSharedPreferences(USER_INFO, 0)
         uid = prefs.getString(UID, "").toString()
+
+        setupToolbar()
 
         binding.doneButton.setOnClickListener {
             setupDoneButton()
@@ -192,5 +199,52 @@ class InstructionsActivity : AppCompatActivity() {
         editor.putInt(arrayName + "_size", array.size)
         for (i in array.indices) editor.putString(arrayName + "_" + i, array[i])
         return editor.commit()
+    }
+
+    private fun setupToolbar() {
+        binding.instructionsToolbar.setOnMenuItemClickListener { menuItem ->
+            when (menuItem.itemId) {
+                R.id.logout -> {
+                    logout()
+                    true
+                }
+                else -> false
+            }
+        }
+    }
+
+    private fun logout() {
+        val v: View = LayoutInflater
+            .from(this)
+            .inflate(R.layout.dialog_logout, null)
+
+        val dialog = MaterialAlertDialogBuilder(this)
+            .setView(v)
+            .setBackground(
+                AppCompatResources.getDrawable(
+                    this,
+                    R.color.transparent
+                )
+            )
+            .create()
+
+        dialog.show()
+
+        val cancel = v.findViewById<Button>(R.id.cancel)
+        val logout = v.findViewById<Button>(R.id.logout)
+
+        cancel.setOnClickListener {
+            dialog.dismiss()
+        }
+
+        logout.setOnClickListener {
+            prefs.edit().putInt(TIMETABLE_AVAILABLE, 0).apply()
+            prefs.edit().putInt(UPDATE, 0).apply()
+            prefs.edit().putString(UID, "").apply()
+            FirebaseAuth.getInstance().signOut()
+            val intent = Intent(this, AuthActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
     }
 }

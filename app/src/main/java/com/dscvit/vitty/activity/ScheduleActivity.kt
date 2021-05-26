@@ -79,7 +79,7 @@ class ScheduleActivity : FragmentActivity() {
         binding.scheduleToolbar.setOnMenuItemClickListener { menuItem ->
             when (menuItem.itemId) {
                 R.id.logout -> {
-                    logout(context)
+                    logout()
                     true
                 }
                 R.id.notifications -> {
@@ -143,16 +143,16 @@ class ScheduleActivity : FragmentActivity() {
         binding.pager.currentItem = d
     }
 
-    private fun logout(context: Context) {
+    private fun logout() {
         val v: View = LayoutInflater
-            .from(context)
+            .from(this)
             .inflate(R.layout.dialog_logout, null)
 
-        val dialog = MaterialAlertDialogBuilder(context)
+        val dialog = MaterialAlertDialogBuilder(this)
             .setView(v)
             .setBackground(
                 AppCompatResources.getDrawable(
-                    context,
+                    this,
                     R.color.transparent
                 )
             )
