@@ -1,13 +1,9 @@
 package com.dscvit.vitty.notif
 
-import android.app.AlarmManager
-import android.app.PendingIntent
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import com.dscvit.vitty.model.PeriodDetails
-import com.dscvit.vitty.util.Constants
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.runBlocking
@@ -19,22 +15,6 @@ import java.util.Locale
 
 class AlarmReceiver : BroadcastReceiver() {
     override fun onReceive(context: Context?, intent: Intent?) {
-        if (intent?.action == Intent.ACTION_BOOT_COMPLETED) {
-            val i = Intent(context, AlarmReceiver::class.java)
-            i.addFlags(Intent.FLAG_RECEIVER_FOREGROUND)
-            val pendingIntent =
-                PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT)
-            val alarmManager =
-                context?.getSystemService(AppCompatActivity.ALARM_SERVICE) as AlarmManager
-            val date = Date().time
-            alarmManager.setRepeating(
-                AlarmManager.RTC_WAKEUP,
-                date,
-                (1000 * 60 * Constants.NOTIF_DELAY).toLong(),
-                pendingIntent
-            )
-            context.startService(i)
-        }
         val days =
             listOf("monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday")
         val calendar: Calendar = Calendar.getInstance()
@@ -59,7 +39,7 @@ class AlarmReceiver : BroadcastReceiver() {
     ) {
 
         val diff = start.timeInMillis - calendar.timeInMillis
-        if (diff < 1000 * 60 * 20 && diff > -(1000 * 60 * 5)) {
+        if (diff < 1000 * 60 * 25 && diff > -(1000 * 60 * 5)) {
             val startTime: Date = pd.startTime.toDate()
             val simpleDateFormat = SimpleDateFormat("h:mm a", Locale.getDefault())
             val sTime: String = simpleDateFormat.format(startTime).uppercase(Locale.ROOT)

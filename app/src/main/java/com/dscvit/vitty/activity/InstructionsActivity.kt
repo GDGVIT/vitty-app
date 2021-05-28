@@ -15,6 +15,7 @@ import android.widget.Button
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.content.res.AppCompatResources
+import androidx.core.content.edit
 import androidx.databinding.DataBindingUtil
 import com.dscvit.vitty.R
 import com.dscvit.vitty.databinding.ActivityInstructionsBinding
@@ -168,21 +169,28 @@ class InstructionsActivity : AppCompatActivity() {
     }
 
     private fun setAlarm() {
-        val intent = Intent(this, AlarmReceiver::class.java)
-        intent.addFlags(Intent.FLAG_RECEIVER_FOREGROUND)
+        if (!prefs.getBoolean("firstTime", false)) {
+            val intent = Intent(this, AlarmReceiver::class.java)
+//            intent.addFlags(Intent.FLAG_RECEIVER_FOREGROUND)
 
-        val pendingIntent =
-            PendingIntent.getBroadcast(this, 1, intent, PendingIntent.FLAG_UPDATE_CURRENT)
-        val alarmManager = getSystemService(ALARM_SERVICE) as AlarmManager
+            val pendingIntent =
+                PendingIntent.getBroadcast(this, 0, intent, 0)
+            val alarmManager = getSystemService(ALARM_SERVICE) as AlarmManager
 
-        val date = Date().time
+            val date = Date().time
 
-        alarmManager.setRepeating(
-            AlarmManager.RTC_WAKEUP,
-            date,
-            (1000 * 60 * NOTIF_DELAY).toLong(),
-            pendingIntent
-        )
+            alarmManager.setRepeating(
+                AlarmManager.RTC_WAKEUP,
+                date,
+                (1000 * 60 * NOTIF_DELAY).toLong(),
+                pendingIntent
+            )
+
+            prefs.edit {
+                putBoolean("firstTime", true)
+                apply()
+            }
+        }
     }
 
     private fun loadArray(arrayName: String, context: Context): Array<String?> {
