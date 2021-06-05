@@ -3,7 +3,9 @@ package com.dscvit.vitty.notif
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import com.dscvit.vitty.model.PeriodDetails
+import com.dscvit.vitty.util.Constants
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.runBlocking
@@ -14,21 +16,26 @@ import java.util.Date
 import java.util.Locale
 
 class AlarmReceiver : BroadcastReceiver() {
+    private lateinit var prefs: SharedPreferences
+
     override fun onReceive(context: Context?, intent: Intent?) {
-        val days =
-            listOf("monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday")
-        val calendar: Calendar = Calendar.getInstance()
-        val d = when (calendar.get(Calendar.DAY_OF_WEEK)) {
-            Calendar.MONDAY -> 0
-            Calendar.TUESDAY -> 1
-            Calendar.WEDNESDAY -> 2
-            Calendar.THURSDAY -> 3
-            Calendar.FRIDAY -> 4
-            Calendar.SATURDAY -> 5
-            Calendar.SUNDAY -> 6
-            else -> 0
+        if (context != null) {
+            prefs = context.getSharedPreferences(Constants.USER_INFO, 0)
+            val days =
+                listOf("monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday")
+            val calendar: Calendar = Calendar.getInstance()
+            val d = when (calendar.get(Calendar.DAY_OF_WEEK)) {
+                Calendar.MONDAY -> 0
+                Calendar.TUESDAY -> 1
+                Calendar.WEDNESDAY -> 2
+                Calendar.THURSDAY -> 3
+                Calendar.FRIDAY -> 4
+                Calendar.SATURDAY -> 5
+                Calendar.SUNDAY -> 6
+                else -> 0
+            }
+            fetchFirestore(context, days[d], calendar)
         }
-        fetchFirestore(context!!, days[d], calendar)
     }
 
     private fun sendNotif(
@@ -37,6 +44,8 @@ class AlarmReceiver : BroadcastReceiver() {
         calendar: Calendar,
         start: Calendar
     ) {
+
+        var notifId = prefs.getInt("notif_id", 1)
 
         val diff = start.timeInMillis - calendar.timeInMillis
         if (diff < 1000 * 60 * 22 && diff > -(1000 * 60 * 5)) {
@@ -52,8 +61,9 @@ class AlarmReceiver : BroadcastReceiver() {
                         pd.courseName,
                         "You have ${pd.courseName} at $sTime",
                         pd.courseName,
-                        1
+                        notifId++
                     )
+                    prefs.edit().putInt("notif_id", notifId).apply()
                 }
             }
         }
