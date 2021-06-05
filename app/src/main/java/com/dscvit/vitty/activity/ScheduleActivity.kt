@@ -11,8 +11,10 @@ import android.provider.Settings
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.Button
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.content.res.AppCompatResources
+import androidx.core.content.edit
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.FragmentActivity
 import com.dscvit.vitty.R
@@ -40,7 +42,8 @@ class ScheduleActivity : FragmentActivity() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_schedule)
         prefs = getSharedPreferences("login_info", 0)
         uid = prefs.getString("uid", "").toString()
-        pageSetup(this)
+        pageSetup()
+        firstTimeSetup()
     }
 
     override fun onStart() {
@@ -63,7 +66,7 @@ class ScheduleActivity : FragmentActivity() {
             }
     }
 
-    private fun pageSetup(context: Context) {
+    private fun pageSetup() {
         val calendar: Calendar = Calendar.getInstance()
         val d = when (calendar.get(Calendar.DAY_OF_WEEK)) {
             Calendar.MONDAY -> 0
@@ -143,6 +146,67 @@ class ScheduleActivity : FragmentActivity() {
         binding.pager.currentItem = d
     }
 
+    private fun firstTimeSetup() {
+        if (!prefs.getBoolean("firstTimeSetup", false)) {
+            var count = 1
+            val v: View = LayoutInflater
+                .from(this)
+                .inflate(R.layout.dialog_setup_complete, null)
+            val dialog = MaterialAlertDialogBuilder(this)
+                .setView(v)
+                .setBackground(
+                    AppCompatResources.getDrawable(
+                        this,
+                        R.color.transparent
+                    )
+                )
+                .create()
+            dialog.setCanceledOnTouchOutside(false)
+            dialog.show()
+
+            val skip = v.findViewById<Button>(R.id.skip)
+            val next = v.findViewById<Button>(R.id.next)
+            val title = v.findViewById<TextView>(R.id.title)
+            val desc = v.findViewById<TextView>(R.id.description)
+
+            skip.setOnClickListener {
+                prefs.edit {
+                    putBoolean("firstTimeSetup", true)
+                    apply()
+                }
+                dialog.dismiss()
+            }
+
+            next.setOnClickListener {
+                val msg = introMessage(count)
+                title.text = msg[0]
+                desc.text = msg[1]
+                if (count == 4) {
+                    skip.visibility = View.GONE
+                    next.text = getString(R.string.done)
+                }
+                if (count > 4) {
+                    prefs.edit {
+                        putBoolean("firstTimeSetup", true)
+                        apply()
+                    }
+                    dialog.dismiss()
+                }
+                count++
+            }
+        }
+    }
+
+    private fun introMessage(pos: Int): List<String> {
+        return when (pos) {
+            0 -> listOf(getString(R.string.congratulations), getString(R.string.complete_msg))
+            1 -> listOf(getString(R.string.widgets), getString(R.string.about_widgets))
+            2 -> listOf(getString(R.string.notifications), getString(R.string.about_notifications))
+            3 -> listOf(getString(R.string.battery), getString(R.string.about_battery))
+            else -> listOf(getString(R.string.final_heading), getString(R.string.about_final))
+        }
+    }
+
     private fun logout() {
         val v: View = LayoutInflater
             .from(this)
@@ -168,9 +232,13 @@ class ScheduleActivity : FragmentActivity() {
         }
 
         logout.setOnClickListener {
-            prefs.edit().putInt(TIMETABLE_AVAILABLE, 0).apply()
-            prefs.edit().putInt(UPDATE, 0).apply()
-            prefs.edit().putString(UID, "").apply()
+            prefs.edit().apply {
+                putInt(TIMETABLE_AVAILABLE, 0)
+                putInt(UPDATE, 0)
+                putString(UID, "")
+                putBoolean("firstTimeSetup", false)
+                apply()
+            }
             FirebaseAuth.getInstance().signOut()
             val intent = Intent(this, AuthActivity::class.java)
             startActivity(intent)

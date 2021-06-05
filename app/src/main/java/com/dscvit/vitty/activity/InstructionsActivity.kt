@@ -92,6 +92,7 @@ class InstructionsActivity : AppCompatActivity() {
 
     private fun createNotificationChannels() {
         binding.loadingView.visibility = View.VISIBLE
+        setNotificationGroup()
         val notifChannels = loadArray(NOTIFICATION_CHANNELS, this)
         for (notifChannel in notifChannels) {
             if (notifChannel != null) {
@@ -128,11 +129,6 @@ class InstructionsActivity : AppCompatActivity() {
                     Timber.d("Error: $e")
                 }
         }
-        NotificationHelper.createNotificationChannel(
-            this,
-            "Other",
-            "Miscellaneous Notifications",
-        )
     }
 
     private fun tellUpdated() {
@@ -166,6 +162,16 @@ class InstructionsActivity : AppCompatActivity() {
             .addOnFailureListener { e ->
                 Timber.d("Error: $e")
             }
+    }
+
+    private fun setNotificationGroup() {
+        if (!prefs.getBoolean("groupCreated", false)) {
+            NotificationHelper.createNotificationGroup(this, getString(R.string.notif_group))
+            prefs.edit {
+                putBoolean("groupCreated", true)
+                apply()
+            }
+        }
     }
 
     private fun setAlarm() {

@@ -1,6 +1,7 @@
 package com.dscvit.vitty.notif
 
 import android.app.NotificationChannel
+import android.app.NotificationChannelGroup
 import android.app.NotificationManager
 import android.app.PendingIntent
 import android.content.Context
@@ -11,6 +12,7 @@ import androidx.core.app.NotificationManagerCompat
 import androidx.core.content.ContextCompat
 import com.dscvit.vitty.R
 import com.dscvit.vitty.activity.ScheduleActivity
+import com.dscvit.vitty.util.Constants.GROUP_ID
 
 object NotificationHelper {
     fun createNotificationChannel(
@@ -23,10 +25,27 @@ object NotificationHelper {
             val importance = NotificationManager.IMPORTANCE_HIGH
             val channel = NotificationChannel(channelId, name, importance).apply {
                 description = descriptionText
+                group = GROUP_ID
             }
             val notificationManager: NotificationManager =
                 context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
             notificationManager.createNotificationChannel(channel)
+        }
+    }
+
+    fun createNotificationGroup(
+        context: Context,
+        groupName: String,
+    ) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            val notificationManager =
+                context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+            notificationManager.createNotificationChannelGroup(
+                NotificationChannelGroup(
+                    GROUP_ID,
+                    groupName
+                )
+            )
         }
     }
 

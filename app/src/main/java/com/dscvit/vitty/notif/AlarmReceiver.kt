@@ -39,20 +39,22 @@ class AlarmReceiver : BroadcastReceiver() {
     ) {
 
         val diff = start.timeInMillis - calendar.timeInMillis
-        if (diff < 1000 * 60 * 25 && diff > -(1000 * 60 * 5)) {
+        if (diff < 1000 * 60 * 22 && diff > -(1000 * 60 * 5)) {
             val startTime: Date = pd.startTime.toDate()
             val simpleDateFormat = SimpleDateFormat("h:mm a", Locale.getDefault())
             val sTime: String = simpleDateFormat.format(startTime).uppercase(Locale.ROOT)
 
-            if (context != null) {
-                NotificationHelper.sendNotification(
-                    context,
-                    "Up Next",
-                    pd.courseName,
-                    "You have ${pd.courseName} at $sTime",
-                    pd.courseName,
-                    1
-                )
+            if (pd.courseName.trim() != "") {
+                if (context != null) {
+                    NotificationHelper.sendNotification(
+                        context,
+                        "Up Next",
+                        pd.courseName,
+                        "You have ${pd.courseName} at $sTime",
+                        pd.courseName,
+                        1
+                    )
+                }
             }
         }
 
