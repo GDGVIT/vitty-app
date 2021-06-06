@@ -3,6 +3,7 @@ plugins {
     id 'kotlin-android'
     id 'kotlin-kapt'
     id 'com.google.gms.google-services'
+    id 'com.google.firebase.crashlytics'
     id 'org.jlleitschuh.gradle.ktlint' version '10.0.0'
 }
 
@@ -27,7 +28,7 @@ android {
         minSdkVersion 24
         targetSdkVersion 30
         versionCode 1
-        versionName "1.0"
+        versionName "1.0.0-beta"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         signingConfig signingConfigs.release
     }
@@ -76,8 +77,8 @@ dependencies {
     // Firestore
     implementation 'com.google.firebase:firebase-firestore:23.0.0'
 
-    // FCM
-    implementation 'com.google.firebase:firebase-messaging-ktx'
+    // Crashlytics
+    implementation 'com.google.firebase:firebase-crashlytics-ktx'
 
     // Loading Animations
     implementation 'com.github.ybq:Android-SpinKit:1.4.0'

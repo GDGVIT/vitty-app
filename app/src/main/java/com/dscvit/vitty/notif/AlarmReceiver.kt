@@ -1,11 +1,9 @@
 package com.dscvit.vitty.notif
 
-import android.app.AlarmManager
-import android.app.PendingIntent
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
+import android.content.SharedPreferences
 import com.dscvit.vitty.model.PeriodDetails
 import com.dscvit.vitty.util.Constants
 import com.google.firebase.firestore.FirebaseFirestore
@@ -18,38 +16,26 @@ import java.util.Date
 import java.util.Locale
 
 class AlarmReceiver : BroadcastReceiver() {
+    private lateinit var prefs: SharedPreferences
+
     override fun onReceive(context: Context?, intent: Intent?) {
-        if (intent?.action == Intent.ACTION_BOOT_COMPLETED) {
-//            Toast.makeText(context, "VITTY Started!", Toast.LENGTH_LONG).show()
-            val i = Intent(context, AlarmReceiver::class.java)
-            i.addFlags(Intent.FLAG_RECEIVER_FOREGROUND)
-            val pendingIntent =
-                PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT)
-            val alarmManager =
-                context?.getSystemService(AppCompatActivity.ALARM_SERVICE) as AlarmManager
-            val date = Date().time
-            alarmManager.setRepeating(
-                AlarmManager.RTC_WAKEUP,
-                date,
-                (1000 * 60 * Constants.NOTIF_DELAY).toLong(),
-                pendingIntent
-            )
-            context.startService(i)
+        if (context != null) {
+            prefs = context.getSharedPreferences(Constants.USER_INFO, 0)
+            val days =
+                listOf("monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday")
+            val calendar: Calendar = Calendar.getInstance()
+            val d = when (calendar.get(Calendar.DAY_OF_WEEK)) {
+                Calendar.MONDAY -> 0
+                Calendar.TUESDAY -> 1
+                Calendar.WEDNESDAY -> 2
+                Calendar.THURSDAY -> 3
+                Calendar.FRIDAY -> 4
+                Calendar.SATURDAY -> 5
+                Calendar.SUNDAY -> 6
+                else -> 0
+            }
+            fetchFirestore(context, days[d], calendar)
         }
-        val days =
-            listOf("monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday")
-        val calendar: Calendar = Calendar.getInstance()
-        val d = when (calendar.get(Calendar.DAY_OF_WEEK)) {
-            Calendar.MONDAY -> 0
-            Calendar.TUESDAY -> 1
-            Calendar.WEDNESDAY -> 2
-            Calendar.THURSDAY -> 3
-            Calendar.FRIDAY -> 4
-            Calendar.SATURDAY -> 5
-            Calendar.SUNDAY -> 6
-            else -> 0
-        }
-        fetchFirestore(context!!, days[d], calendar)
     }
 
     private fun sendNotif(
@@ -59,21 +45,26 @@ class AlarmReceiver : BroadcastReceiver() {
         start: Calendar
     ) {
 
+        var notifId = prefs.getInt("notif_id", 1)
+
         val diff = start.timeInMillis - calendar.timeInMillis
-        if (diff < 1000 * 60 * 20 && diff > -(1000 * 60 * 5)) {
+        if (diff < 1000 * 60 * 22 && diff > -(1000 * 60 * 5)) {
             val startTime: Date = pd.startTime.toDate()
             val simpleDateFormat = SimpleDateFormat("h:mm a", Locale.getDefault())
             val sTime: String = simpleDateFormat.format(startTime).uppercase(Locale.ROOT)
 
-            if (context != null) {
-                NotificationHelper.sendNotification(
-                    context,
-                    "Up Next",
-                    pd.courseName,
-                    "You have ${pd.courseName} at $sTime",
-                    pd.courseName,
-                    1
-                )
+            if (pd.courseName.trim() != "") {
+                if (context != null) {
+                    NotificationHelper.sendNotification(
+                        context,
+                        "Up Next",
+                        pd.courseName,
+                        "You have ${pd.courseName} at $sTime",
+                        pd.courseName,
+                        notifId++
+                    )
+                    prefs.edit().putInt("notif_id", notifId).apply()
+                }
             }
         }
 

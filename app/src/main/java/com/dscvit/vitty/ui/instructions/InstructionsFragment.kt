@@ -63,9 +63,9 @@ class InstructionsFragment : Fragment() {
             }
             shareIntent.putExtra(
                 Intent.EXTRA_TEXT,
-                context?.getString(R.string.share)
+                context?.getString(R.string.share_text)
             )
-            startActivity(Intent.createChooser(shareIntent, "send to"))
+            startActivity(Intent.createChooser(shareIntent, "Share"))
             true
         }
     }

@@ -37,7 +37,7 @@ class DayFragment : Fragment() {
             container,
             false
         )
-        fragID = arguments!!.getString("frag_id")?.toInt()!!
+        fragID = requireArguments().getString("frag_id")?.toInt()!!
         getData()
         return binding.root
     }

@@ -4,7 +4,8 @@
     android:initialLayout="@layout/today_widget"
     android:minWidth="250dp"
     android:minHeight="200dp"
+    android:minResizeHeight="100dp"
     android:previewImage="@drawable/today_widget_preview"
     android:resizeMode="horizontal|vertical"
-    android:updatePeriodMillis="7200000"
+    android:updatePeriodMillis="18000000"
     android:widgetCategory="home_screen" />

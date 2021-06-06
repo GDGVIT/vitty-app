@@ -36,20 +36,6 @@ class TodayWidget : AppWidgetProvider() {
         }
     }
 
-//    override fun onAppWidgetOptionsChanged(
-//        context: Context?,
-//        appWidgetManager: AppWidgetManager?,
-//        appWidgetId: Int,
-//        newOptions: Bundle?
-//    ) {
-//        super.onAppWidgetOptionsChanged(context, appWidgetManager, appWidgetId, newOptions)
-//        if (context != null) {
-//            if (appWidgetManager != null) {
-//                updateTodayWidget(context, appWidgetManager, appWidgetId, null, null)
-//            }
-//        }
-//    }
-
     override fun onEnabled(context: Context) {
         // Enter relevant functionality for when the first widget is created
     }
@@ -89,7 +75,6 @@ internal fun updateTodayWidget(
     } else if (courseList.isNotEmpty()) {
         saveArray(courseList, "courses_today", context)
         saveArray(timeList!!, "time_today", context)
-
         val serviceIntent = Intent(context, TodayWidgetService::class.java)
         serviceIntent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetId)
         val bundle1 = Bundle()
@@ -102,16 +87,7 @@ internal fun updateTodayWidget(
             TIME_SLOTS,
             timeList
         )
-//        serviceIntent.putExtra(PERIODS, bundle1)
-//        serviceIntent.putExtra(TIME_SLOTS, bundle2)
         views.setRemoteAdapter(R.id.periods, serviceIntent)
-
-        // Button Intent
-//        val buttonIntent = Intent(context, AuthActivity::class.java)
-//        val buttonPendingIntent = PendingIntent.getActivity(context, 0, buttonIntent, 0)
-//        views.setOnClickPendingIntent(R.id.periods, buttonPendingIntent)
-
-        Timber.d("WTAF NOBRUH")
         appWidgetManager.notifyAppWidgetViewDataChanged(appWidgetId, R.id.periods)
     }
 
@@ -171,6 +147,7 @@ suspend fun fetchTodayData(
                             courseList.add(document.getString("courseName")!!)
                             timeList.add("$sTime - $eTime")
                         } catch (e: Exception) {
+                            Timber.d("Error: $e")
                         }
                     }
                     updateTodayWidget(context, appWidgetManager, appWidgetId, courseList, timeList)

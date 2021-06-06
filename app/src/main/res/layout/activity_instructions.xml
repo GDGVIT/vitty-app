@@ -18,12 +18,14 @@
                 android:background="@color/background">
 
                 <com.google.android.material.appbar.MaterialToolbar
+                    android:id="@+id/instructions_toolbar"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:paddingStart="20dp"
                     android:paddingTop="20dp"
-                    android:paddingEnd="20dp"
+                    android:paddingEnd="10dp"
                     android:paddingBottom="18dp"
+                    app:menu="@menu/instructions_menu"
                     app:title="Instructions"
                     app:titleTextAppearance="@style/TitleTextAppearance"
                     app:titleTextColor="@color/white" />

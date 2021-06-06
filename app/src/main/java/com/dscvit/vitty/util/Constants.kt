@@ -12,4 +12,5 @@ object Constants {
     const val TIMETABLE_AVAILABLE = "is_available"
     const val NOTIFICATION_CHANNELS = "notif_channels"
     const val NOTIF_DELAY = 20
+    const val GROUP_ID = "vitty_01"
 }
