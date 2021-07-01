@@ -72,7 +72,7 @@ internal fun updateTodayWidget(
 
     if (courseList == null) {
         fetchTodayFirestore(context, days[d], appWidgetManager, appWidgetId)
-    } else if (courseList.isNotEmpty()) {
+    } else {
         saveArray(courseList, "courses_today", context)
         saveArray(timeList!!, "time_today", context)
         val serviceIntent = Intent(context, TodayWidgetService::class.java)

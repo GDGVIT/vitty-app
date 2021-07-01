@@ -46,7 +46,7 @@
                         android:id="@+id/greetings"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="10dp"
+                        android:layout_marginBottom="12dp"
                         android:fontFamily="@font/poppins_500"
                         android:text="@string/account_details"
                         android:textColor="@color/translucent_head"
@@ -56,7 +56,7 @@
                         android:id="@+id/username"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="5dp"
+                        android:layout_marginBottom="6dp"
                         android:text="@{`Name: `+userDetails.name}"
                         tools:text="Name: Yajat Malhotra" />
 
@@ -69,131 +69,149 @@
 
             </com.google.android.material.card.MaterialCardView>
 
-
-            <TextView
-                android:id="@+id/instructions1"
+            <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="25dp"
-                android:layout_marginEnd="25dp"
-                android:layout_marginBottom="5dp"
-                android:text="@string/instructions_1" />
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="20dp"
+                app:cardBackgroundColor="@color/background">
 
-            <TextView
-                android:id="@+id/instructions1_link"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="25dp"
-                android:layout_marginEnd="25dp"
-                android:fontFamily="@font/poppins_500"
-                android:text="@string/instructions_1_link" />
+                <ImageView
+                    android:id="@+id/expanded_background2"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:contentDescription="@string/exp_background"
+                    android:src="@drawable/expanded_background" />
 
-            <TextView
-                android:id="@+id/instructions2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="25dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginEnd="25dp"
-                android:lineSpacingExtra="3dp"
-                android:text="@string/instructions_2" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="15dp"
+                    android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/instructions3"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="25dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginEnd="25dp"
-                android:lineSpacingExtra="3dp"
-                android:text="@string/instructions_3" />
+                    <TextView
+                        android:id="@+id/instructions_list"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="12dp"
+                        android:fontFamily="@font/poppins_500"
+                        android:text="@string/title_instructions"
+                        android:textColor="@color/translucent_head"
+                        android:textSize="16sp" />
 
-            <TextView
-                android:id="@+id/instructions3a"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="35dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginEnd="25dp"
-                android:lineSpacingExtra="3dp"
-                android:text="@string/instructions_3_a" />
+                    <TextView
+                        android:id="@+id/instructions1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="5dp"
+                        android:text="@string/instructions_1" />
 
-            <TextView
-                android:id="@+id/instructions3b"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="35dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginEnd="25dp"
-                android:lineSpacingExtra="3dp"
-                android:text="@string/instructions_3_b" />
+                    <TextView
+                        android:id="@+id/instructions1_link"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/poppins_500"
+                        android:text="@string/instructions_1_link" />
 
-            <TextView
-                android:id="@+id/instructions4"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="25dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginEnd="25dp"
-                android:lineSpacingExtra="3dp"
-                android:text="@string/instructions_4" />
+                    <TextView
+                        android:id="@+id/instructions2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"
+                        android:lineSpacingExtra="3dp"
+                        android:text="@string/instructions_2" />
 
-            <TextView
-                android:id="@+id/instructions5a"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="35dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginEnd="25dp"
-                android:lineSpacingExtra="3dp"
-                android:text="@string/instructions_4_a" />
+                    <TextView
+                        android:id="@+id/instructions3"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"
+                        android:lineSpacingExtra="3dp"
+                        android:text="@string/instructions_3" />
 
-            <TextView
-                android:id="@+id/instructions5b"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="35dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginEnd="25dp"
-                android:lineSpacingExtra="3dp"
-                android:text="@string/instructions_4_b" />
+                    <!--            <TextView-->
+                    <!--                android:id="@+id/instructions3a"-->
+                    <!--                android:layout_width="match_parent"-->
+                    <!--                android:layout_height="wrap_content"-->
+                    <!--                android:layout_marginStart="35dp"-->
+                    <!--                android:layout_marginTop="10dp"-->
+                    <!--                android:layout_marginEnd="25dp"-->
+                    <!--                android:lineSpacingExtra="3dp"-->
+                    <!--                android:text="@string/instructions_3_a" />-->
 
-            <TextView
-                android:id="@+id/instructions5"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="25dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginEnd="25dp"
-                android:lineSpacingExtra="3dp"
-                android:text="@string/instructions_5" />
+                    <!--            <TextView-->
+                    <!--                android:id="@+id/instructions3b"-->
+                    <!--                android:layout_width="match_parent"-->
+                    <!--                android:layout_height="wrap_content"-->
+                    <!--                android:layout_marginStart="35dp"-->
+                    <!--                android:layout_marginTop="10dp"-->
+                    <!--                android:layout_marginEnd="25dp"-->
+                    <!--                android:lineSpacingExtra="3dp"-->
+                    <!--                android:text="@string/instructions_3_b" />-->
 
-            <TextView
-                android:id="@+id/instructions6"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="25dp"
-                android:layout_marginTop="25dp"
-                android:layout_marginEnd="25dp"
-                android:fontFamily="@font/poppins_500"
-                android:lineSpacingExtra="3dp"
-                android:text="@string/instructions_6"
-                android:textColor="@color/translucent_imp" />
+                    <TextView
+                        android:id="@+id/instructions4"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"
+                        android:lineSpacingExtra="3dp"
+                        android:text="@string/instructions_4" />
+
+                    <!--            <TextView-->
+                    <!--                android:id="@+id/instructions5a"-->
+                    <!--                android:layout_width="match_parent"-->
+                    <!--                android:layout_height="wrap_content"-->
+                    <!--                android:layout_marginStart="35dp"-->
+                    <!--                android:layout_marginTop="10dp"-->
+                    <!--                android:layout_marginEnd="25dp"-->
+                    <!--                android:lineSpacingExtra="3dp"-->
+                    <!--                android:text="@string/instructions_4_a" />-->
+
+                    <!--            <TextView-->
+                    <!--                android:id="@+id/instructions5b"-->
+                    <!--                android:layout_width="match_parent"-->
+                    <!--                android:layout_height="wrap_content"-->
+                    <!--                android:layout_marginStart="35dp"-->
+                    <!--                android:layout_marginTop="10dp"-->
+                    <!--                android:layout_marginEnd="25dp"-->
+                    <!--                android:lineSpacingExtra="3dp"-->
+                    <!--                android:text="@string/instructions_4_b" />-->
+
+                    <TextView
+                        android:id="@+id/instructions5"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"
+                        android:lineSpacingExtra="3dp"
+                        android:text="@string/instructions_5" />
+
+                    <TextView
+                        android:id="@+id/instructions6"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"
+                        android:fontFamily="@font/poppins_500"
+                        android:lineSpacingExtra="3dp"
+                        android:text="@string/instructions_6"
+                        android:textColor="@color/translucent_imp" />
 
 
-            <TextView
-                android:id="@+id/instructions7"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="25dp"
-                android:layout_marginTop="12dp"
-                android:layout_marginEnd="25dp"
-                android:layout_marginBottom="10dp"
-                android:fontFamily="@font/poppins_500"
-                android:lineSpacingExtra="3dp"
-                android:text="@string/instructions_7"
-                android:textColor="@color/translucent_imp" />
+                    <!--            <TextView-->
+                    <!--                android:id="@+id/instructions7"-->
+                    <!--                android:layout_width="match_parent"-->
+                    <!--                android:layout_height="wrap_content"-->
+                    <!--                android:layout_marginStart="25dp"-->
+                    <!--                android:layout_marginTop="12dp"-->
+                    <!--                android:layout_marginEnd="25dp"-->
+                    <!--                android:layout_marginBottom="10dp"-->
+                    <!--                android:fontFamily="@font/poppins_500"-->
+                    <!--                android:lineSpacingExtra="3dp"-->
+                    <!--                android:text="@string/instructions_7"-->
+                    <!--                android:textColor="@color/translucent_imp" />-->
+                </LinearLayout>
 
+            </com.google.android.material.card.MaterialCardView>
         </LinearLayout>
     </ScrollView>
 </layout>
