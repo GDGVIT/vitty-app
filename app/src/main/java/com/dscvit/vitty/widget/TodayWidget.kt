@@ -72,7 +72,24 @@ internal fun updateTodayWidget(
 
     if (courseList == null) {
         fetchTodayFirestore(context, days[d], appWidgetManager, appWidgetId)
-    } else {
+    } else if (courseList.isNotEmpty()) {
+        saveArray(courseList, "courses_today", context)
+        saveArray(timeList!!, "time_today", context)
+        val serviceIntent = Intent(context, TodayWidgetService::class.java)
+        serviceIntent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetId)
+        val bundle1 = Bundle()
+        bundle1.putStringArrayList(
+            PERIODS,
+            courseList
+        )
+        val bundle2 = Bundle()
+        bundle2.putStringArrayList(
+            TIME_SLOTS,
+            timeList
+        )
+        views.setRemoteAdapter(R.id.periods, serviceIntent)
+        appWidgetManager.notifyAppWidgetViewDataChanged(appWidgetId, R.id.periods)
+    } else if (courseList.isEmpty()) {
         saveArray(courseList, "courses_today", context)
         saveArray(timeList!!, "time_today", context)
         val serviceIntent = Intent(context, TodayWidgetService::class.java)
@@ -153,7 +170,7 @@ suspend fun fetchTodayData(
                     updateTodayWidget(context, appWidgetManager, appWidgetId, courseList, timeList)
                 }
                 .addOnFailureListener { e ->
-                    Timber.d("Error: $e")
+                    Timber.d("Error YO: $e")
                 }
         } else {
             updateTodayWidget(context, appWidgetManager, appWidgetId, courseList, timeList)
