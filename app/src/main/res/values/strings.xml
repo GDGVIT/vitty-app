@@ -47,7 +47,7 @@
     <string name="battery">Battery</string>
     <string name="account_details">Account Details</string>
     <string name="notif_group">Courses</string>
-    <string name="complete_msg">You have successfully completed setting up your timetable! You deserve a pat on your back!</string>
+    <string name="complete_msg">You have successfully set up your timetable! You deserve a pat on your back!</string>
     <string name="skip">Skip</string>
     <string name="widgets">Widgets</string>
     <string name="about_widgets">Go to your home screen, long press and add widget!\n\nYou have two widgets to choose from:\n1. Today\'s Schedule: This shows your current day\'s classes.\n2. Next class: This gives you the details about your next upcoming class.</string>
@@ -56,5 +56,5 @@
     <string name="final_heading">Let\'s go!</string>
     <string name="about_final">You\'re all set to start using the app.</string>
     <string name="congratulations">Congratulations!</string>
-    <string name="title_instructions">Instructions</string>
+    <string name="title_instructions">Setup Instructions</string>
 </resources>
