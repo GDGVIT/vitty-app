@@ -31,11 +31,11 @@
     <string name="instructions_3">3. Upload a screenshot of your timetable.</string>
     <string name="instructions_3_a">\u25CB Ensure that the screenshot is taken directly from VTOP. It should fit in one single image.</string>
     <string name="instructions_3_b">\u25CB DO NOT upload a screenshot that has been compressed or sent through social media.</string>
-    <string name="instructions_4">4. Review them in the Chrome Extension.</string>
+    <string name="instructions_4">4. Review it in the Chrome Extension.</string>
     <string name="instructions_4_a">\u25CB Individual slot data can be edited by clicking on the edit button.</string>
     <string name="instructions_4_b">\u25CB If unsatisfied, click on the three dots and select Upload as Text.</string>
     <string name="instructions_5">5. When done, click on Upload.</string>
-    <string name="instructions_6">BRAVO! That\'s it. You are all set to receive push notifications for all your classes on the app as well as chrome.</string>
+    <string name="instructions_6">BRAVO! That\'s it. You did it!</string>
     <string name="instructions_7">In addition to this, you can have a sneak peek at your upcoming classes via the Widget.</string>
     <string name="logout">Logout</string>
     <string name="logout_msg">Are you sure?</string>
@@ -47,7 +47,7 @@
     <string name="battery">Battery</string>
     <string name="account_details">Account Details</string>
     <string name="notif_group">Courses</string>
-    <string name="complete_msg">You have successfully completed setting up your timetable! You deserve a pat on your back!</string>
+    <string name="complete_msg">You have successfully set up your timetable! You deserve a pat on your back!</string>
     <string name="skip">Skip</string>
     <string name="widgets">Widgets</string>
     <string name="about_widgets">Go to your home screen, long press and add widget!\n\nYou have two widgets to choose from:\n1. Today\'s Schedule: This shows your current day\'s classes.\n2. Next class: This gives you the details about your next upcoming class.</string>
@@ -56,4 +56,5 @@
     <string name="final_heading">Let\'s go!</string>
     <string name="about_final">You\'re all set to start using the app.</string>
     <string name="congratulations">Congratulations!</string>
+    <string name="title_instructions">Setup Instructions</string>
 </resources>

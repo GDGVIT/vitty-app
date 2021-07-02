@@ -45,7 +45,7 @@ class AlarmReceiver : BroadcastReceiver() {
         start: Calendar
     ) {
 
-        var notifId = prefs.getInt("notif_id", 1)
+        var notifId = prefs.getInt("notif_id", 1) % 20
 
         val diff = start.timeInMillis - calendar.timeInMillis
         if (diff < 1000 * 60 * 22 && diff > -(1000 * 60 * 5)) {

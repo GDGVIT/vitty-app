@@ -72,7 +72,7 @@ internal fun updateTodayWidget(
 
     if (courseList == null) {
         fetchTodayFirestore(context, days[d], appWidgetManager, appWidgetId)
-    } else if (courseList.isNotEmpty()) {
+    } else if (courseList.isNotEmpty() || courseList.isEmpty()) {
         saveArray(courseList, "courses_today", context)
         saveArray(timeList!!, "time_today", context)
         val serviceIntent = Intent(context, TodayWidgetService::class.java)
@@ -138,11 +138,11 @@ suspend fun fetchTodayData(
                             val startTime: Date = document.getTimestamp("startTime")!!.toDate()
                             val simpleDateFormat = SimpleDateFormat("h:mm a", Locale.getDefault())
                             val sTime: String =
-                                simpleDateFormat.format(startTime).toUpperCase(Locale.ROOT)
+                                simpleDateFormat.format(startTime).uppercase()
 
                             val endTime: Date = document.getTimestamp("endTime")!!.toDate()
                             val eTime: String =
-                                simpleDateFormat.format(endTime).toUpperCase(Locale.ROOT)
+                                simpleDateFormat.format(endTime).uppercase()
 
                             courseList.add(document.getString("courseName")!!)
                             timeList.add("$sTime - $eTime")
@@ -153,7 +153,7 @@ suspend fun fetchTodayData(
                     updateTodayWidget(context, appWidgetManager, appWidgetId, courseList, timeList)
                 }
                 .addOnFailureListener { e ->
-                    Timber.d("Error: $e")
+                    Timber.d("Error YO: $e")
                 }
         } else {
             updateTodayWidget(context, appWidgetManager, appWidgetId, courseList, timeList)

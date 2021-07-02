@@ -26,7 +26,7 @@
                     android:paddingEnd="10dp"
                     android:paddingBottom="18dp"
                     app:menu="@menu/instructions_menu"
-                    app:title="Instructions"
+                    app:title="Sync Timetable"
                     app:titleTextAppearance="@style/TitleTextAppearance"
                     app:titleTextColor="@color/white" />
 
