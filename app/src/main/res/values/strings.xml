@@ -31,7 +31,7 @@
     <string name="instructions_3">3. Upload a screenshot of your timetable.</string>
     <string name="instructions_3_a">\u25CB Ensure that the screenshot is taken directly from VTOP. It should fit in one single image.</string>
     <string name="instructions_3_b">\u25CB DO NOT upload a screenshot that has been compressed or sent through social media.</string>
-    <string name="instructions_4">4. Review it in the Chrome Extension.</string>
+    <string name="instructions_4">4. Review it.</string>
     <string name="instructions_4_a">\u25CB Individual slot data can be edited by clicking on the edit button.</string>
     <string name="instructions_4_b">\u25CB If unsatisfied, click on the three dots and select Upload as Text.</string>
     <string name="instructions_5">5. When done, click on Upload.</string>
