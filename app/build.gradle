@@ -85,4 +85,7 @@ dependencies {
 
     // Timber for logs
     implementation 'com.jakewharton.timber:timber:4.7.1'
+
+    // Work Manager
+    implementation "androidx.work:work-runtime-ktx:2.6.0-beta01"
 }

@@ -45,7 +45,7 @@ class AlarmReceiver : BroadcastReceiver() {
         start: Calendar
     ) {
 
-        var notifId = prefs.getInt("notif_id", 1) % 20
+        var notifId = prefs.getInt("notif_id", 1)
 
         val diff = start.timeInMillis - calendar.timeInMillis
         if (diff < 1000 * 60 * 22 && diff > -(1000 * 60 * 5)) {
@@ -63,6 +63,8 @@ class AlarmReceiver : BroadcastReceiver() {
                         pd.courseName,
                         notifId++
                     )
+                    if (notifId == Integer.MAX_VALUE - 1)
+                        notifId = 1
                     prefs.edit().putInt("notif_id", notifId).apply()
                 }
             }
