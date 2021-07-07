@@ -36,14 +36,17 @@ class IntroFragment : Fragment() {
                 0 -> {
                     heading.text = requireContext().getString(R.string.intro1_title)
                     subHeading.text = requireContext().getString(R.string.intro1_subtitle)
+                    illustration.setImageResource(R.drawable.get_notified)
                 }
                 1 -> {
                     heading.text = requireContext().getString(R.string.intro2_title)
                     subHeading.text = requireContext().getString(R.string.intro2_subtitle)
+                    illustration.setImageResource(R.drawable.widget)
                 }
                 2 -> {
                     heading.text = requireContext().getString(R.string.intro3_title)
                     subHeading.text = requireContext().getString(R.string.intro3_subtitle)
+                    illustration.setImageResource(R.drawable.sync)
                 }
             }
         }

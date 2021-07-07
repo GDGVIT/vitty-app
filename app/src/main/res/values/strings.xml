@@ -5,7 +5,7 @@
     <string name="sample_course">Java Programming - ELA</string>
     <string name="sample_time">8:00 AM - 9:40 AM</string>
     <string name="down_arrow">Down arrow</string>
-    <string name="sample_slot">C1 + TC1</string>
+    <string name="sample_slot">L35 + L36</string>
     <string name="sample_class_id">SJT 304</string>
     <string name="next">Next</string>
     <string name="greeting">Hello,</string>
@@ -14,7 +14,7 @@
     <string name="no_more_classes_today">No More Classes Today</string>
     <string name="no_classes_today_subtext">Up for some Valorant Grind?</string>
     <string name="intro1_title">Never miss a class</string>
-    <string name="intro1_subtitle">Notifications to remind you about your classes on the app and extension</string>
+    <string name="intro1_subtitle">Notifications to remind you about your upcoming classes</string>
     <string name="intro2_title">Get a sneak peek</string>
     <string name="intro2_subtitle">View your upcoming classes and timetable via the widget</string>
     <string name="intro3_title">Upload once, view everywhere</string>
