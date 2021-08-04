@@ -20,9 +20,11 @@ import androidx.fragment.app.FragmentActivity
 import com.dscvit.vitty.R
 import com.dscvit.vitty.adapter.DayAdapter
 import com.dscvit.vitty.databinding.ActivityScheduleBinding
+import com.dscvit.vitty.util.Constants.FIRST_TIME_SETUP
 import com.dscvit.vitty.util.Constants.TIMETABLE_AVAILABLE
 import com.dscvit.vitty.util.Constants.UID
 import com.dscvit.vitty.util.Constants.UPDATE
+import com.dscvit.vitty.util.Constants.USER_INFO
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.tabs.TabLayoutMediator
 import com.google.firebase.auth.FirebaseAuth
@@ -40,7 +42,7 @@ class ScheduleActivity : FragmentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_schedule)
-        prefs = getSharedPreferences("login_info", 0)
+        prefs = getSharedPreferences(USER_INFO, 0)
         uid = prefs.getString("uid", "").toString()
         pageSetup()
         firstTimeSetup()
@@ -147,7 +149,7 @@ class ScheduleActivity : FragmentActivity() {
     }
 
     private fun firstTimeSetup() {
-        if (!prefs.getBoolean("firstTimeSetup", false)) {
+        if (!prefs.getBoolean(FIRST_TIME_SETUP, false)) {
             var count = 1
             val v: View = LayoutInflater
                 .from(this)
@@ -171,7 +173,7 @@ class ScheduleActivity : FragmentActivity() {
 
             skip.setOnClickListener {
                 prefs.edit {
-                    putBoolean("firstTimeSetup", true)
+                    putBoolean(FIRST_TIME_SETUP, true)
                     apply()
                 }
                 dialog.dismiss()
@@ -187,7 +189,7 @@ class ScheduleActivity : FragmentActivity() {
                 }
                 if (count > 4) {
                     prefs.edit {
-                        putBoolean("firstTimeSetup", true)
+                        putBoolean(FIRST_TIME_SETUP, true)
                         apply()
                     }
                     dialog.dismiss()
@@ -236,7 +238,7 @@ class ScheduleActivity : FragmentActivity() {
                 putInt(TIMETABLE_AVAILABLE, 0)
                 putInt(UPDATE, 0)
                 putString(UID, "")
-                putBoolean("firstTimeSetup", false)
+                putBoolean(FIRST_TIME_SETUP, false)
                 apply()
             }
             FirebaseAuth.getInstance().signOut()

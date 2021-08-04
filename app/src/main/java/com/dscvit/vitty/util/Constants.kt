@@ -13,4 +13,5 @@ object Constants {
     const val NOTIFICATION_CHANNELS = "notif_channels"
     const val NOTIF_DELAY = 20
     const val GROUP_ID = "vitty_01"
+    const val FIRST_TIME_SETUP = "firstTimeSetup"
 }
