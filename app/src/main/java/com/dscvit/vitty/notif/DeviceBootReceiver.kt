@@ -11,7 +11,12 @@ import java.util.Date
 
 class DeviceBootReceiver : BroadcastReceiver() {
     override fun onReceive(context: Context?, intent: Intent?) {
-        if (intent!!.action.equals("android.intent.action.BOOT_COMPLETED")) {
+        if (intent!!.action.equals(
+                "android.intent.action.BOOT_COMPLETED"
+            ) || intent.action.equals(
+                    "android.intent.action.MY_PACKAGE_REPLACED"
+                )
+        ) {
             val i = Intent(context, AlarmReceiver::class.java)
             val pendingIntent =
                 PendingIntent.getBroadcast(context, 0, i, 0)
