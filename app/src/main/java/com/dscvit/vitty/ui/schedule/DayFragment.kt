@@ -78,7 +78,7 @@ class DayFragment : Fragment() {
         binding.apply {
             if (courseList.isNotEmpty()) {
                 dayList.scheduleLayoutAnimation()
-                dayList.adapter = PeriodAdapter(courseList)
+                dayList.adapter = PeriodAdapter(courseList, fragID)
                 dayList.layoutManager = LinearLayoutManager(context)
             } else {
                 noPeriod.visibility = View.VISIBLE
