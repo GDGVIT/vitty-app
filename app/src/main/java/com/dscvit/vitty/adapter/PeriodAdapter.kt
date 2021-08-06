@@ -71,7 +71,7 @@ class PeriodAdapter(private val dataSet: ArrayList<PeriodDetails>, private val d
         }
 
         if ((((day + 1) % 7) + 1) == now[Calendar.DAY_OF_WEEK]) {
-            if ((start.before(now) && end.after(now)) || (start.after(now) && active == -1) || active == position) {
+            if ((start.before(now) && end.after(now)) || start.equals(now) || (start.after(now) && active == -1) || active == position) {
                 holder.activePeriod.visibility = View.VISIBLE
                 active = position
             }
