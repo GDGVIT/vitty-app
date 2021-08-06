@@ -17,6 +17,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.core.content.edit
 import androidx.databinding.DataBindingUtil
+import com.dscvit.vitty.BuildConfig
 import com.dscvit.vitty.R
 import com.dscvit.vitty.databinding.ActivityInstructionsBinding
 import com.dscvit.vitty.notif.AlarmReceiver
@@ -27,6 +28,7 @@ import com.dscvit.vitty.util.Constants.TIMETABLE_AVAILABLE
 import com.dscvit.vitty.util.Constants.UID
 import com.dscvit.vitty.util.Constants.UPDATE
 import com.dscvit.vitty.util.Constants.USER_INFO
+import com.dscvit.vitty.util.Constants.VERSION_CODE
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -175,9 +177,8 @@ class InstructionsActivity : AppCompatActivity() {
     }
 
     private fun setAlarm() {
-        if (!prefs.getBoolean("firstTime", false)) {
+        if (prefs.getInt(VERSION_CODE, 0) != BuildConfig.VERSION_CODE) {
             val intent = Intent(this, AlarmReceiver::class.java)
-//            intent.addFlags(Intent.FLAG_RECEIVER_FOREGROUND)
 
             val pendingIntent =
                 PendingIntent.getBroadcast(this, 0, intent, 0)
@@ -193,7 +194,7 @@ class InstructionsActivity : AppCompatActivity() {
             )
 
             prefs.edit {
-                putBoolean("firstTime", true)
+                putInt(VERSION_CODE, BuildConfig.VERSION_CODE)
                 apply()
             }
         }

@@ -62,6 +62,7 @@ class AuthActivity : AppCompatActivity() {
             .requestEmail()
             .build()
         mGoogleSignInClient = GoogleSignIn.getClient(this, mGoogleSignInOptions)
+        mGoogleSignInClient.signOut()
     }
 
     private fun setupUI() {
