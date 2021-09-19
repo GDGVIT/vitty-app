@@ -18,7 +18,8 @@
 
         <receiver
             android:name="com.dscvit.vitty.widget.TodayWidget"
-            android:label="Today's Schedule">
+            android:label="Today's Schedule"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
             </intent-filter>
@@ -30,7 +31,8 @@
 
         <receiver
             android:name="com.dscvit.vitty.widget.NextClassWidget"
-            android:label="Next Class">
+            android:label="Next Class"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
             </intent-filter>
@@ -46,7 +48,8 @@
 
         <activity
             android:name=".activity.AuthActivity"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -58,7 +61,8 @@
             android:name=".activity.ScheduleActivity"
             android:screenOrientation="portrait" />
 
-        <receiver android:name=".notif.DeviceBootReceiver">
+        <receiver android:name=".notif.DeviceBootReceiver"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
                 <action android:name="android.intent.action.MY_PACKAGE_REPLACED" />
