@@ -1,0 +1,619 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		70BE2777270B2D8E0075BE70 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70BE2776270B2D8E0075BE70 /* AppDelegate.swift */; };
+		70BE2779270B2D8E0075BE70 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70BE2778270B2D8E0075BE70 /* SceneDelegate.swift */; };
+		70BE277B270B2D8E0075BE70 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70BE277A270B2D8E0075BE70 /* ContentView.swift */; };
+		70BE277E270B2D8E0075BE70 /* vitty.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 70BE277C270B2D8E0075BE70 /* vitty.xcdatamodeld */; };
+		70BE2780270B2D940075BE70 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 70BE277F270B2D940075BE70 /* Assets.xcassets */; };
+		70BE2783270B2D940075BE70 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 70BE2782270B2D940075BE70 /* Preview Assets.xcassets */; };
+		70BE2786270B2D940075BE70 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 70BE2784270B2D940075BE70 /* LaunchScreen.storyboard */; };
+		70BE2791270B2D940075BE70 /* vittyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70BE2790270B2D940075BE70 /* vittyTests.swift */; };
+		70BE279C270B2D940075BE70 /* vittyUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70BE279B270B2D940075BE70 /* vittyUITests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		70BE278D270B2D940075BE70 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 70BE276B270B2D8E0075BE70 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 70BE2772270B2D8E0075BE70;
+			remoteInfo = vitty;
+		};
+		70BE2798270B2D940075BE70 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 70BE276B270B2D8E0075BE70 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 70BE2772270B2D8E0075BE70;
+			remoteInfo = vitty;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		70BE2773270B2D8E0075BE70 /* vitty.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = vitty.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		70BE2776270B2D8E0075BE70 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		70BE2778270B2D8E0075BE70 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		70BE277A270B2D8E0075BE70 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		70BE277D270B2D8E0075BE70 /* vitty.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = vitty.xcdatamodel; sourceTree = "<group>"; };
+		70BE277F270B2D940075BE70 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		70BE2782270B2D940075BE70 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		70BE2785270B2D940075BE70 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		70BE2787270B2D940075BE70 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		70BE278C270B2D940075BE70 /* vittyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = vittyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		70BE2790270B2D940075BE70 /* vittyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = vittyTests.swift; sourceTree = "<group>"; };
+		70BE2792270B2D940075BE70 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		70BE2797270B2D940075BE70 /* vittyUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = vittyUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		70BE279B270B2D940075BE70 /* vittyUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = vittyUITests.swift; sourceTree = "<group>"; };
+		70BE279D270B2D940075BE70 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		70BE2770270B2D8E0075BE70 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		70BE2789270B2D940075BE70 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		70BE2794270B2D940075BE70 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		70BE276A270B2D8E0075BE70 = {
+			isa = PBXGroup;
+			children = (
+				70BE2775270B2D8E0075BE70 /* vitty */,
+				70BE278F270B2D940075BE70 /* vittyTests */,
+				70BE279A270B2D940075BE70 /* vittyUITests */,
+				70BE2774270B2D8E0075BE70 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		70BE2774270B2D8E0075BE70 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				70BE2773270B2D8E0075BE70 /* vitty.app */,
+				70BE278C270B2D940075BE70 /* vittyTests.xctest */,
+				70BE2797270B2D940075BE70 /* vittyUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		70BE2775270B2D8E0075BE70 /* vitty */ = {
+			isa = PBXGroup;
+			children = (
+				70BE2776270B2D8E0075BE70 /* AppDelegate.swift */,
+				70BE2778270B2D8E0075BE70 /* SceneDelegate.swift */,
+				70BE277A270B2D8E0075BE70 /* ContentView.swift */,
+				70BE277F270B2D940075BE70 /* Assets.xcassets */,
+				70BE2784270B2D940075BE70 /* LaunchScreen.storyboard */,
+				70BE2787270B2D940075BE70 /* Info.plist */,
+				70BE277C270B2D8E0075BE70 /* vitty.xcdatamodeld */,
+				70BE2781270B2D940075BE70 /* Preview Content */,
+			);
+			path = vitty;
+			sourceTree = "<group>";
+		};
+		70BE2781270B2D940075BE70 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				70BE2782270B2D940075BE70 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		70BE278F270B2D940075BE70 /* vittyTests */ = {
+			isa = PBXGroup;
+			children = (
+				70BE2790270B2D940075BE70 /* vittyTests.swift */,
+				70BE2792270B2D940075BE70 /* Info.plist */,
+			);
+			path = vittyTests;
+			sourceTree = "<group>";
+		};
+		70BE279A270B2D940075BE70 /* vittyUITests */ = {
+			isa = PBXGroup;
+			children = (
+				70BE279B270B2D940075BE70 /* vittyUITests.swift */,
+				70BE279D270B2D940075BE70 /* Info.plist */,
+			);
+			path = vittyUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		70BE2772270B2D8E0075BE70 /* vitty */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 70BE27A0270B2D940075BE70 /* Build configuration list for PBXNativeTarget "vitty" */;
+			buildPhases = (
+				70BE276F270B2D8E0075BE70 /* Sources */,
+				70BE2770270B2D8E0075BE70 /* Frameworks */,
+				70BE2771270B2D8E0075BE70 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = vitty;
+			productName = vitty;
+			productReference = 70BE2773270B2D8E0075BE70 /* vitty.app */;
+			productType = "com.apple.product-type.application";
+		};
+		70BE278B270B2D940075BE70 /* vittyTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 70BE27A3270B2D940075BE70 /* Build configuration list for PBXNativeTarget "vittyTests" */;
+			buildPhases = (
+				70BE2788270B2D940075BE70 /* Sources */,
+				70BE2789270B2D940075BE70 /* Frameworks */,
+				70BE278A270B2D940075BE70 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				70BE278E270B2D940075BE70 /* PBXTargetDependency */,
+			);
+			name = vittyTests;
+			productName = vittyTests;
+			productReference = 70BE278C270B2D940075BE70 /* vittyTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		70BE2796270B2D940075BE70 /* vittyUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 70BE27A6270B2D940075BE70 /* Build configuration list for PBXNativeTarget "vittyUITests" */;
+			buildPhases = (
+				70BE2793270B2D940075BE70 /* Sources */,
+				70BE2794270B2D940075BE70 /* Frameworks */,
+				70BE2795270B2D940075BE70 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				70BE2799270B2D940075BE70 /* PBXTargetDependency */,
+			);
+			name = vittyUITests;
+			productName = vittyUITests;
+			productReference = 70BE2797270B2D940075BE70 /* vittyUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		70BE276B270B2D8E0075BE70 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1250;
+				LastUpgradeCheck = 1250;
+				TargetAttributes = {
+					70BE2772270B2D8E0075BE70 = {
+						CreatedOnToolsVersion = 12.5.1;
+					};
+					70BE278B270B2D940075BE70 = {
+						CreatedOnToolsVersion = 12.5.1;
+						TestTargetID = 70BE2772270B2D8E0075BE70;
+					};
+					70BE2796270B2D940075BE70 = {
+						CreatedOnToolsVersion = 12.5.1;
+						TestTargetID = 70BE2772270B2D8E0075BE70;
+					};
+				};
+			};
+			buildConfigurationList = 70BE276E270B2D8E0075BE70 /* Build configuration list for PBXProject "vitty" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 70BE276A270B2D8E0075BE70;
+			productRefGroup = 70BE2774270B2D8E0075BE70 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				70BE2772270B2D8E0075BE70 /* vitty */,
+				70BE278B270B2D940075BE70 /* vittyTests */,
+				70BE2796270B2D940075BE70 /* vittyUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		70BE2771270B2D8E0075BE70 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				70BE2786270B2D940075BE70 /* LaunchScreen.storyboard in Resources */,
+				70BE2783270B2D940075BE70 /* Preview Assets.xcassets in Resources */,
+				70BE2780270B2D940075BE70 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		70BE278A270B2D940075BE70 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		70BE2795270B2D940075BE70 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		70BE276F270B2D8E0075BE70 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				70BE2777270B2D8E0075BE70 /* AppDelegate.swift in Sources */,
+				70BE2779270B2D8E0075BE70 /* SceneDelegate.swift in Sources */,
+				70BE277E270B2D8E0075BE70 /* vitty.xcdatamodeld in Sources */,
+				70BE277B270B2D8E0075BE70 /* ContentView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		70BE2788270B2D940075BE70 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				70BE2791270B2D940075BE70 /* vittyTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		70BE2793270B2D940075BE70 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				70BE279C270B2D940075BE70 /* vittyUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		70BE278E270B2D940075BE70 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 70BE2772270B2D8E0075BE70 /* vitty */;
+			targetProxy = 70BE278D270B2D940075BE70 /* PBXContainerItemProxy */;
+		};
+		70BE2799270B2D940075BE70 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 70BE2772270B2D8E0075BE70 /* vitty */;
+			targetProxy = 70BE2798270B2D940075BE70 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		70BE2784270B2D940075BE70 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				70BE2785270B2D940075BE70 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		70BE279E270B2D940075BE70 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		70BE279F270B2D940075BE70 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		70BE27A1270B2D940075BE70 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_ASSET_PATHS = "\"vitty/Preview Content\"";
+				DEVELOPMENT_TEAM = C35DR2MHM7;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = vitty/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.swams.vitty;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		70BE27A2270B2D940075BE70 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_ASSET_PATHS = "\"vitty/Preview Content\"";
+				DEVELOPMENT_TEAM = C35DR2MHM7;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = vitty/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.swams.vitty;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		70BE27A4270B2D940075BE70 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = C35DR2MHM7;
+				INFOPLIST_FILE = vittyTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.swams.vittyTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/vitty.app/vitty";
+			};
+			name = Debug;
+		};
+		70BE27A5270B2D940075BE70 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = C35DR2MHM7;
+				INFOPLIST_FILE = vittyTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.swams.vittyTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/vitty.app/vitty";
+			};
+			name = Release;
+		};
+		70BE27A7270B2D940075BE70 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = C35DR2MHM7;
+				INFOPLIST_FILE = vittyUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.swams.vittyUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = vitty;
+			};
+			name = Debug;
+		};
+		70BE27A8270B2D940075BE70 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = C35DR2MHM7;
+				INFOPLIST_FILE = vittyUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.swams.vittyUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = vitty;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		70BE276E270B2D8E0075BE70 /* Build configuration list for PBXProject "vitty" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				70BE279E270B2D940075BE70 /* Debug */,
+				70BE279F270B2D940075BE70 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		70BE27A0270B2D940075BE70 /* Build configuration list for PBXNativeTarget "vitty" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				70BE27A1270B2D940075BE70 /* Debug */,
+				70BE27A2270B2D940075BE70 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		70BE27A3270B2D940075BE70 /* Build configuration list for PBXNativeTarget "vittyTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				70BE27A4270B2D940075BE70 /* Debug */,
+				70BE27A5270B2D940075BE70 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		70BE27A6270B2D940075BE70 /* Build configuration list for PBXNativeTarget "vittyUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				70BE27A7270B2D940075BE70 /* Debug */,
+				70BE27A8270B2D940075BE70 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		70BE277C270B2D8E0075BE70 /* vitty.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				70BE277D270B2D8E0075BE70 /* vitty.xcdatamodel */,
+			);
+			currentVersion = 70BE277D270B2D8E0075BE70 /* vitty.xcdatamodel */;
+			path = vitty.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = 70BE276B270B2D8E0075BE70 /* Project object */;
+}
