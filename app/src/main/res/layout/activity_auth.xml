@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@id/intro_tabs">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
+                android:alpha="0.7"
+                android:contentDescription="@string/todo"
+                android:scaleType="centerCrop"
+                android:src="@drawable/intro_background" />
+
+            <androidx.viewpager2.widget.ViewPager2
+                android:id="@+id/intro_pager"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+        </RelativeLayout>
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/intro_tabs"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/next_button"
+            android:background="@color/background"
+            app:tabGravity="center"
+            app:tabIndicatorGravity="stretch"
+            app:tabMode="fixed"
+            app:tabRippleColor="@null"
+            app:tabSelectedTextColor="@color/tab_selected"
+            app:tabTextAppearance="@style/TabTextAppearance2"
+            app:tabTextColor="@color/intro_tab" />
+
+        <Button
+            android:id="@+id/next_button"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="40dp"
+            android:layout_marginBottom="30dp"
+            android:backgroundTint="@color/tab_selected"
+            android:fontFamily="@font/poppins_600"
+            android:letterSpacing="0"
+            android:src="@drawable/ic_login_google"
+            android:text="@string/next"
+            android:textAllCaps="false"
+            android:textSize="19sp"
+            tools:visibility="visible" />
+
+        <ImageButton
+            android:id="@+id/login_button"
+            android:layout_width="match_parent"
+            android:layout_height="58dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="21dp"
+            android:layout_marginEnd="40dp"
+            android:layout_marginBottom="36dp"
+            android:background="@drawable/google_login_button"
+            android:contentDescription="@string/todo"
+            android:fontFamily="@font/poppins_600"
+            android:padding="12dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/ic_login_google"
+            android:textAllCaps="false"
+            android:textSize="18sp"
+            android:visibility="visible" />
+
+        <RelativeLayout
+            android:id="@+id/loading_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:alpha="0.5"
+                android:background="@color/background" />
+
+            <com.github.ybq.android.spinkit.SpinKitView
+                android:id="@+id/loading_sign"
+                style="@style/SpinKitView.Large.ThreeBounce"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_gravity="center"
+                app:SpinKit_Color="@color/white" />
+
+        </RelativeLayout>
+    </RelativeLayout>
+</layout>
