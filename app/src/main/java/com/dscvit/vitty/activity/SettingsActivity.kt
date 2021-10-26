@@ -29,7 +29,6 @@ import com.dscvit.vitty.util.Constants.GITHUB_REPO_LINK
 import com.dscvit.vitty.util.Constants.IND_NOTIF
 import java.util.Date
 
-
 class SettingsActivity : AppCompatActivity() {
     private lateinit var binding: ActivitySettingsBinding
 
@@ -125,7 +124,8 @@ class SettingsActivity : AppCompatActivity() {
             val batteryOptimization: Preference? = findPreference(BATTERY_OPTIM)
             val pm: PowerManager = context?.getSystemService(Context.POWER_SERVICE) as PowerManager
             if (pm.isIgnoringBatteryOptimizations(context?.packageName)) {
-                batteryOptimization?.summary = "Keep the battery optimizations turned off to receive notifications on time"
+                batteryOptimization?.summary =
+                    "Keep the battery optimizations turned off to receive notifications on time"
             }
 
             batteryOptimization?.setOnPreferenceClickListener {

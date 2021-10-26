@@ -51,8 +51,8 @@
     <string name="skip">Skip</string>
     <string name="widgets">Widgets</string>
     <string name="about_widgets">Go to your home screen, long press and add widget!\n\nYou have two widgets to choose from:\n1. Today\'s Schedule: This shows your current day\'s classes.\n2. Next class: This gives you the details about your next upcoming class.</string>
-    <string name="about_notifications">Get control of the notifications by tapping on ⋮ > Notifications.\n\nThere you can individually turn on and off notifications for your classes (Android 8+ only).</string>
-    <string name="about_battery">To get notifications on time, keep the battery optimisations for the app turned off.\n\nTo change this setting, tap on ⋮ > Battery.</string>
+    <string name="about_notifications">Get control of the notifications by tapping on ⋮ > Settings > Notifications.\n\nThere you can:\n1. Turn on Exam/Holiday Mode to pause your class notifications.\n2. Individually turn on/off notifications for your classes (Android 8+ only).</string>
+    <string name="about_battery">To get notifications on time, keep the battery optimisations for the app turned off.\n\nTo change this setting, tap on ⋮ > Settings > Battery.</string>
     <string name="final_heading">Let\'s go!</string>
     <string name="about_final">You\'re all set to start using the app.</string>
     <string name="congratulations">Congratulations!</string>
@@ -71,5 +71,5 @@
     <string name="battery_opt">Battery Optimizations</string>
     <string name="github_repo">GitHub Repository</string>
     <string name="gdscvit">GDSC VIT</string>
-    <string name="exam_mode_alert">Exam/Holiday mode turned on</string>
+    <string name="exam_mode_alert">Exam/Holiday Mode Turned On</string>
 </resources>

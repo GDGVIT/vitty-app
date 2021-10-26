@@ -1,5 +1,4 @@
-<PreferenceScreen
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <PreferenceCategory
         app:iconSpaceReserved="false"
@@ -13,8 +12,8 @@
             app:title="@string/exam_mode" />
 
         <Preference
-            app:key="individual_notif"
             app:icon="@drawable/ic_notifications"
+            app:key="individual_notif"
             app:summary="@string/ind_notif_summary"
             app:title="@string/ind_notif" />
 
@@ -25,8 +24,8 @@
         app:title="Battery">
 
         <Preference
-            app:key="battery_optim"
             app:icon="@drawable/ic_battery"
+            app:key="battery_optim"
             app:summary="@string/battery_summary"
             app:title="@string/battery_opt" />
 
@@ -36,13 +35,13 @@
         app:iconSpaceReserved="false"
         app:title="About">
         <Preference
-            app:key="github_repo"
             app:icon="@drawable/ic_github"
+            app:key="github_repo"
             app:title="@string/github_repo" />
 
         <Preference
-            app:key="gdscvit_website"
             app:icon="@drawable/ic_gdscvit"
+            app:key="gdscvit_website"
             app:title="@string/gdscvit" />
 
     </PreferenceCategory>

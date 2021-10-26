@@ -70,6 +70,7 @@
                 android:id="@+id/exam_mode_alert_icon"
                 android:layout_width="26dp"
                 android:layout_height="26dp"
+                android:contentDescription="@null"
                 android:paddingStart="5dp"
                 android:paddingEnd="2dp"
                 android:src="@drawable/ic_snooze_notifications"
