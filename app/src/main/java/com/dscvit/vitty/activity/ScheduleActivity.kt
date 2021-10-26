@@ -66,7 +66,7 @@ class ScheduleActivity : FragmentActivity() {
                 startActivity(Intent(context, SettingsActivity::class.java))
             }
         }
-
+        binding.examModeAlertIcon.setColorFilter(getColor(R.color.translucent))
     }
 
     private fun setupOnStart() {

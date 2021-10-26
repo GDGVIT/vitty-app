@@ -67,16 +67,18 @@
             android:padding="5dp">
 
             <ImageView
+                android:id="@+id/exam_mode_alert_icon"
                 android:layout_width="26dp"
                 android:layout_height="26dp"
                 android:paddingStart="5dp"
                 android:paddingEnd="2dp"
                 android:src="@drawable/ic_snooze_notifications"
-                android:tint="@color/translucent" />
+                app:tint="@color/translucent" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="1dp"
                 android:paddingStart="2dp"
                 android:paddingEnd="5dp"
                 android:text="@string/exam_mode_alert" />
