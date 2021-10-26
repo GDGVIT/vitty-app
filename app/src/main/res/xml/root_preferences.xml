@@ -1,0 +1,50 @@
+<PreferenceScreen
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <PreferenceCategory
+        app:iconSpaceReserved="false"
+        app:title="Notifications">
+
+        <SwitchPreferenceCompat
+            app:icon="@drawable/ic_snooze_notifications"
+            app:key="exam_mode"
+            app:summaryOff="@string/exam_mode_summary_off"
+            app:summaryOn="@string/exam_mode_summary_on"
+            app:title="@string/exam_mode" />
+
+        <Preference
+            app:key="individual_notif"
+            app:icon="@drawable/ic_notifications"
+            app:summary="@string/ind_notif_summary"
+            app:title="@string/ind_notif" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        app:iconSpaceReserved="false"
+        app:title="Battery">
+
+        <Preference
+            app:key="battery_optim"
+            app:icon="@drawable/ic_battery"
+            app:summary="@string/battery_summary"
+            app:title="@string/battery_opt" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        app:iconSpaceReserved="false"
+        app:title="About">
+        <Preference
+            app:key="github_repo"
+            app:icon="@drawable/ic_github"
+            app:title="@string/github_repo" />
+
+        <Preference
+            app:key="gdscvit_website"
+            app:icon="@drawable/ic_gdscvit"
+            app:title="@string/gdscvit" />
+
+    </PreferenceCategory>
+
+</PreferenceScreen>

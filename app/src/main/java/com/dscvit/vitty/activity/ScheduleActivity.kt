@@ -1,18 +1,12 @@
 package com.dscvit.vitty.activity
 
-import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
-import android.net.Uri
-import android.os.Build
 import android.os.Bundle
-import android.os.PowerManager
-import android.provider.Settings
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.Button
 import android.widget.TextView
-import android.widget.Toast
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.core.content.edit
 import androidx.databinding.DataBindingUtil
@@ -20,6 +14,7 @@ import androidx.fragment.app.FragmentActivity
 import com.dscvit.vitty.R
 import com.dscvit.vitty.adapter.DayAdapter
 import com.dscvit.vitty.databinding.ActivityScheduleBinding
+import com.dscvit.vitty.util.Constants.EXAM_MODE
 import com.dscvit.vitty.util.Constants.FIRST_TIME_SETUP
 import com.dscvit.vitty.util.Constants.TIMETABLE_AVAILABLE
 import com.dscvit.vitty.util.Constants.UID
@@ -51,6 +46,27 @@ class ScheduleActivity : FragmentActivity() {
     override fun onStart() {
         super.onStart()
         setupOnStart()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        checkExamMode()
+    }
+
+    private fun checkExamMode() {
+        if (!prefs.getBoolean(EXAM_MODE, false)) {
+            binding.examModeAlert.visibility = View.GONE
+            window.navigationBarColor = getColor(R.color.background)
+            return
+        }
+        window.navigationBarColor = getColor(R.color.tab_back)
+        binding.examModeAlert.apply {
+            visibility = View.VISIBLE
+            setOnClickListener {
+                startActivity(Intent(context, SettingsActivity::class.java))
+            }
+        }
+
     }
 
     private fun setupOnStart() {
@@ -87,40 +103,8 @@ class ScheduleActivity : FragmentActivity() {
                     logout()
                     true
                 }
-                R.id.notifications -> {
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                        val settingsIntent: Intent =
-                            Intent(Settings.ACTION_APP_NOTIFICATION_SETTINGS)
-                                .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-                                .putExtra(Settings.EXTRA_APP_PACKAGE, packageName)
-                        startActivity(settingsIntent)
-                    } else {
-                        val intent = Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS)
-                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-                        val uri: Uri = Uri.fromParts("package", packageName, null)
-                        intent.data = uri
-                        startActivity(intent)
-                    }
-                    true
-                }
-                R.id.battery -> {
-                    val pm: PowerManager = getSystemService(Context.POWER_SERVICE) as PowerManager
-                    if (!pm.isIgnoringBatteryOptimizations(packageName)) {
-                        Toast.makeText(
-                            this,
-                            "Please turn off the Battery Optimization Settings for VITTY to receive notifications on time.",
-                            Toast.LENGTH_LONG
-                        ).show()
-                    } else {
-                        Toast.makeText(
-                            this,
-                            "Please keep the Battery Optimization Settings for VITTY turned off to receive notifications on time.",
-                            Toast.LENGTH_LONG
-                        ).show()
-                    }
-                    val pmIntent = Intent()
-                    pmIntent.action = Settings.ACTION_IGNORE_BATTERY_OPTIMIZATION_SETTINGS
-                    startActivity(pmIntent)
+                R.id.settings -> {
+                    startActivity(Intent(this, SettingsActivity::class.java))
                     true
                 }
                 R.id.share -> {

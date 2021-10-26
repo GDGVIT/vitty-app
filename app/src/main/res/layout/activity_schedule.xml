@@ -2,13 +2,13 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:animateLayoutChanges="true"
-        android:orientation="vertical">
+        android:animateLayoutChanges="true">
 
         <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/schedule_appbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/background">
@@ -52,7 +52,35 @@
         <androidx.viewpager2.widget.ViewPager2
             android:id="@+id/pager"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/schedule_appbar" />
 
-    </LinearLayout>
+        <LinearLayout
+            android:id="@+id/exam_mode_alert"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:background="@color/tab_back"
+            android:elevation="12dp"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:padding="5dp">
+
+            <ImageView
+                android:layout_width="26dp"
+                android:layout_height="26dp"
+                android:paddingStart="5dp"
+                android:paddingEnd="2dp"
+                android:src="@drawable/ic_snooze_notifications"
+                android:tint="@color/translucent" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingStart="2dp"
+                android:paddingEnd="5dp"
+                android:text="@string/exam_mode_alert" />
+        </LinearLayout>
+
+    </RelativeLayout>
 </layout>
