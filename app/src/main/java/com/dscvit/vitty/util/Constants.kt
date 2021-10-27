@@ -13,6 +13,7 @@ object Constants {
     const val NOTIFICATION_CHANNELS = "notif_channels"
     const val NOTIF_DELAY = 20
     const val GROUP_ID = "vitty_01"
+    const val GROUP_ID_2 = "vitty_02"
     const val FIRST_TIME_SETUP = "firstTimeSetup"
     const val VERSION_CODE = "verCode"
     const val EXAM_MODE = "exam_mode"

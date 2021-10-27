@@ -23,6 +23,8 @@ import com.dscvit.vitty.databinding.ActivityInstructionsBinding
 import com.dscvit.vitty.notif.AlarmReceiver
 import com.dscvit.vitty.notif.NotificationHelper
 import com.dscvit.vitty.util.Constants.EXAM_MODE
+import com.dscvit.vitty.util.Constants.GROUP_ID
+import com.dscvit.vitty.util.Constants.GROUP_ID_2
 import com.dscvit.vitty.util.Constants.NOTIFICATION_CHANNELS
 import com.dscvit.vitty.util.Constants.NOTIF_DELAY
 import com.dscvit.vitty.util.Constants.TIMETABLE_AVAILABLE
@@ -52,6 +54,7 @@ class InstructionsActivity : AppCompatActivity() {
         uid = prefs.getString(UID, "").toString()
 
         setupToolbar()
+        setGDSCVITChannel()
 
         binding.doneButton.setOnClickListener {
             setupDoneButton()
@@ -119,6 +122,7 @@ class InstructionsActivity : AppCompatActivity() {
                             this,
                             cn,
                             "Course Code: $cc",
+                            GROUP_ID
                         )
                         newNotifChannels.add(cn)
                         Timber.d(cn)
@@ -167,9 +171,33 @@ class InstructionsActivity : AppCompatActivity() {
             }
     }
 
+    private fun setGDSCVITChannel() {
+        if (!prefs.getBoolean("gdscvitChannelCreated", false)) {
+            NotificationHelper.createNotificationGroup(
+                this,
+                getString(R.string.gdscvit),
+                GROUP_ID_2
+            )
+            NotificationHelper.createNotificationChannel(
+                this,
+                getString(R.string.default_notification_channel_name),
+                "Notifications from GDSC VIT",
+                GROUP_ID_2
+            )
+            prefs.edit {
+                putBoolean("gdscvitChannelCreated", true)
+                apply()
+            }
+        }
+    }
+
     private fun setNotificationGroup() {
         if (!prefs.getBoolean("groupCreated", false)) {
-            NotificationHelper.createNotificationGroup(this, getString(R.string.notif_group))
+            NotificationHelper.createNotificationGroup(
+                this,
+                getString(R.string.notif_group),
+                GROUP_ID
+            )
             prefs.edit {
                 putBoolean("groupCreated", true)
                 apply()

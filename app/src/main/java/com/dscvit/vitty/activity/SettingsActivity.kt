@@ -150,7 +150,6 @@ class SettingsActivity : AppCompatActivity() {
         }
 
         private fun openWebsite(key: String, website: String) {
-
             val pref: Preference? = findPreference(key)
             pref?.setOnPreferenceClickListener {
                 try {

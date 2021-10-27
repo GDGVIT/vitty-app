@@ -78,6 +78,9 @@ dependencies {
     // Firestore
     implementation 'com.google.firebase:firebase-firestore:23.0.4'
 
+    // FCM
+    implementation 'com.google.firebase:firebase-messaging:22.0.0'
+
     // Crashlytics
     implementation 'com.google.firebase:firebase-crashlytics-ktx'
 
@@ -86,7 +89,4 @@ dependencies {
 
     // Timber for logs
     implementation 'com.jakewharton.timber:timber:4.7.1'
-
-    // Work Manager
-    implementation "androidx.work:work-runtime-ktx:2.7.0"
 }

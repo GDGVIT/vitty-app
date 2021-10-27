@@ -12,20 +12,20 @@ import androidx.core.app.NotificationManagerCompat
 import androidx.core.content.ContextCompat
 import com.dscvit.vitty.R
 import com.dscvit.vitty.activity.ScheduleActivity
-import com.dscvit.vitty.util.Constants.GROUP_ID
 
 object NotificationHelper {
     fun createNotificationChannel(
         context: Context,
         name: String,
         descriptionText: String,
+        groupId: String,
     ) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             val channelId = "${context.packageName}-$name"
             val importance = NotificationManager.IMPORTANCE_HIGH
             val channel = NotificationChannel(channelId, name, importance).apply {
                 description = descriptionText
-                group = GROUP_ID
+                group = groupId
             }
             val notificationManager: NotificationManager =
                 context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
@@ -36,13 +36,14 @@ object NotificationHelper {
     fun createNotificationGroup(
         context: Context,
         groupName: String,
+        groupId: String,
     ) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             val notificationManager =
                 context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
             notificationManager.createNotificationChannelGroup(
                 NotificationChannelGroup(
-                    GROUP_ID,
+                    groupId,
                     groupName
                 )
             )

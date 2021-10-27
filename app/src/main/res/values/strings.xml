@@ -72,4 +72,6 @@
     <string name="github_repo">GitHub Repository</string>
     <string name="gdscvit">GDSC VIT</string>
     <string name="exam_mode_alert">Exam/Holiday Mode Turned On</string>
+    <string name="default_notification_channel_name">Updates</string>
+    <string name="default_notification_channel_id">con.dscvit.vitty-Updates</string>
 </resources>
