@@ -38,7 +38,7 @@
             android:id="@+id/active_period"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:alpha="0.7"
+            android:alpha="0.6"
             android:contentDescription="@string/active_background"
             android:src="@drawable/tab_selected_background"
             android:visibility="invisible" />
