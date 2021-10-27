@@ -4,6 +4,7 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="grey">#D1D1D1</color>
     <color name="tab_back">#071F33</color>
     <color name="tab_selected">#E6126AFC</color>
     <color name="tab_selected_2">#1A126AFC</color>

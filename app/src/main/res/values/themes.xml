@@ -24,6 +24,9 @@
         <item name="colorSecondary">@color/translucent_imp</item>
         <item name="android:textColor">@color/white</item>
         <item name="android:textColorSecondary">@color/translucent</item>
+        <item name="colorControlActivated">@color/translucent_imp</item>
+        <item name="colorSwitchThumbNormal">@color/grey</item>
+        <item name="android:colorForeground">@color/white</item>
     </style>
 
     <style name="TabTextAppearance" parent="">
