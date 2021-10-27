@@ -150,15 +150,21 @@ class SettingsActivity : AppCompatActivity() {
         }
 
         private fun openWebsite(key: String, website: String) {
+
             val pref: Preference? = findPreference(key)
             pref?.setOnPreferenceClickListener {
-                startActivity(
-                    Intent(
-                        Intent.ACTION_VIEW,
-                        Uri.parse(website)
+                try {
+                    startActivity(
+                        Intent(
+                            Intent.ACTION_VIEW,
+                            Uri.parse(website)
+                        )
                     )
-                )
-                true
+                    true
+                } catch (e: Exception) {
+                    Toast.makeText(context, "Browser not found!", Toast.LENGTH_LONG).show()
+                    false
+                }
             }
         }
 
