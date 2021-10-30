@@ -6,6 +6,7 @@ import android.content.Intent
 import android.widget.RemoteViews
 import android.widget.RemoteViewsService
 import com.dscvit.vitty.R
+import timber.log.Timber
 
 class TodayWidgetService : RemoteViewsService() {
     override fun onGetViewFactory(intent: Intent): RemoteViewsFactory {
@@ -50,8 +51,14 @@ class AppWidgetListView(
 
     override fun getViewAt(position: Int): RemoteViews {
         val views = RemoteViews(context.packageName, R.layout.item_period)
-        views.setTextViewText(R.id.course_name_widget, dataList[position])
-        views.setTextViewText(R.id.period_time, timeList[position])
+        try {
+            if (dataList.isNotEmpty()) {
+                views.setTextViewText(R.id.course_name_widget, dataList[position])
+                views.setTextViewText(R.id.period_time, timeList[position])
+            }
+        } catch (e: ArrayIndexOutOfBoundsException) {
+            Timber.d(e.toString())
+        }
         return views
     }
 

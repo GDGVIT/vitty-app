@@ -1,29 +1,26 @@
 package com.dscvit.vitty.activity
 
-import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
-import android.net.Uri
-import android.os.Build
 import android.os.Bundle
-import android.os.PowerManager
-import android.provider.Settings
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.Button
 import android.widget.TextView
-import android.widget.Toast
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.core.content.edit
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.FragmentActivity
+import com.dscvit.vitty.BuildConfig
 import com.dscvit.vitty.R
 import com.dscvit.vitty.adapter.DayAdapter
 import com.dscvit.vitty.databinding.ActivityScheduleBinding
+import com.dscvit.vitty.util.Constants.EXAM_MODE
 import com.dscvit.vitty.util.Constants.FIRST_TIME_SETUP
 import com.dscvit.vitty.util.Constants.TIMETABLE_AVAILABLE
 import com.dscvit.vitty.util.Constants.UID
 import com.dscvit.vitty.util.Constants.UPDATE
+import com.dscvit.vitty.util.Constants.UPDATE_CODE
 import com.dscvit.vitty.util.Constants.USER_INFO
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.tabs.TabLayoutMediator
@@ -51,6 +48,27 @@ class ScheduleActivity : FragmentActivity() {
     override fun onStart() {
         super.onStart()
         setupOnStart()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        checkExamMode()
+    }
+
+    private fun checkExamMode() {
+        if (!prefs.getBoolean(EXAM_MODE, false)) {
+            binding.examModeAlert.visibility = View.GONE
+            window.navigationBarColor = getColor(R.color.background)
+            return
+        }
+        window.navigationBarColor = getColor(R.color.tab_back)
+        binding.examModeAlert.apply {
+            visibility = View.VISIBLE
+            setOnClickListener {
+                startActivity(Intent(context, SettingsActivity::class.java))
+            }
+        }
+        binding.examModeAlertIcon.setColorFilter(getColor(R.color.translucent))
     }
 
     private fun setupOnStart() {
@@ -87,40 +105,8 @@ class ScheduleActivity : FragmentActivity() {
                     logout()
                     true
                 }
-                R.id.notifications -> {
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                        val settingsIntent: Intent =
-                            Intent(Settings.ACTION_APP_NOTIFICATION_SETTINGS)
-                                .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-                                .putExtra(Settings.EXTRA_APP_PACKAGE, packageName)
-                        startActivity(settingsIntent)
-                    } else {
-                        val intent = Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS)
-                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-                        val uri: Uri = Uri.fromParts("package", packageName, null)
-                        intent.data = uri
-                        startActivity(intent)
-                    }
-                    true
-                }
-                R.id.battery -> {
-                    val pm: PowerManager = getSystemService(Context.POWER_SERVICE) as PowerManager
-                    if (!pm.isIgnoringBatteryOptimizations(packageName)) {
-                        Toast.makeText(
-                            this,
-                            "Please turn off the Battery Optimization Settings for VITTY to receive notifications on time.",
-                            Toast.LENGTH_LONG
-                        ).show()
-                    } else {
-                        Toast.makeText(
-                            this,
-                            "Please keep the Battery Optimization Settings for VITTY turned off to receive notifications on time.",
-                            Toast.LENGTH_LONG
-                        ).show()
-                    }
-                    val pmIntent = Intent()
-                    pmIntent.action = Settings.ACTION_IGNORE_BATTERY_OPTIMIZATION_SETTINGS
-                    startActivity(pmIntent)
+                R.id.settings -> {
+                    startActivity(Intent(this, SettingsActivity::class.java))
                     true
                 }
                 R.id.share -> {
@@ -149,7 +135,8 @@ class ScheduleActivity : FragmentActivity() {
     }
 
     private fun firstTimeSetup() {
-        if (!prefs.getBoolean(FIRST_TIME_SETUP, false)) {
+        val upCode = prefs.getInt(UPDATE_CODE, 0)
+        if (!prefs.getBoolean(FIRST_TIME_SETUP, false) || upCode != BuildConfig.VERSION_CODE) {
             var count = 1
             val v: View = LayoutInflater
                 .from(this)
@@ -171,9 +158,19 @@ class ScheduleActivity : FragmentActivity() {
             val title = v.findViewById<TextView>(R.id.title)
             val desc = v.findViewById<TextView>(R.id.description)
 
+            if (prefs.getBoolean(FIRST_TIME_SETUP, false) && upCode < BuildConfig.VERSION_CODE) {
+                val msg = introMessage(4)
+                title.text = msg[0]
+                desc.text = msg[1]
+                count = 6
+                skip.visibility = View.GONE
+                next.text = getString(R.string.done)
+            }
+
             skip.setOnClickListener {
                 prefs.edit {
                     putBoolean(FIRST_TIME_SETUP, true)
+                    putInt(UPDATE_CODE, BuildConfig.VERSION_CODE)
                     apply()
                 }
                 dialog.dismiss()
@@ -183,13 +180,14 @@ class ScheduleActivity : FragmentActivity() {
                 val msg = introMessage(count)
                 title.text = msg[0]
                 desc.text = msg[1]
-                if (count == 4) {
+                if (count == 5) {
                     skip.visibility = View.GONE
                     next.text = getString(R.string.done)
                 }
-                if (count > 4) {
+                if (count > 5) {
                     prefs.edit {
                         putBoolean(FIRST_TIME_SETUP, true)
+                        putInt(UPDATE_CODE, BuildConfig.VERSION_CODE)
                         apply()
                     }
                     dialog.dismiss()
@@ -205,6 +203,7 @@ class ScheduleActivity : FragmentActivity() {
             1 -> listOf(getString(R.string.widgets), getString(R.string.about_widgets))
             2 -> listOf(getString(R.string.notifications), getString(R.string.about_notifications))
             3 -> listOf(getString(R.string.battery), getString(R.string.about_battery))
+            4 -> listOf(getString(R.string.new_updates), getString(R.string.about_new_updates))
             else -> listOf(getString(R.string.final_heading), getString(R.string.about_final))
         }
     }

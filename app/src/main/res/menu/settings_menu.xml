@@ -2,9 +2,9 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
-        android:id="@+id/logout"
-        android:icon="@drawable/ic_logout"
+        android:id="@+id/close"
+        android:icon="@drawable/ic_close"
         android:orderInCategory="1"
-        android:title="@string/logout"
+        android:title="@string/close"
         app:showAsAction="ifRoom" />
 </menu>

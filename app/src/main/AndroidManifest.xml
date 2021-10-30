@@ -15,10 +15,35 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.VITTY">
+        <activity
+            android:name=".activity.SettingsActivity"
+            android:exported="false"
+            android:label="@string/title_activity_settings"
+            android:theme="@style/Theme.VITTY.SettingsScreen" />
+        <service
+            android:name=".notif.FCMService"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+                <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
+            </intent-filter>
+
+        </service>
+
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_icon"
+            android:resource="@drawable/ic_notif" />
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_color"
+            android:resource="@color/background" />
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_channel_id"
+            android:value="@string/default_notification_channel_id" />
 
         <receiver
-            android:name="com.dscvit.vitty.widget.TodayWidget"
-            android:label="Today's Schedule">
+            android:name=".widget.TodayWidget"
+            android:exported="true"
+            android:label="@string/title_today_schedule">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
             </intent-filter>
@@ -27,10 +52,10 @@
                 android:name="android.appwidget.provider"
                 android:resource="@xml/today_widget_info" />
         </receiver>
-
         <receiver
-            android:name="com.dscvit.vitty.widget.NextClassWidget"
-            android:label="Next Class">
+            android:name=".widget.NextClassWidget"
+            android:exported="true"
+            android:label="@string/title_next_class">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
             </intent-filter>
@@ -43,9 +68,9 @@
         <activity
             android:name=".activity.InstructionsActivity"
             android:screenOrientation="portrait" />
-
         <activity
             android:name=".activity.AuthActivity"
+            android:exported="true"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -53,24 +78,23 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".activity.ScheduleActivity"
             android:screenOrientation="portrait" />
 
-        <receiver android:name=".notif.DeviceBootReceiver">
+        <receiver
+            android:name=".notif.DeviceBootReceiver"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
                 <action android:name="android.intent.action.MY_PACKAGE_REPLACED" />
             </intent-filter>
         </receiver>
-
         <receiver android:name=".notif.AlarmReceiver" />
 
         <service
             android:name=".service.TodayWidgetService"
             android:permission="android.permission.BIND_REMOTEVIEWS" />
-
     </application>
 
 </manifest>
