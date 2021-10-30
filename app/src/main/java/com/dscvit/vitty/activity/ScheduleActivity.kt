@@ -11,6 +11,7 @@ import androidx.appcompat.content.res.AppCompatResources
 import androidx.core.content.edit
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.FragmentActivity
+import com.dscvit.vitty.BuildConfig
 import com.dscvit.vitty.R
 import com.dscvit.vitty.adapter.DayAdapter
 import com.dscvit.vitty.databinding.ActivityScheduleBinding
@@ -19,6 +20,7 @@ import com.dscvit.vitty.util.Constants.FIRST_TIME_SETUP
 import com.dscvit.vitty.util.Constants.TIMETABLE_AVAILABLE
 import com.dscvit.vitty.util.Constants.UID
 import com.dscvit.vitty.util.Constants.UPDATE
+import com.dscvit.vitty.util.Constants.UPDATE_CODE
 import com.dscvit.vitty.util.Constants.USER_INFO
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.tabs.TabLayoutMediator
@@ -133,7 +135,8 @@ class ScheduleActivity : FragmentActivity() {
     }
 
     private fun firstTimeSetup() {
-        if (!prefs.getBoolean(FIRST_TIME_SETUP, false)) {
+        val upCode = prefs.getInt(UPDATE_CODE, 0)
+        if (!prefs.getBoolean(FIRST_TIME_SETUP, false) || upCode != BuildConfig.VERSION_CODE) {
             var count = 1
             val v: View = LayoutInflater
                 .from(this)
@@ -155,9 +158,19 @@ class ScheduleActivity : FragmentActivity() {
             val title = v.findViewById<TextView>(R.id.title)
             val desc = v.findViewById<TextView>(R.id.description)
 
+            if (prefs.getBoolean(FIRST_TIME_SETUP, false) && upCode < BuildConfig.VERSION_CODE) {
+                val msg = introMessage(4)
+                title.text = msg[0]
+                desc.text = msg[1]
+                count = 6
+                skip.visibility = View.GONE
+                next.text = getString(R.string.done)
+            }
+
             skip.setOnClickListener {
                 prefs.edit {
                     putBoolean(FIRST_TIME_SETUP, true)
+                    putInt(UPDATE_CODE, BuildConfig.VERSION_CODE)
                     apply()
                 }
                 dialog.dismiss()
@@ -167,13 +180,14 @@ class ScheduleActivity : FragmentActivity() {
                 val msg = introMessage(count)
                 title.text = msg[0]
                 desc.text = msg[1]
-                if (count == 4) {
+                if (count == 5) {
                     skip.visibility = View.GONE
                     next.text = getString(R.string.done)
                 }
-                if (count > 4) {
+                if (count > 5) {
                     prefs.edit {
                         putBoolean(FIRST_TIME_SETUP, true)
+                        putInt(UPDATE_CODE, BuildConfig.VERSION_CODE)
                         apply()
                     }
                     dialog.dismiss()
@@ -189,6 +203,7 @@ class ScheduleActivity : FragmentActivity() {
             1 -> listOf(getString(R.string.widgets), getString(R.string.about_widgets))
             2 -> listOf(getString(R.string.notifications), getString(R.string.about_notifications))
             3 -> listOf(getString(R.string.battery), getString(R.string.about_battery))
+            4 -> listOf(getString(R.string.new_updates), getString(R.string.about_new_updates))
             else -> listOf(getString(R.string.final_heading), getString(R.string.about_final))
         }
     }

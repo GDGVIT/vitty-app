@@ -16,6 +16,7 @@ object Constants {
     const val GROUP_ID_2 = "vitty_02"
     const val FIRST_TIME_SETUP = "firstTimeSetup"
     const val VERSION_CODE = "verCode"
+    const val UPDATE_CODE = "upCode"
     const val EXAM_MODE = "exam_mode"
     const val IND_NOTIF = "individual_notif"
     const val BATTERY_OPTIM = "battery_optim"
