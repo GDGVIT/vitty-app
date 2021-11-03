@@ -72,7 +72,10 @@ object NotificationHelper {
     ) {
         val channelId = "${context.packageName}-$channelName"
         val intent = Intent(context, ScheduleActivity::class.java)
-        val pendingIntent: PendingIntent = PendingIntent.getActivity(context, 0, intent, 0)
+        val pendingIntent: PendingIntent = PendingIntent.getActivity(
+            context, 0, intent,
+            PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
+        )
         val builder = NotificationCompat.Builder(context, channelId)
             .setSmallIcon(R.drawable.ic_notif)
             .setColor(ContextCompat.getColor(context, R.color.background))

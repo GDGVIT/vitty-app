@@ -72,7 +72,12 @@ class SettingsActivity : AppCompatActivity() {
 
         private fun setAlarm() {
             val intent = Intent(context, AlarmReceiver::class.java)
-            val pendingIntent = PendingIntent.getBroadcast(context, 0, intent, 0)
+            val pendingIntent = PendingIntent.getBroadcast(
+                context,
+                0,
+                intent,
+                PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
+            )
             val alarmManager = requireContext().getSystemService(ALARM_SERVICE) as AlarmManager
             val date = Date().time
             alarmManager.setRepeating(
@@ -87,7 +92,10 @@ class SettingsActivity : AppCompatActivity() {
             val alarmManager =
                 requireContext().getSystemService(Context.ALARM_SERVICE) as AlarmManager
             val intent = Intent(context, AlarmReceiver::class.java)
-            val pendingIntent = PendingIntent.getBroadcast(context, 0, intent, 0)
+            val pendingIntent = PendingIntent.getBroadcast(
+                context, 0, intent,
+                PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
+            )
             alarmManager.cancel(pendingIntent)
         }
 

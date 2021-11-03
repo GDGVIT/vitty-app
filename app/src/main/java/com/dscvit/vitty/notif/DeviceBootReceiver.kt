@@ -23,7 +23,10 @@ class DeviceBootReceiver : BroadcastReceiver() {
             if (!prefs?.getBoolean(EXAM_MODE, false)!!) {
                 val i = Intent(context, AlarmReceiver::class.java)
                 val pendingIntent =
-                    PendingIntent.getBroadcast(context, 0, i, 0)
+                    PendingIntent.getBroadcast(
+                        context, 0, i,
+                        PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
+                    )
                 val alarmManager =
                     context.getSystemService(AppCompatActivity.ALARM_SERVICE) as AlarmManager
                 val date = Date().time

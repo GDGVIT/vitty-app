@@ -16,7 +16,7 @@ class FCMService : FirebaseMessagingService() {
                     it.body!!,
                     it.body!!,
                     getString(R.string.default_notification_channel_name),
-                    0,
+                    Integer.MAX_VALUE,
                 )
             }
         }

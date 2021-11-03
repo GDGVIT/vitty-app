@@ -63,7 +63,7 @@ class AlarmReceiver : BroadcastReceiver() {
                         pd.courseName,
                         notifId++
                     )
-                    if (notifId == Integer.MAX_VALUE - 1)
+                    if (notifId == Integer.MAX_VALUE - 2)
                         notifId = 1
                     prefs.edit().putInt("notif_id", notifId).apply()
                 }

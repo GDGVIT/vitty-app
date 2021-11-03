@@ -211,7 +211,10 @@ class InstructionsActivity : AppCompatActivity() {
                 val intent = Intent(this, AlarmReceiver::class.java)
 
                 val pendingIntent =
-                    PendingIntent.getBroadcast(this, 0, intent, 0)
+                    PendingIntent.getBroadcast(
+                        this, 0, intent,
+                        PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
+                    )
                 val alarmManager = getSystemService(ALARM_SERVICE) as AlarmManager
 
                 val date = Date().time
