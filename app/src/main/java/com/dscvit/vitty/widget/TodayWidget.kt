@@ -55,7 +55,12 @@ internal fun updateTodayWidget(
     // Construct the RemoteViews object
     val views = RemoteViews(context.packageName, R.layout.today_widget)
     val intent = Intent(context, AuthActivity::class.java)
-    val pendingIntent = PendingIntent.getActivity(context, 0, intent, 0)
+    val pendingIntent = PendingIntent.getActivity(
+        context,
+        0,
+        intent,
+        PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
+    )
     views.setOnClickPendingIntent(R.id.today_widget, pendingIntent)
     val days = listOf("monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday")
     val calendar: Calendar = Calendar.getInstance()
