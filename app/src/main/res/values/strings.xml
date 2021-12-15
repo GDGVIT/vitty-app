@@ -78,9 +78,9 @@
     <string name="default_notification_channel_id">con.dscvit.vitty-Updates</string>
     <string name="directions">Directions</string>
     <string-array name="no_classes_today_subtext_list">
-        <item>Let\'s chill in Foodys!</item>
+        <item>Let\'s chill at Foodys!</item>
         <item>Ready to run to Tarama?</item>
-        <item>Grocery shopping at Allmart</item>
+        <item>Do grocery shopping at Allmart</item>
         <item>Chill and relax in hostel</item>
         <item>Finish your DAs!</item>
         <item>Don\'t you have a quiz coming up?</item>

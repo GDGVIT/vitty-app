@@ -39,7 +39,6 @@ class DayFragment : Fragment() {
             false
         )
         fragID = requireArguments().getString("frag_id")?.toInt()!!
-        binding.quoteLine.text = Quote.getLine(requireContext())
         getData()
         return binding.root
     }
@@ -83,6 +82,7 @@ class DayFragment : Fragment() {
                 dayList.adapter = PeriodAdapter(courseList, fragID)
                 dayList.layoutManager = LinearLayoutManager(context)
             } else {
+                binding.quoteLine.text = Quote.getLine(requireContext())
                 noPeriod.visibility = View.VISIBLE
             }
         }
