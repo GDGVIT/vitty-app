@@ -18,6 +18,8 @@
 - [x]  Easy access to timetable
 - [x]  Home screen widgets
 - [x]  Notifications for classes
+- [x]  Exam/Holiday mode to turn off your class notifications
+- [x]  Navigation directions to your classes
 
 <br>
 
