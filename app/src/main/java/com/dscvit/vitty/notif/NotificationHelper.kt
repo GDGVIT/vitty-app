@@ -11,7 +11,8 @@ import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import androidx.core.content.ContextCompat
 import com.dscvit.vitty.R
-import com.dscvit.vitty.activity.ScheduleActivity
+import com.dscvit.vitty.activity.AuthActivity
+import com.dscvit.vitty.util.Constants.NOTIF_INTENT
 
 object NotificationHelper {
     fun createNotificationChannel(
@@ -69,13 +70,15 @@ object NotificationHelper {
         bigText: String,
         channelName: String,
         notificationId: Int,
+        classId: String
     ) {
         val channelId = "${context.packageName}-$channelName"
-        val intent = Intent(context, ScheduleActivity::class.java)
+        val intent = Intent(context, AuthActivity::class.java)
         val pendingIntent: PendingIntent = PendingIntent.getActivity(
-            context, 0, intent,
+            context, NOTIF_INTENT, intent,
             PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
         )
+
         val builder = NotificationCompat.Builder(context, channelId)
             .setSmallIcon(R.drawable.ic_notif)
             .setColor(ContextCompat.getColor(context, R.color.background))
@@ -88,6 +91,18 @@ object NotificationHelper {
             .setPriority(NotificationCompat.PRIORITY_HIGH)
             .setContentIntent(pendingIntent)
             .setAutoCancel(true)
+
+        if (classId != "") {
+            val clickIntent = Intent(context, AuthActivity::class.java)
+            clickIntent.putExtra("classId", classId)
+            val mapPendingIntent = PendingIntent.getActivity(
+                context,
+                notificationId,
+                clickIntent,
+                PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
+            )
+            builder.addAction(R.drawable.ic_nav, "Directions", mapPendingIntent)
+        }
 
         with(NotificationManagerCompat.from(context)) {
             notify(notificationId, builder.build())

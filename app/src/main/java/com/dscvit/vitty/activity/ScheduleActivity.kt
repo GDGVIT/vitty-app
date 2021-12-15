@@ -15,6 +15,7 @@ import com.dscvit.vitty.BuildConfig
 import com.dscvit.vitty.R
 import com.dscvit.vitty.adapter.DayAdapter
 import com.dscvit.vitty.databinding.ActivityScheduleBinding
+import com.dscvit.vitty.util.ClassToMap
 import com.dscvit.vitty.util.Constants.EXAM_MODE
 import com.dscvit.vitty.util.Constants.FIRST_TIME_SETUP
 import com.dscvit.vitty.util.Constants.TIMETABLE_AVAILABLE
@@ -41,6 +42,11 @@ class ScheduleActivity : FragmentActivity() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_schedule)
         prefs = getSharedPreferences(USER_INFO, 0)
         uid = prefs.getString("uid", "").toString()
+        val classLocation = prefs.getString("openClassId", "").toString()
+        if (classLocation != "") {
+            prefs.edit().putString("openClassId", "").apply()
+            ClassToMap.openMap(this, classLocation)
+        }
         pageSetup()
         firstTimeSetup()
     }

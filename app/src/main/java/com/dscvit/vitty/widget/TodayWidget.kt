@@ -12,6 +12,7 @@ import com.dscvit.vitty.activity.AuthActivity
 import com.dscvit.vitty.service.TodayWidgetService
 import com.dscvit.vitty.util.Constants.PERIODS
 import com.dscvit.vitty.util.Constants.TIME_SLOTS
+import com.dscvit.vitty.util.Constants.TODAY_INTENT
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.runBlocking
@@ -57,7 +58,7 @@ internal fun updateTodayWidget(
     val intent = Intent(context, AuthActivity::class.java)
     val pendingIntent = PendingIntent.getActivity(
         context,
-        0,
+        TODAY_INTENT,
         intent,
         PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
     )

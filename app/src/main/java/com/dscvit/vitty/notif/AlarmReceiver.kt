@@ -6,6 +6,7 @@ import android.content.Intent
 import android.content.SharedPreferences
 import com.dscvit.vitty.model.PeriodDetails
 import com.dscvit.vitty.util.Constants
+import com.dscvit.vitty.util.Constants.NOTIF_START
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.runBlocking
@@ -45,7 +46,7 @@ class AlarmReceiver : BroadcastReceiver() {
         start: Calendar
     ) {
 
-        var notifId = prefs.getInt("notif_id", 1)
+        var notifId = prefs.getInt("notif_id", NOTIF_START)
 
         val diff = start.timeInMillis - calendar.timeInMillis
         if (diff < 1000 * 60 * 22 && diff > -(1000 * 60 * 5)) {
@@ -61,10 +62,11 @@ class AlarmReceiver : BroadcastReceiver() {
                         pd.courseName,
                         "You have ${pd.courseName} at $sTime",
                         pd.courseName,
-                        notifId++
+                        notifId++,
+                        pd.roomNo,
                     )
-                    if (notifId == Integer.MAX_VALUE - 2)
-                        notifId = 1
+                    if (notifId == Integer.MAX_VALUE - 2 || notifId < NOTIF_START)
+                        notifId = NOTIF_START
                     prefs.edit().putInt("notif_id", notifId).apply()
                 }
             }

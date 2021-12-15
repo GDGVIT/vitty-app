@@ -12,7 +12,7 @@
     <string name="done">Done</string>
     <string name="no_classes_today">No classes today!</string>
     <string name="no_more_classes_today">No More Classes Today</string>
-    <string name="no_classes_today_subtext">Up for some Valorant Grind?</string>
+    <string name="no_classes_today_subtext">Chill and relax in hostel</string>
     <string name="intro1_title">Never miss a class</string>
     <string name="intro1_subtitle">Notifications to remind you about your upcoming classes</string>
     <string name="intro2_title">Get a sneak peek</string>
@@ -54,7 +54,7 @@
     <string name="about_widgets">Go to your home screen, long press and add widget!\n\nYou have two widgets to choose from:\n1. Today\'s Schedule: This shows your current day\'s classes.\n2. Next class: This gives you the details about your next upcoming class.</string>
     <string name="about_notifications">Get control of the notifications by tapping on ⋮ > Settings > Notifications.\n\nThere you can:\n1. Turn on Exam/Holiday Mode to pause your class notifications.\n2. Individually turn on/off notifications for your classes (Android 8+ only).</string>
     <string name="about_battery">To get notifications on time, keep the battery optimisations for the app turned off.\n\nTo change this setting, tap on ⋮ > Settings > Battery.</string>
-    <string name="about_new_updates">Out on a vacation and don\'t want your class notifications to ruin your mood? or are your CATs/FATs going on?\n\nGo to ⋮ > Settings > Turn on Exam/Holiday Mode to pause your class notifications.</string>
+    <string name="about_new_updates">Don\'t know which class is where? Don\'t worry, we\'ve got you covered!\n\nNow you can hit the directions button on the Next Class widget or tap on a room number in the app to start navigation to your class!</string>
     <string name="final_heading">Let\'s go!</string>
     <string name="about_final">You\'re all set to start using the app.</string>
     <string name="congratulations">Congratulations!</string>
@@ -76,4 +76,12 @@
     <string name="exam_mode_alert">Exam/Holiday Mode Turned On</string>
     <string name="default_notification_channel_name">Updates</string>
     <string name="default_notification_channel_id">con.dscvit.vitty-Updates</string>
+    <string name="directions">Directions</string>
+    <string-array name="no_classes_today_subtext_list">
+        <item>Let\'s chill at Foodys!</item>
+        <item>Ready to run to Tarama?</item>
+        <item>Grocery shopping at Allmart</item>
+        <item>Chill and relax in hostel</item>
+        <item>Finish your DAs!</item>
+    </string-array>
 </resources>

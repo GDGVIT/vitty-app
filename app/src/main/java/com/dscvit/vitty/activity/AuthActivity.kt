@@ -2,6 +2,7 @@ package com.dscvit.vitty.activity
 
 import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
@@ -34,6 +35,7 @@ class AuthActivity : AppCompatActivity() {
     private lateinit var mGoogleSignInClient: GoogleSignInClient
     private lateinit var mGoogleSignInOptions: GoogleSignInOptions
     private lateinit var firebaseAuth: FirebaseAuth
+    private lateinit var sharedPref: SharedPreferences
 
     private val pages = listOf("○", "○", "○")
     private var loginClick = false
@@ -42,6 +44,11 @@ class AuthActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_auth)
         firebaseAuth = FirebaseAuth.getInstance()
+        sharedPref = getSharedPreferences(USER_INFO, Context.MODE_PRIVATE)
+        if (intent.extras != null && intent.extras!!.getString("classId") != "")
+            sharedPref.edit().putString("openClassId", intent.extras!!.getString("classId")).apply()
+        else
+            sharedPref.edit().putString("openClassId", "").apply()
         configureGoogleSignIn()
         setupUI()
     }
@@ -119,15 +126,12 @@ class AuthActivity : AppCompatActivity() {
     }
 
     private fun saveInfo(name: String?, email: String?, token: String?, uid: String?) {
-        val sharedPref = getSharedPreferences(USER_INFO, Context.MODE_PRIVATE)
-        if (sharedPref != null) {
-            with(sharedPref.edit()) {
-                putString(NAME, name)
-                putString(EMAIL, email)
-                putString(TOKEN, token)
-                putString(UID, uid)
-                apply()
-            }
+        with(sharedPref.edit()) {
+            putString(NAME, name)
+            putString(EMAIL, email)
+            putString(TOKEN, token)
+            putString(UID, uid)
+            apply()
         }
     }
 

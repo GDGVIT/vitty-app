@@ -12,16 +12,26 @@
         <entry key="..\:/Users/iamyajat/dev/AndroidStudioProjects/DSCProjects/VITTY/app/src/main/res/drawable/ic_close.xml" value="0.26614583333333336" />
         <entry key="..\:/Users/iamyajat/dev/AndroidStudioProjects/DSCProjects/VITTY/app/src/main/res/drawable/ic_gdscvit.xml" value="0.26614583333333336" />
         <entry key="..\:/Users/iamyajat/dev/AndroidStudioProjects/DSCProjects/VITTY/app/src/main/res/drawable/ic_github.xml" value="0.26614583333333336" />
+        <entry key="..\:/Users/iamyajat/dev/AndroidStudioProjects/DSCProjects/VITTY/app/src/main/res/drawable/ic_nav.xml" value="0.26614583333333336" />
         <entry key="..\:/Users/iamyajat/dev/AndroidStudioProjects/DSCProjects/VITTY/app/src/main/res/drawable/ic_notif.xml" value="0.264" />
         <entry key="..\:/Users/iamyajat/dev/AndroidStudioProjects/DSCProjects/VITTY/app/src/main/res/drawable/ic_notifications.xml" value="0.26614583333333336" />
         <entry key="..\:/Users/iamyajat/dev/AndroidStudioProjects/DSCProjects/VITTY/app/src/main/res/drawable/ic_round_close_24.xml" value="0.26614583333333336" />
         <entry key="..\:/Users/iamyajat/dev/AndroidStudioProjects/DSCProjects/VITTY/app/src/main/res/drawable/ic_snooze_notifications.xml" value="0.26614583333333336" />
+        <entry key="..\:/Users/iamyajat/dev/AndroidStudioProjects/DSCProjects/VITTY/app/src/main/res/drawable/nav_button_background.xml" value="0.26614583333333336" />
+        <entry key="..\:/Users/iamyajat/dev/AndroidStudioProjects/DSCProjects/VITTY/app/src/main/res/drawable/next_class_background.xml" value="0.26614583333333336" />
+        <entry key="..\:/Users/iamyajat/dev/AndroidStudioProjects/DSCProjects/VITTY/app/src/main/res/drawable/tab_selected_background.xml" value="0.26614583333333336" />
+        <entry key="..\:/Users/iamyajat/dev/AndroidStudioProjects/DSCProjects/VITTY/app/src/main/res/drawable/today_list_background.xml" value="0.26614583333333336" />
+        <entry key="..\:/Users/iamyajat/dev/AndroidStudioProjects/DSCProjects/VITTY/app/src/main/res/drawable/widget_background.xml" value="0.26614583333333336" />
         <entry key="..\:/Users/iamyajat/dev/AndroidStudioProjects/DSCProjects/VITTY/app/src/main/res/layout/activity_instructions.xml" value="0.12708333333333333" />
         <entry key="..\:/Users/iamyajat/dev/AndroidStudioProjects/DSCProjects/VITTY/app/src/main/res/layout/activity_schedule.xml" value="0.264" />
         <entry key="..\:/Users/iamyajat/dev/AndroidStudioProjects/DSCProjects/VITTY/app/src/main/res/layout/card_period.xml" value="0.25" />
+        <entry key="..\:/Users/iamyajat/dev/AndroidStudioProjects/DSCProjects/VITTY/app/src/main/res/layout/fragment_day.xml" value="0.25" />
         <entry key="..\:/Users/iamyajat/dev/AndroidStudioProjects/DSCProjects/VITTY/app/src/main/res/layout/fragment_intro.xml" value="0.25" />
+        <entry key="..\:/Users/iamyajat/dev/AndroidStudioProjects/DSCProjects/VITTY/app/src/main/res/layout/item_period.xml" value="0.25" />
         <entry key="..\:/Users/iamyajat/dev/AndroidStudioProjects/DSCProjects/VITTY/app/src/main/res/layout/layout_preference_title.xml" value="0.25" />
+        <entry key="..\:/Users/iamyajat/dev/AndroidStudioProjects/DSCProjects/VITTY/app/src/main/res/layout/next_class_widget.xml" value="0.4" />
         <entry key="..\:/Users/iamyajat/dev/AndroidStudioProjects/DSCProjects/VITTY/app/src/main/res/layout/settings_activity.xml" value="0.25" />
+        <entry key="..\:/Users/iamyajat/dev/AndroidStudioProjects/DSCProjects/VITTY/app/src/main/res/layout/today_widget.xml" value="0.25" />
         <entry key="..\:/Users/iamyajat/dev/AndroidStudioProjects/DSCProjects/VITTY/app/src/main/res/menu/instructions_menu.xml" value="0.25" />
         <entry key="..\:/Users/iamyajat/dev/AndroidStudioProjects/DSCProjects/VITTY/app/src/main/res/menu/schedule_menu.xml" value="0.25" />
         <entry key="..\:/Users/iamyajat/dev/AndroidStudioProjects/DSCProjects/VITTY/app/src/main/res/menu/settings_menu.xml" value="0.25" />

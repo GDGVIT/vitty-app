@@ -13,6 +13,7 @@ import com.dscvit.vitty.R
 import com.dscvit.vitty.adapter.PeriodAdapter
 import com.dscvit.vitty.databinding.FragmentDayBinding
 import com.dscvit.vitty.model.PeriodDetails
+import com.dscvit.vitty.util.Quote
 import com.google.firebase.firestore.FirebaseFirestore
 import timber.log.Timber
 
@@ -38,6 +39,7 @@ class DayFragment : Fragment() {
             false
         )
         fragID = requireArguments().getString("frag_id")?.toInt()!!
+        binding.quoteLine.text = Quote.getLine(requireContext())
         getData()
         return binding.root
     }

@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.dscvit.vitty.R
 import com.dscvit.vitty.databinding.CardPeriodBinding
 import com.dscvit.vitty.model.PeriodDetails
+import com.dscvit.vitty.util.ClassToMap
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Date
@@ -27,6 +28,7 @@ class PeriodAdapter(private val dataSet: ArrayList<PeriodDetails>, private val d
         val expandedBackground = binding.expandedBackground
         val activePeriod = binding.activePeriod
         val periodTime = binding.periodTime
+        val classNav = binding.classNav
         fun bind(data: PeriodDetails) {
             binding.periodDetails = data
         }
@@ -44,13 +46,14 @@ class PeriodAdapter(private val dataSet: ArrayList<PeriodDetails>, private val d
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bind(dataSet[position])
+        val item = dataSet[position]
+        holder.bind(item)
 
-        val startTime: Date = dataSet[position].startTime.toDate()
+        val startTime: Date = item.startTime.toDate()
         val simpleDateFormat = SimpleDateFormat("h:mm a", Locale.getDefault())
         val sTime: String = simpleDateFormat.format(startTime).uppercase(Locale.ROOT)
 
-        val endTime: Date = dataSet[position].endTime.toDate()
+        val endTime: Date = item.endTime.toDate()
         val eTime: String = simpleDateFormat.format(endTime).uppercase(Locale.ROOT)
 
         val now = Calendar.getInstance()
@@ -68,6 +71,9 @@ class PeriodAdapter(private val dataSet: ArrayList<PeriodDetails>, private val d
         holder.apply {
             periodTime.text = "$sTime - $eTime"
             activePeriod.visibility = View.INVISIBLE
+            classNav.setOnClickListener {
+                ClassToMap.openMap(classNav.context, item.roomNo)
+            }
         }
 
         if ((((day + 1) % 7) + 1) == now[Calendar.DAY_OF_WEEK]) {

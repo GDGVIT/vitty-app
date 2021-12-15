@@ -1,5 +1,6 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/next_class_widget"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@drawable/widget_background"
@@ -24,8 +25,8 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:paddingStart="20dp"
-                android:paddingTop="15dp"
+                android:paddingStart="15dp"
+                android:paddingTop="10dp"
                 android:paddingEnd="0dp"
                 android:text="@string/your_next_class"
                 android:textSize="16sp" />
@@ -37,8 +38,8 @@
                 android:adjustViewBounds="true"
                 android:contentDescription="@string/todo"
                 android:paddingStart="0dp"
-                android:paddingTop="15dp"
-                android:paddingEnd="20dp"
+                android:paddingTop="10dp"
+                android:paddingEnd="15dp"
                 android:scaleType="fitCenter"
                 android:src="@drawable/ic_vitty" />
 
@@ -49,35 +50,53 @@
             android:id="@+id/class_next"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="15dp"
+            android:layout_margin="10dp"
             android:background="@drawable/next_class_background"
             android:gravity="center_vertical"
             android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/course_name"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
-                android:fontFamily="@font/poppins_600"
-                android:paddingStart="25dp"
-                android:paddingEnd="30dp"
-                android:text="@string/no_more_classes_today"
-                android:textColor="@color/white"
-                android:textSize="16sp"
-                tools:text="@string/sample_course" />
+                android:layout_marginTop="12dp"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:paddingStart="20dp"
+                android:paddingEnd="20dp">
+
+                <TextView
+                    android:id="@+id/course_name"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="10dp"
+                    android:layout_weight="1"
+                    android:ellipsize="end"
+                    android:fontFamily="@font/poppins_600"
+                    android:maxLines="2"
+                    android:text="@string/no_more_classes_today"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
+                    tools:text="@string/sample_course" />
+
+                <ImageView
+                    android:id="@+id/class_nav_button"
+                    android:layout_width="28dp"
+                    android:layout_height="28dp"
+                    android:contentDescription="@string/directions"
+                    android:src="@drawable/ic_nav" />
+            </LinearLayout>
 
 
             <LinearLayout
                 android:id="@+id/more_info"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
-                android:layout_marginBottom="12dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="10dp"
                 android:gravity="center"
                 android:orientation="horizontal"
-                android:paddingStart="25dp"
-                android:paddingEnd="25dp">
+                android:paddingStart="20dp"
+                android:paddingEnd="20dp">
 
                 <TextView
                     android:id="@+id/period_time"
