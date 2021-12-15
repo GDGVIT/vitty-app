@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.dscvit.vitty.R
 import com.dscvit.vitty.databinding.CardPeriodBinding
 import com.dscvit.vitty.model.PeriodDetails
-import com.dscvit.vitty.util.ClassToMap
+import com.dscvit.vitty.util.VITMap
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Date
@@ -72,7 +72,7 @@ class PeriodAdapter(private val dataSet: ArrayList<PeriodDetails>, private val d
             periodTime.text = "$sTime - $eTime"
             activePeriod.visibility = View.INVISIBLE
             classNav.setOnClickListener {
-                ClassToMap.openMap(classNav.context, item.roomNo)
+                VITMap.openClassMap(classNav.context, item.roomNo)
             }
         }
 

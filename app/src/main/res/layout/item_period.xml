@@ -28,7 +28,7 @@
         android:id="@+id/period_time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="6dp"
         android:layout_marginBottom="12dp"
         android:paddingStart="20dp"
         android:paddingEnd="20dp"

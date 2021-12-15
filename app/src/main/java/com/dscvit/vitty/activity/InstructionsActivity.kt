@@ -22,6 +22,7 @@ import com.dscvit.vitty.R
 import com.dscvit.vitty.databinding.ActivityInstructionsBinding
 import com.dscvit.vitty.notif.AlarmReceiver
 import com.dscvit.vitty.notif.NotificationHelper
+import com.dscvit.vitty.util.Constants.ALARM_INTENT
 import com.dscvit.vitty.util.Constants.EXAM_MODE
 import com.dscvit.vitty.util.Constants.GROUP_ID
 import com.dscvit.vitty.util.Constants.GROUP_ID_2
@@ -212,7 +213,7 @@ class InstructionsActivity : AppCompatActivity() {
 
                 val pendingIntent =
                     PendingIntent.getBroadcast(
-                        this, 0, intent,
+                        this, ALARM_INTENT, intent,
                         PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
                     )
                 val alarmManager = getSystemService(ALARM_SERVICE) as AlarmManager

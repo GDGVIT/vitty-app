@@ -20,6 +20,7 @@ import com.dscvit.vitty.R
 import com.dscvit.vitty.databinding.ActivitySettingsBinding
 import com.dscvit.vitty.notif.AlarmReceiver
 import com.dscvit.vitty.util.Constants
+import com.dscvit.vitty.util.Constants.ALARM_INTENT
 import com.dscvit.vitty.util.Constants.BATTERY_OPTIM
 import com.dscvit.vitty.util.Constants.EXAM_MODE
 import com.dscvit.vitty.util.Constants.GDSCVIT_TAG
@@ -74,7 +75,7 @@ class SettingsActivity : AppCompatActivity() {
             val intent = Intent(context, AlarmReceiver::class.java)
             val pendingIntent = PendingIntent.getBroadcast(
                 context,
-                0,
+                ALARM_INTENT,
                 intent,
                 PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
             )
@@ -93,7 +94,7 @@ class SettingsActivity : AppCompatActivity() {
                 requireContext().getSystemService(Context.ALARM_SERVICE) as AlarmManager
             val intent = Intent(context, AlarmReceiver::class.java)
             val pendingIntent = PendingIntent.getBroadcast(
-                context, 0, intent,
+                context, ALARM_INTENT, intent,
                 PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
             )
             alarmManager.cancel(pendingIntent)

@@ -15,7 +15,6 @@ import com.dscvit.vitty.BuildConfig
 import com.dscvit.vitty.R
 import com.dscvit.vitty.adapter.DayAdapter
 import com.dscvit.vitty.databinding.ActivityScheduleBinding
-import com.dscvit.vitty.util.ClassToMap
 import com.dscvit.vitty.util.Constants.EXAM_MODE
 import com.dscvit.vitty.util.Constants.FIRST_TIME_SETUP
 import com.dscvit.vitty.util.Constants.TIMETABLE_AVAILABLE
@@ -23,6 +22,7 @@ import com.dscvit.vitty.util.Constants.UID
 import com.dscvit.vitty.util.Constants.UPDATE
 import com.dscvit.vitty.util.Constants.UPDATE_CODE
 import com.dscvit.vitty.util.Constants.USER_INFO
+import com.dscvit.vitty.util.VITMap
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.tabs.TabLayoutMediator
 import com.google.firebase.auth.FirebaseAuth
@@ -45,7 +45,7 @@ class ScheduleActivity : FragmentActivity() {
         val classLocation = prefs.getString("openClassId", "").toString()
         if (classLocation != "") {
             prefs.edit().putString("openClassId", "").apply()
-            ClassToMap.openMap(this, classLocation)
+            VITMap.openClassMap(this, classLocation)
         }
         pageSetup()
         firstTimeSetup()

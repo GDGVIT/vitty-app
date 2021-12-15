@@ -5,7 +5,7 @@ import android.content.Intent
 import android.net.Uri
 import android.widget.Toast
 
-object ClassToMap {
+object VITMap {
     private const val VIT = "Vellore+Institute+of+Technology,+Vellore+India" // done
     val blocks: HashMap<String, String> = HashMap()
 
@@ -21,7 +21,7 @@ object ClassToMap {
         blocks["GDN"] = "GDN,+$VIT"
     }
 
-    fun openMap(context: Context, classId: String) {
+    fun openClassMap(context: Context, classId: String) {
         try {
             var classLocation = ""
             var classBlock = ""

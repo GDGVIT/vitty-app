@@ -80,8 +80,8 @@
 
                 <ImageView
                     android:id="@+id/class_nav_button"
-                    android:layout_width="28dp"
-                    android:layout_height="28dp"
+                    android:layout_width="27dp"
+                    android:layout_height="27dp"
                     android:contentDescription="@string/directions"
                     android:src="@drawable/ic_nav" />
             </LinearLayout>
@@ -91,7 +91,7 @@
                 android:id="@+id/more_info"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="6dp"
                 android:layout_marginBottom="10dp"
                 android:gravity="center"
                 android:orientation="horizontal"
