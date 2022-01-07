@@ -22,6 +22,7 @@ import com.dscvit.vitty.util.Constants.UID
 import com.dscvit.vitty.util.Constants.UPDATE
 import com.dscvit.vitty.util.Constants.UPDATE_CODE
 import com.dscvit.vitty.util.Constants.USER_INFO
+import com.dscvit.vitty.util.RemoteConfigUtils
 import com.dscvit.vitty.util.VITMap
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.tabs.TabLayoutMediator
@@ -141,6 +142,7 @@ class ScheduleActivity : FragmentActivity() {
     }
 
     private fun firstTimeSetup() {
+        var max = 6
         val upCode = prefs.getInt(UPDATE_CODE, 0)
         if (!prefs.getBoolean(FIRST_TIME_SETUP, false) || upCode != BuildConfig.VERSION_CODE) {
             var count = 1
@@ -165,10 +167,10 @@ class ScheduleActivity : FragmentActivity() {
             val desc = v.findViewById<TextView>(R.id.description)
 
             if (prefs.getBoolean(FIRST_TIME_SETUP, false) && upCode < BuildConfig.VERSION_CODE) {
-                val msg = introMessage(4)
+                val msg = introMessage(max - 1)
                 title.text = msg[0]
                 desc.text = msg[1]
-                count = 6
+                count = max + 1
                 skip.visibility = View.GONE
                 next.text = getString(R.string.done)
             }
@@ -183,14 +185,15 @@ class ScheduleActivity : FragmentActivity() {
             }
 
             next.setOnClickListener {
+                if (RemoteConfigUtils.getOnlineMode() && count == 4) count++
                 val msg = introMessage(count)
                 title.text = msg[0]
                 desc.text = msg[1]
-                if (count == 5) {
+                if (count == max) {
                     skip.visibility = View.GONE
                     next.text = getString(R.string.done)
                 }
-                if (count > 5) {
+                if (count > max) {
                     prefs.edit {
                         putBoolean(FIRST_TIME_SETUP, true)
                         putInt(UPDATE_CODE, BuildConfig.VERSION_CODE)
@@ -209,7 +212,8 @@ class ScheduleActivity : FragmentActivity() {
             1 -> listOf(getString(R.string.widgets), getString(R.string.about_widgets))
             2 -> listOf(getString(R.string.notifications), getString(R.string.about_notifications))
             3 -> listOf(getString(R.string.battery), getString(R.string.about_battery))
-            4 -> listOf(getString(R.string.new_updates), getString(R.string.about_new_updates))
+            4 -> listOf(getString(R.string.nav), getString(R.string.about_nav))
+            5 -> listOf(getString(R.string.new_updates), getString(R.string.about_new_updates))
             else -> listOf(getString(R.string.final_heading), getString(R.string.about_final))
         }
     }
