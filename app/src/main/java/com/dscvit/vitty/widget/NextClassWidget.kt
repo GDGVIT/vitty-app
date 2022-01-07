@@ -13,6 +13,7 @@ import com.dscvit.vitty.model.PeriodDetails
 import com.dscvit.vitty.util.Constants.NEXT_CLASS_INTENT
 import com.dscvit.vitty.util.Constants.NEXT_CLASS_NAV_INTENT
 import com.dscvit.vitty.util.Quote
+import com.dscvit.vitty.util.RemoteConfigUtils
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.runBlocking
@@ -56,6 +57,7 @@ internal fun updateNextClassWidget(
     appWidgetId: Int,
     pd: PeriodDetails?
 ) {
+    RemoteConfigUtils.init()
     val views = RemoteViews(context.packageName, R.layout.next_class_widget)
     val intent = Intent(context, AuthActivity::class.java)
     val pendingIntent = PendingIntent.getActivity(
@@ -92,20 +94,27 @@ internal fun updateNextClassWidget(
         if (pd.courseName != "") {
             views.setTextViewText(R.id.course_name, pd.courseName)
             views.setTextViewText(R.id.period_time, "$sTime - $eTime")
-            views.setViewVisibility(
-                R.id.class_nav_button,
-                View.VISIBLE
-            )
 
-            val clickIntent = Intent(context, AuthActivity::class.java)
-            clickIntent.putExtra("classId", pd.roomNo)
-            val mapPendingIntent = PendingIntent.getActivity(
-                context,
-                NEXT_CLASS_NAV_INTENT,
-                clickIntent,
-                PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
-            )
-            views.setOnClickPendingIntent(R.id.class_nav_button, mapPendingIntent)
+            if (!RemoteConfigUtils.getOnlineMode()) {
+                views.setViewVisibility(
+                    R.id.class_nav_button,
+                    View.VISIBLE
+                )
+                val clickIntent = Intent(context, AuthActivity::class.java)
+                clickIntent.putExtra("classId", pd.roomNo)
+                val mapPendingIntent = PendingIntent.getActivity(
+                    context,
+                    NEXT_CLASS_NAV_INTENT,
+                    clickIntent,
+                    PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
+                )
+                views.setOnClickPendingIntent(R.id.class_nav_button, mapPendingIntent)
+            } else {
+                views.setViewVisibility(
+                    R.id.class_nav_button,
+                    View.GONE
+                )
+            }
         } else {
             views.setTextViewText(
                 R.id.course_name,
@@ -115,7 +124,6 @@ internal fun updateNextClassWidget(
                 R.id.period_time,
                 Quote.getLine(context)
             )
-
             views.setViewVisibility(
                 R.id.class_nav_button,
                 View.GONE
@@ -177,6 +185,7 @@ suspend fun fetchData(
                                 Timber.d("$end")
                                 if (end.time > calendar.time) {
                                     pd = PeriodDetails(
+                                        document.getString("courseCode")!!,
                                         document.getString("courseName")!!,
                                         document.getTimestamp("startTime")!!,
                                         document.getTimestamp("endTime")!!,

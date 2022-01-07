@@ -13,6 +13,7 @@ import androidx.core.content.ContextCompat
 import com.dscvit.vitty.R
 import com.dscvit.vitty.activity.AuthActivity
 import com.dscvit.vitty.util.Constants.NOTIF_INTENT
+import com.dscvit.vitty.util.RemoteConfigUtils
 
 object NotificationHelper {
     fun createNotificationChannel(
@@ -92,7 +93,7 @@ object NotificationHelper {
             .setContentIntent(pendingIntent)
             .setAutoCancel(true)
 
-        if (classId != "") {
+        if (classId != "" && !RemoteConfigUtils.getOnlineMode()) {
             val clickIntent = Intent(context, AuthActivity::class.java)
             clickIntent.putExtra("classId", classId)
             val mapPendingIntent = PendingIntent.getActivity(

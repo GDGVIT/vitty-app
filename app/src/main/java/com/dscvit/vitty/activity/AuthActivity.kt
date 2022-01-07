@@ -17,6 +17,7 @@ import com.dscvit.vitty.util.Constants.NAME
 import com.dscvit.vitty.util.Constants.TOKEN
 import com.dscvit.vitty.util.Constants.UID
 import com.dscvit.vitty.util.Constants.USER_INFO
+import com.dscvit.vitty.util.RemoteConfigUtils
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
@@ -55,6 +56,7 @@ class AuthActivity : AppCompatActivity() {
 
     override fun onStart() {
         super.onStart()
+        RemoteConfigUtils.init()
         val user = FirebaseAuth.getInstance().currentUser
         if (user != null) {
             val intent = Intent(this, InstructionsActivity::class.java)

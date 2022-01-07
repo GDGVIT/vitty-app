@@ -1,4 +1,4 @@
-<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto">
+<androidx.preference.PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <PreferenceCategory
         app:iconSpaceReserved="false"
@@ -46,4 +46,5 @@
 
     </PreferenceCategory>
 
-</PreferenceScreen>
+
+</androidx.preference.PreferenceScreen>

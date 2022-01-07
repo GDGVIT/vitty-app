@@ -102,15 +102,34 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="22dp"
+                android:gravity="center"
                 android:orientation="horizontal"
-                android:visibility="gone">
+                android:visibility="gone"
+                tools:visibility="visible">
 
-                <TextView
-                    android:id="@+id/slot_id"
+
+                <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="@={periodDetails.slot}" />
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/course_code"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text='@{"Code: "+periodDetails.courseCode}'
+                        android:textSize="11sp"
+                        tools:text="@string/sample_course" />
+
+                    <TextView
+                        android:id="@+id/slot_id"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text='@{"Slot: "+periodDetails.slot}'
+                        android:textSize="11sp"
+                        tools:text="@string/sample_slot" />
+                </LinearLayout>
 
                 <LinearLayout
                     android:id="@+id/class_nav"
@@ -141,6 +160,15 @@
                         app:tint="@color/background" />
 
                 </LinearLayout>
+
+
+                <TextView
+                    android:id="@+id/class_id_online"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="4dp"
+                    android:text="@={periodDetails.roomNo}"
+                    android:visibility="gone" />
 
             </LinearLayout>
 

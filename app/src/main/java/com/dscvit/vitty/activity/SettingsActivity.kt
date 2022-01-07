@@ -16,6 +16,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
 import androidx.preference.SwitchPreferenceCompat
+import com.dscvit.vitty.BuildConfig
 import com.dscvit.vitty.R
 import com.dscvit.vitty.databinding.ActivitySettingsBinding
 import com.dscvit.vitty.notif.AlarmReceiver
@@ -28,6 +29,7 @@ import com.dscvit.vitty.util.Constants.GDSCVIT_WEBSITE
 import com.dscvit.vitty.util.Constants.GITHUB_REPO
 import com.dscvit.vitty.util.Constants.GITHUB_REPO_LINK
 import com.dscvit.vitty.util.Constants.IND_NOTIF
+import com.dscvit.vitty.util.RemoteConfigUtils
 import java.util.Date
 
 class SettingsActivity : AppCompatActivity() {
@@ -43,6 +45,7 @@ class SettingsActivity : AppCompatActivity() {
                 .commit()
         }
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        setupDetails()
         setupToolbar()
     }
 
@@ -56,6 +59,14 @@ class SettingsActivity : AppCompatActivity() {
                 else -> false
             }
         }
+    }
+
+    private fun setupDetails() {
+        var details =
+            "College Mode: ${RemoteConfigUtils.getOnlineModeDetails()}\nApp Version: ${BuildConfig.VERSION_NAME}"
+        if (RemoteConfigUtils.getLatestVersion() > BuildConfig.VERSION_CODE)
+            details += " (Update Available)"
+        binding.settingDetails.text = details
     }
 
     class SettingsFragment : PreferenceFragmentCompat() {

@@ -80,10 +80,12 @@
 
                 <ImageView
                     android:id="@+id/class_nav_button"
-                    android:layout_width="27dp"
-                    android:layout_height="27dp"
+                    android:layout_width="28dp"
+                    android:layout_height="28dp"
                     android:contentDescription="@string/directions"
-                    android:src="@drawable/ic_nav" />
+                    android:src="@drawable/ic_nav"
+                    android:visibility="gone"
+                    tools:visibility="visible" />
             </LinearLayout>
 
 
@@ -103,6 +105,8 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:ellipsize="end"
+                    android:maxLines="1"
                     android:text="@string/no_classes_today_subtext"
                     android:textSize="15sp"
                     tools:text="@string/sample_time" />

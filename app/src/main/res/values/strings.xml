@@ -78,11 +78,17 @@
     <string name="default_notification_channel_id">con.dscvit.vitty-Updates</string>
     <string name="directions">Directions</string>
     <string-array name="no_classes_today_subtext_list">
+        <item>Don\'t you have a quiz coming up?</item>
+        <item>Finish your DAs!</item>
+        <item>Chill and relax in hostel</item>
         <item>Let\'s chill at Foodys!</item>
         <item>Ready to run to Tarama?</item>
         <item>Do grocery shopping at Allmart</item>
-        <item>Chill and relax in hostel</item>
-        <item>Finish your DAs!</item>
+    </string-array>
+    <string-array name="no_classes_today_subtext_list_online">
         <item>Don\'t you have a quiz coming up?</item>
+        <item>Finish your DAs!</item>
+        <item>Read a book!</item>
+        <item>Catch up on some sleep!</item>
     </string-array>
 </resources>

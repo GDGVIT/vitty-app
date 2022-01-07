@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.dscvit.vitty.R
 import com.dscvit.vitty.databinding.CardPeriodBinding
 import com.dscvit.vitty.model.PeriodDetails
+import com.dscvit.vitty.util.RemoteConfigUtils
 import com.dscvit.vitty.util.VITMap
 import java.text.SimpleDateFormat
 import java.util.Calendar
@@ -29,6 +30,7 @@ class PeriodAdapter(private val dataSet: ArrayList<PeriodDetails>, private val d
         val activePeriod = binding.activePeriod
         val periodTime = binding.periodTime
         val classNav = binding.classNav
+        val classIdOnline = binding.classIdOnline
         fun bind(data: PeriodDetails) {
             binding.periodDetails = data
         }
@@ -67,6 +69,16 @@ class PeriodAdapter(private val dataSet: ArrayList<PeriodDetails>, private val d
         val end = Calendar.getInstance()
         end[Calendar.HOUR_OF_DAY] = e[Calendar.HOUR_OF_DAY]
         end[Calendar.MINUTE] = e[Calendar.MINUTE]
+
+        holder.apply {
+            if (!RemoteConfigUtils.getOnlineMode()) {
+                classNav.visibility = View.VISIBLE
+                classIdOnline.visibility = View.GONE
+            } else {
+                classNav.visibility = View.GONE
+                classIdOnline.visibility = View.VISIBLE
+            }
+        }
 
         holder.apply {
             periodTime.text = "$sTime - $eTime"

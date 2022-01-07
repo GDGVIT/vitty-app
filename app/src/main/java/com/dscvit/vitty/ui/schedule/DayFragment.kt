@@ -57,6 +57,7 @@ class DayFragment : Fragment() {
                     for (document in result) {
                         try {
                             val pd = PeriodDetails(
+                                document.getString("courseCode")!!,
                                 document.getString("courseName")!!,
                                 document.getTimestamp("startTime")!!,
                                 document.getTimestamp("endTime")!!,

@@ -27,8 +27,8 @@ android {
         applicationId "com.dscvit.vitty"
         minSdkVersion 24
         targetSdkVersion 31
-        versionCode 12
-        versionName "1.2.0_beta5"
+        versionCode 13
+        versionName "1.2.0_beta6"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         signingConfig signingConfigs.release
     }
@@ -81,8 +81,11 @@ dependencies {
     // FCM
     implementation 'com.google.firebase:firebase-messaging:23.0.0'
 
+    // Remote Config
+    implementation 'com.google.firebase:firebase-config-ktx'
+
     // Crashlytics
-    implementation 'com.google.firebase:firebase-crashlytics-ktx'
+    releaseImplementation 'com.google.firebase:firebase-crashlytics-ktx'
 
     // Loading Animations
     implementation 'com.github.ybq:Android-SpinKit:1.4.0'
