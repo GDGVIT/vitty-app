@@ -6,6 +6,7 @@ import android.content.Context
 import android.content.Context.CLIPBOARD_SERVICE
 import android.content.Intent
 import android.content.SharedPreferences
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -13,13 +14,19 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import coil.load
+import coil.transform.CircleCropTransformation
 import com.dscvit.vitty.R
 import com.dscvit.vitty.databinding.FragmentInstructionsBinding
 import com.dscvit.vitty.model.UserDetails
+import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 
 class InstructionsFragment : Fragment() {
     private lateinit var binding: FragmentInstructionsBinding
     private lateinit var sharedPref: SharedPreferences
+    private val firebaseUser: FirebaseUser = Firebase.auth.currentUser!!
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -38,35 +45,58 @@ class InstructionsFragment : Fragment() {
 
     private fun pageSetup() {
         sharedPref = activity?.getSharedPreferences("login_info", Context.MODE_PRIVATE)!!
-        val name = sharedPref.getString("name", "")
-        val email = sharedPref.getString("email", "")
+        val name = firebaseUser.displayName
+        val email = firebaseUser.email
+        val photoUrl = firebaseUser.photoUrl
         val token = sharedPref.getString("token", "")
-        binding.userDetails = UserDetails(name, email, token)
-        binding.instructions1Link.setOnClickListener {
-            Toast.makeText(
-                context,
-                "Link Copied!\nTip: Long press to share the link.",
-                Toast.LENGTH_LONG
-            ).show()
-            val clipboard: ClipboardManager? =
-                context?.getSystemService(CLIPBOARD_SERVICE) as ClipboardManager?
-            val clip = ClipData.newPlainText(
-                "EXTENSION-LINK",
-                context?.getString(R.string.instructions_1_link)
-            )
-            clipboard?.setPrimaryClip(clip)
-        }
-        binding.instructions1Link.setOnLongClickListener {
-            val shareIntent = Intent().apply {
-                action = Intent.ACTION_SEND
-                type = "text/plain"
+
+        binding.apply {
+            userDetails = UserDetails(name, email, photoUrl, token, "Google")
+            profilePic.load(photoUrl) {
+                crossfade(true)
+                transformations(CircleCropTransformation())
             }
-            shareIntent.putExtra(
-                Intent.EXTRA_TEXT,
-                context?.getString(R.string.share_text)
-            )
-            startActivity(Intent.createChooser(shareIntent, "Share"))
-            true
+            instructions1Link.apply {
+                setOnClickListener {
+                    try {
+                        startActivity(
+                            Intent(
+                                Intent.ACTION_VIEW,
+                                Uri.parse(context?.getString(R.string.instructions_1_link))
+                            )
+                        )
+                    } catch (e: Exception) {
+                        Toast.makeText(context, "Browser not found!", Toast.LENGTH_LONG).show()
+                    }
+                }
+                setOnLongClickListener {
+                    Toast.makeText(
+                        context,
+                        "Link Copied!",
+                        Toast.LENGTH_LONG
+                    ).show()
+                    val clipboard: ClipboardManager? =
+                        context?.getSystemService(CLIPBOARD_SERVICE) as ClipboardManager?
+                    val clip = ClipData.newPlainText(
+                        "EXTENSION-LINK",
+                        context?.getString(R.string.instructions_1_link)
+                    )
+                    clipboard?.setPrimaryClip(clip)
+                    true
+                }
+            }
         }
+//        binding.instructions1Link.setOnLongClickListener {
+//            val shareIntent = Intent().apply {
+//                action = Intent.ACTION_SEND
+//                type = "text/plain"
+//            }
+//            shareIntent.putExtra(
+//                Intent.EXTRA_TEXT,
+//                context?.getString(R.string.share_text)
+//            )
+//            startActivity(Intent.createChooser(shareIntent, "Share"))
+//            true
+//        }
     }
 }

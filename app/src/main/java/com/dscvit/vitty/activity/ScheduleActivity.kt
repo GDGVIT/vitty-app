@@ -1,5 +1,6 @@
 package com.dscvit.vitty.activity
 
+import android.app.Activity
 import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
@@ -18,15 +19,14 @@ import com.dscvit.vitty.databinding.ActivityScheduleBinding
 import com.dscvit.vitty.util.Constants.EXAM_MODE
 import com.dscvit.vitty.util.Constants.FIRST_TIME_SETUP
 import com.dscvit.vitty.util.Constants.TIMETABLE_AVAILABLE
-import com.dscvit.vitty.util.Constants.UID
 import com.dscvit.vitty.util.Constants.UPDATE
 import com.dscvit.vitty.util.Constants.UPDATE_CODE
 import com.dscvit.vitty.util.Constants.USER_INFO
+import com.dscvit.vitty.util.LogoutHelper
 import com.dscvit.vitty.util.RemoteConfigUtils
 import com.dscvit.vitty.util.VITMap
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.tabs.TabLayoutMediator
-import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import java.util.Calendar
 
@@ -109,7 +109,7 @@ class ScheduleActivity : FragmentActivity() {
         binding.scheduleToolbar.setOnMenuItemClickListener { menuItem ->
             when (menuItem.itemId) {
                 R.id.logout -> {
-                    logout()
+                    LogoutHelper.logout(this, this as Activity, prefs)
                     true
                 }
                 R.id.settings -> {
@@ -215,45 +215,6 @@ class ScheduleActivity : FragmentActivity() {
             4 -> listOf(getString(R.string.nav), getString(R.string.about_nav))
             5 -> listOf(getString(R.string.new_updates), getString(R.string.about_new_updates))
             else -> listOf(getString(R.string.final_heading), getString(R.string.about_final))
-        }
-    }
-
-    private fun logout() {
-        val v: View = LayoutInflater
-            .from(this)
-            .inflate(R.layout.dialog_logout, null)
-
-        val dialog = MaterialAlertDialogBuilder(this)
-            .setView(v)
-            .setBackground(
-                AppCompatResources.getDrawable(
-                    this,
-                    R.color.transparent
-                )
-            )
-            .create()
-
-        dialog.show()
-
-        val cancel = v.findViewById<Button>(R.id.cancel)
-        val logout = v.findViewById<Button>(R.id.logout)
-
-        cancel.setOnClickListener {
-            dialog.dismiss()
-        }
-
-        logout.setOnClickListener {
-            prefs.edit().apply {
-                putInt(TIMETABLE_AVAILABLE, 0)
-                putInt(UPDATE, 0)
-                putString(UID, "")
-                putBoolean(FIRST_TIME_SETUP, false)
-                apply()
-            }
-            FirebaseAuth.getInstance().signOut()
-            val intent = Intent(this, AuthActivity::class.java)
-            startActivity(intent)
-            finish()
         }
     }
 }

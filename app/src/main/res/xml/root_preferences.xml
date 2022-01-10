@@ -2,6 +2,18 @@
 
     <PreferenceCategory
         app:iconSpaceReserved="false"
+        app:key="account_title"
+        app:title="Account Details">
+
+        <com.dscvit.vitty.ui.settings.AccountPreference
+            app:key="account"
+            app:layout="@layout/layout_account_details"
+            app:title="My Account" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        app:iconSpaceReserved="false"
         app:title="Notifications">
 
         <SwitchPreferenceCompat

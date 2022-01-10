@@ -29,8 +29,10 @@
         <entry key="..\:/Users/iamyajat/dev/AndroidStudioProjects/DSCProjects/VITTY/app/src/main/res/layout/card_period.xml" value="0.25" />
         <entry key="..\:/Users/iamyajat/dev/AndroidStudioProjects/DSCProjects/VITTY/app/src/main/res/layout/dialog_setup_complete.xml" value="0.25" />
         <entry key="..\:/Users/iamyajat/dev/AndroidStudioProjects/DSCProjects/VITTY/app/src/main/res/layout/fragment_day.xml" value="0.25" />
+        <entry key="..\:/Users/iamyajat/dev/AndroidStudioProjects/DSCProjects/VITTY/app/src/main/res/layout/fragment_instructions.xml" value="0.4" />
         <entry key="..\:/Users/iamyajat/dev/AndroidStudioProjects/DSCProjects/VITTY/app/src/main/res/layout/fragment_intro.xml" value="0.25" />
         <entry key="..\:/Users/iamyajat/dev/AndroidStudioProjects/DSCProjects/VITTY/app/src/main/res/layout/item_period.xml" value="0.25" />
+        <entry key="..\:/Users/iamyajat/dev/AndroidStudioProjects/DSCProjects/VITTY/app/src/main/res/layout/layout_account_details.xml" value="0.514978601997147" />
         <entry key="..\:/Users/iamyajat/dev/AndroidStudioProjects/DSCProjects/VITTY/app/src/main/res/layout/layout_preference_title.xml" value="0.25" />
         <entry key="..\:/Users/iamyajat/dev/AndroidStudioProjects/DSCProjects/VITTY/app/src/main/res/layout/next_class_widget.xml" value="0.4" />
         <entry key="..\:/Users/iamyajat/dev/AndroidStudioProjects/DSCProjects/VITTY/app/src/main/res/layout/settings_activity.xml" value="0.25" />
@@ -38,7 +40,7 @@
         <entry key="..\:/Users/iamyajat/dev/AndroidStudioProjects/DSCProjects/VITTY/app/src/main/res/menu/instructions_menu.xml" value="0.25" />
         <entry key="..\:/Users/iamyajat/dev/AndroidStudioProjects/DSCProjects/VITTY/app/src/main/res/menu/schedule_menu.xml" value="0.25" />
         <entry key="..\:/Users/iamyajat/dev/AndroidStudioProjects/DSCProjects/VITTY/app/src/main/res/menu/settings_menu.xml" value="0.25" />
-        <entry key="..\:/Users/iamyajat/dev/AndroidStudioProjects/DSCProjects/VITTY/app/src/main/res/xml/root_preferences.xml" value="0.25" />
+        <entry key="..\:/Users/iamyajat/dev/AndroidStudioProjects/DSCProjects/VITTY/app/src/main/res/xml/root_preferences.xml" value="0.4" />
       </map>
     </option>
   </component>

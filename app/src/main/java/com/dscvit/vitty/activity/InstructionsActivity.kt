@@ -1,5 +1,6 @@
 package com.dscvit.vitty.activity
 
+import android.app.Activity
 import android.app.AlarmManager
 import android.app.PendingIntent
 import android.content.Context
@@ -9,12 +10,9 @@ import android.os.Build
 import android.os.Bundle
 import android.os.PowerManager
 import android.provider.Settings
-import android.view.LayoutInflater
 import android.view.View
-import android.widget.Button
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.content.res.AppCompatResources
 import androidx.core.content.edit
 import androidx.databinding.DataBindingUtil
 import com.dscvit.vitty.BuildConfig
@@ -22,6 +20,8 @@ import com.dscvit.vitty.R
 import com.dscvit.vitty.databinding.ActivityInstructionsBinding
 import com.dscvit.vitty.notif.AlarmReceiver
 import com.dscvit.vitty.notif.NotificationHelper
+import com.dscvit.vitty.util.ArraySaverLoader.loadArray
+import com.dscvit.vitty.util.ArraySaverLoader.saveArray
 import com.dscvit.vitty.util.Constants.ALARM_INTENT
 import com.dscvit.vitty.util.Constants.EXAM_MODE
 import com.dscvit.vitty.util.Constants.GROUP_ID
@@ -33,8 +33,7 @@ import com.dscvit.vitty.util.Constants.UID
 import com.dscvit.vitty.util.Constants.UPDATE
 import com.dscvit.vitty.util.Constants.USER_INFO
 import com.dscvit.vitty.util.Constants.VERSION_CODE
-import com.google.android.material.dialog.MaterialAlertDialogBuilder
-import com.google.firebase.auth.FirebaseAuth
+import com.dscvit.vitty.util.LogoutHelper
 import com.google.firebase.firestore.FirebaseFirestore
 import timber.log.Timber
 import java.util.Date
@@ -235,66 +234,15 @@ class InstructionsActivity : AppCompatActivity() {
         }
     }
 
-    private fun loadArray(arrayName: String, context: Context): Array<String?> {
-        val prefs = context.getSharedPreferences(USER_INFO, Context.MODE_PRIVATE)
-        val size = prefs.getInt(arrayName + "_size", 0)
-        val array = arrayOfNulls<String>(size)
-        for (i in 0 until size) array[i] = prefs.getString(arrayName + "_" + i, null)
-        return array
-    }
-
-    private fun saveArray(array: ArrayList<String>, arrayName: String, context: Context): Boolean {
-        val prefs = context.getSharedPreferences(USER_INFO, 0)
-        val editor = prefs.edit()
-        editor.putInt(arrayName + "_size", array.size)
-        for (i in array.indices) editor.putString(arrayName + "_" + i, array[i])
-        return editor.commit()
-    }
-
     private fun setupToolbar() {
         binding.instructionsToolbar.setOnMenuItemClickListener { menuItem ->
             when (menuItem.itemId) {
                 R.id.logout -> {
-                    logout()
+                    LogoutHelper.logout(this, this as Activity, prefs)
                     true
                 }
                 else -> false
             }
-        }
-    }
-
-    private fun logout() {
-        val v: View = LayoutInflater
-            .from(this)
-            .inflate(R.layout.dialog_logout, null)
-
-        val dialog = MaterialAlertDialogBuilder(this)
-            .setView(v)
-            .setBackground(
-                AppCompatResources.getDrawable(
-                    this,
-                    R.color.transparent
-                )
-            )
-            .create()
-
-        dialog.show()
-
-        val cancel = v.findViewById<Button>(R.id.cancel)
-        val logout = v.findViewById<Button>(R.id.logout)
-
-        cancel.setOnClickListener {
-            dialog.dismiss()
-        }
-
-        logout.setOnClickListener {
-            prefs.edit().putInt(TIMETABLE_AVAILABLE, 0).apply()
-            prefs.edit().putInt(UPDATE, 0).apply()
-            prefs.edit().putString(UID, "").apply()
-            FirebaseAuth.getInstance().signOut()
-            val intent = Intent(this, AuthActivity::class.java)
-            startActivity(intent)
-            finish()
         }
     }
 }

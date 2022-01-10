@@ -10,6 +10,7 @@ import android.widget.RemoteViews
 import com.dscvit.vitty.R
 import com.dscvit.vitty.activity.AuthActivity
 import com.dscvit.vitty.service.TodayWidgetService
+import com.dscvit.vitty.util.ArraySaverLoader.saveArray
 import com.dscvit.vitty.util.Constants.PERIODS
 import com.dscvit.vitty.util.Constants.TIME_SLOTS
 import com.dscvit.vitty.util.Constants.TODAY_INTENT
@@ -99,14 +100,6 @@ internal fun updateTodayWidget(
 
     // Instruct the widget manager to update the widget
     appWidgetManager.updateAppWidget(appWidgetId, views)
-}
-
-private fun saveArray(array: ArrayList<String>, arrayName: String, context: Context): Boolean {
-    val prefs = context.getSharedPreferences("login_info", 0)
-    val editor = prefs.edit()
-    editor.putInt(arrayName + "_size", array.size)
-    for (i in array.indices) editor.putString(arrayName + "_" + i, array[i])
-    return editor.commit()
 }
 
 fun fetchTodayFirestore(

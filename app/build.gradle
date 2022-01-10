@@ -27,8 +27,8 @@ android {
         applicationId "com.dscvit.vitty"
         minSdkVersion 24
         targetSdkVersion 31
-        versionCode 13
-        versionName "1.2.0_beta6"
+        versionCode 14
+        versionName "1.2.0_beta7"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         signingConfig signingConfigs.release
     }
@@ -89,6 +89,9 @@ dependencies {
 
     // Loading Animations
     implementation 'com.github.ybq:Android-SpinKit:1.4.0'
+
+    // Coil
+    implementation "io.coil-kt:coil:1.4.0"
 
     // Timber for logs
     implementation 'com.jakewharton.timber:timber:4.7.1'

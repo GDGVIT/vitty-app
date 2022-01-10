@@ -49,8 +49,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:alpha="0.6"
-                    android:padding="24dp"
-                    android:paddingTop="24dp"
+                    android:paddingHorizontal="24dp"
+                    android:paddingTop="18dp"
+                    android:paddingBottom="48dp"
                     android:text="@string/app_name"
                     android:textColor="@color/translucent"
                     android:textSize="11sp" />

@@ -48,23 +48,47 @@
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="12dp"
                         android:fontFamily="@font/poppins_500"
-                        android:text="@string/account_details"
+                        android:text="@{userDetails.method+` Account Details`}"
+                        tools:text="@string/account_details"
                         android:textColor="@color/translucent_head"
                         android:textSize="16sp" />
 
-                    <TextView
-                        android:id="@+id/username"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="6dp"
-                        android:text="@{`Name: `+userDetails.name}"
-                        tools:text="Name: Yajat Malhotra" />
-
-                    <TextView
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@{`Email: `+userDetails.email}"
-                        tools:text="Email: me@iamyajat.co" />
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/username"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="6dp"
+                                android:text="@{`Name: `+userDetails.name}"
+                                tools:text="Name: Yajat Malhotra" />
+
+                            <TextView
+                                android:id="@+id/email"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@{`Email: `+userDetails.email}"
+                                tools:text="Email: me@iamyajat.com" />
+                        </LinearLayout>
+
+                        <com.google.android.material.imageview.ShapeableImageView
+                            android:id="@+id/profile_pic"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_gravity="center"
+                            android:adjustViewBounds="true"
+                            app:shapeAppearanceOverlay="@style/roundedImageViewRounded"
+                            tools:src="@tools:sample/avatars" />
+                    </LinearLayout>
                 </LinearLayout>
 
             </com.google.android.material.card.MaterialCardView>
