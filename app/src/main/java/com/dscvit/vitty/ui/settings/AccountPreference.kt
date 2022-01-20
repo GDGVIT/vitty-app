@@ -20,13 +20,6 @@ class AccountPreference(context: Context?, attrs: AttributeSet?) : Preference(co
         holder?.itemView?.findViewById<TextView>(R.id.title)?.text = firebaseUser.displayName
         holder?.itemView?.findViewById<TextView>(R.id.summary)?.text = firebaseUser.email
         holder?.itemView?.findViewById<ImageView>(R.id.icon)?.load(firebaseUser.photoUrl)
-//        holder?.itemView?.setOnClickListener {
-//            LogoutHelper.logout(
-//                context,
-//                context as Activity,
-//                context.getSharedPreferences(Constants.USER_INFO, 0)
-//            )
-//        }
     }
 
     init {

@@ -48,8 +48,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="12dp"
                         android:fontFamily="@font/poppins_500"
-                        android:text="@{userDetails.method+` Account Details`}"
-                        tools:text="@string/account_details"
+                        android:text="@string/account_details"
                         android:textColor="@color/translucent_head"
                         android:textSize="16sp" />
 

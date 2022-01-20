@@ -27,8 +27,8 @@ android {
         applicationId "com.dscvit.vitty"
         minSdkVersion 24
         targetSdkVersion 31
-        versionCode 14
-        versionName "1.2.0_beta7"
+        versionCode 15
+        versionName "1.2.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         signingConfig signingConfigs.release
     }

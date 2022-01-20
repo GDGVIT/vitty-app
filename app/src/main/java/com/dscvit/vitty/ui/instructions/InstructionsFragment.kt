@@ -72,7 +72,7 @@ class InstructionsFragment : Fragment() {
                 setOnLongClickListener {
                     Toast.makeText(
                         context,
-                        "Link Copied!",
+                        "Link Copied",
                         Toast.LENGTH_LONG
                     ).show()
                     val clipboard: ClipboardManager? =

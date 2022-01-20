@@ -13,7 +13,6 @@ import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.preference.Preference
-import androidx.preference.PreferenceCategory
 import androidx.preference.PreferenceFragmentCompat
 import androidx.preference.SwitchPreferenceCompat
 import com.dscvit.vitty.R
@@ -142,9 +141,8 @@ class SettingsFragment : PreferenceFragmentCompat() {
 
     private fun setupAccountDetails() {
         val prefs = requireContext().getSharedPreferences(Constants.USER_INFO, 0)
-        val cat: PreferenceCategory? = findPreference("account_title")
-        cat?.title = prefs.getString("sign_in_method", "Google") + " Account Details"
-
+//        val cat: PreferenceCategory? = findPreference("account_title")
+//        cat?.title = prefs.getString("sign_in_method", "Google") + " Account Details"
         val account: Preference? = findPreference("account")
         account?.setOnPreferenceClickListener {
             LogoutHelper.logout(requireContext(), requireActivity(), prefs)
