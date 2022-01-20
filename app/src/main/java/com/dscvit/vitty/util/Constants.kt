@@ -24,4 +24,10 @@ object Constants {
     const val GITHUB_REPO_LINK = "https://github.com/GDGVIT/vitty-app"
     const val GDSCVIT_TAG = "gdscvit_website"
     const val GDSCVIT_WEBSITE = "https://dscvit.com/"
+    const val ALARM_INTENT = 0
+    const val TODAY_INTENT = 1
+    const val NEXT_CLASS_INTENT = 2
+    const val NEXT_CLASS_NAV_INTENT = 3
+    const val NOTIF_INTENT = 4
+    const val NOTIF_START = 5
 }

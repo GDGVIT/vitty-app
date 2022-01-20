@@ -52,4 +52,9 @@
         <item name="appWidgetBackgroundColor">@color/background</item>
         <item name="appWidgetTextColor">@color/translucent</item>
     </style>
+
+    <style name="roundedImageViewRounded">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">50%</item>
+    </style>
 </resources>

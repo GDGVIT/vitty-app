@@ -6,7 +6,7 @@ Please note that this project is released with a [Contributor Code of Conduct](C
 
 - Decide which repository to contribute
 - Decide what to contribute
-- Fork the repo then clone it locally
+- Fork the repository then clone it locally
 - Commit your work (You should create a new branch when you're doing development work that is somewhat experimental in nature. )
 - Watch how to make a [Pull Request](https://www.youtube.com/watch?v=RVf9nXslJIc)
 - Congrats 🎉 you have just contributed towards open source!
@@ -65,7 +65,7 @@ Please note that this project is released with a [Contributor Code of Conduct](C
 ```
 
 ## Misc
-- You are welcome to Propose a new feature or other project idea at our [ideas website](ideas.dscvit.com/)
+- You are welcome to Propose a new feature or other project idea at our [ideas site](ideas.dscvit.com/)
 - You may Discuss a high-level topic or idea (for example, community, vision or policies) at our [Discord](https://discord.com/invite/cWyEXgV) Server
 
 ## Attribution

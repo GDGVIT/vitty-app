@@ -27,8 +27,8 @@ android {
         applicationId "com.dscvit.vitty"
         minSdkVersion 24
         targetSdkVersion 31
-        versionCode 3
-        versionName "1.1"
+        versionCode 15
+        versionName "1.2.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         signingConfig signingConfigs.release
     }
@@ -55,13 +55,13 @@ android {
 dependencies {
 
     // Android Stuff
-    implementation 'androidx.core:core-ktx:1.6.0'
-    implementation 'androidx.appcompat:appcompat:1.3.1'
+    implementation 'androidx.core:core-ktx:1.7.0'
+    implementation 'androidx.appcompat:appcompat:1.4.0'
     implementation 'com.google.android.material:material:1.4.0'
-    implementation 'androidx.constraintlayout:constraintlayout:2.1.1'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.2'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
-    implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.3.1'
-    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.1'
+    implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.4.0'
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.0'
     implementation 'androidx.preference:preference-ktx:1.1.1'
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
@@ -76,16 +76,22 @@ dependencies {
     implementation 'com.google.android.gms:play-services-auth:19.2.0'
 
     // Firestore
-    implementation 'com.google.firebase:firebase-firestore:23.0.4'
+    implementation 'com.google.firebase:firebase-firestore:24.0.0'
 
     // FCM
-    implementation 'com.google.firebase:firebase-messaging:22.0.0'
+    implementation 'com.google.firebase:firebase-messaging:23.0.0'
+
+    // Remote Config
+    implementation 'com.google.firebase:firebase-config-ktx'
 
     // Crashlytics
-    implementation 'com.google.firebase:firebase-crashlytics-ktx'
+    releaseImplementation 'com.google.firebase:firebase-crashlytics-ktx'
 
     // Loading Animations
     implementation 'com.github.ybq:Android-SpinKit:1.4.0'
+
+    // Coil
+    implementation "io.coil-kt:coil:1.4.0"
 
     // Timber for logs
     implementation 'com.jakewharton.timber:timber:4.7.1'

@@ -2,6 +2,7 @@ package com.dscvit.vitty.activity
 
 import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
@@ -11,11 +12,10 @@ import androidx.viewpager2.widget.ViewPager2
 import com.dscvit.vitty.R
 import com.dscvit.vitty.adapter.IntroAdapter
 import com.dscvit.vitty.databinding.ActivityAuthBinding
-import com.dscvit.vitty.util.Constants.EMAIL
-import com.dscvit.vitty.util.Constants.NAME
 import com.dscvit.vitty.util.Constants.TOKEN
 import com.dscvit.vitty.util.Constants.UID
 import com.dscvit.vitty.util.Constants.USER_INFO
+import com.dscvit.vitty.util.RemoteConfigUtils
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
@@ -34,6 +34,7 @@ class AuthActivity : AppCompatActivity() {
     private lateinit var mGoogleSignInClient: GoogleSignInClient
     private lateinit var mGoogleSignInOptions: GoogleSignInOptions
     private lateinit var firebaseAuth: FirebaseAuth
+    private lateinit var sharedPref: SharedPreferences
 
     private val pages = listOf("○", "○", "○")
     private var loginClick = false
@@ -42,12 +43,18 @@ class AuthActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_auth)
         firebaseAuth = FirebaseAuth.getInstance()
+        sharedPref = getSharedPreferences(USER_INFO, Context.MODE_PRIVATE)
+        if (intent.extras != null && intent.extras!!.getString("classId") != "")
+            sharedPref.edit().putString("openClassId", intent.extras!!.getString("classId")).apply()
+        else
+            sharedPref.edit().putString("openClassId", "").apply()
         configureGoogleSignIn()
         setupUI()
     }
 
     override fun onStart() {
         super.onStart()
+        RemoteConfigUtils.init()
         val user = FirebaseAuth.getInstance().currentUser
         if (user != null) {
             val intent = Intent(this, InstructionsActivity::class.java)
@@ -118,16 +125,12 @@ class AuthActivity : AppCompatActivity() {
         loginClick = false
     }
 
-    private fun saveInfo(name: String?, email: String?, token: String?, uid: String?) {
-        val sharedPref = getSharedPreferences(USER_INFO, Context.MODE_PRIVATE)
-        if (sharedPref != null) {
-            with(sharedPref.edit()) {
-                putString(NAME, name)
-                putString(EMAIL, email)
-                putString(TOKEN, token)
-                putString(UID, uid)
-                apply()
-            }
+    private fun saveInfo(token: String?, uid: String?) {
+        with(sharedPref.edit()) {
+            putString("sign_in_method", "Google")
+            putString(TOKEN, token)
+            putString(UID, uid)
+            apply()
         }
     }
 
@@ -152,7 +155,7 @@ class AuthActivity : AppCompatActivity() {
             if (it.isSuccessful) {
                 loginClick = true
                 val uid = firebaseAuth.currentUser?.uid
-                saveInfo(acct.displayName, acct.email, acct.idToken, uid)
+                saveInfo(acct.idToken, uid)
                 val intent = Intent(this, InstructionsActivity::class.java)
                 binding.loadingView.visibility = View.GONE
                 startActivity(intent)

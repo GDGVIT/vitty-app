@@ -12,7 +12,7 @@
     <string name="done">Done</string>
     <string name="no_classes_today">No classes today!</string>
     <string name="no_more_classes_today">No More Classes Today</string>
-    <string name="no_classes_today_subtext">Up for some Valorant Grind?</string>
+    <string name="no_classes_today_subtext">Catch up on some sleep</string>
     <string name="intro1_title">Never miss a class</string>
     <string name="intro1_subtitle">Notifications to remind you about your upcoming classes</string>
     <string name="intro2_title">Get a sneak peek</string>
@@ -25,16 +25,16 @@
     <string name="today_schedule">Today\'s Schedule</string>
     <string name="share">Share</string>
     <string name="share_text">Download the VITTY extension and app now!\nExtension: https://dscv.it/vitty-extension\nAndroid App: https://dscv.it/app/vitty</string>
-    <string name="instructions_1">1. Download the Chrome Extension from:</string>
-    <string name="instructions_1_link"><u>https://dscv.it/vitty-extension</u></string>
-    <string name="instructions_2">2. Log in with the same Google Account as shown above.</string>
-    <string name="instructions_3">3. Upload a screenshot of your timetable.</string>
+    <string name="instructions_1">1. Upload the timetable on:</string>
+    <string name="instructions_1_link"><u>https://dscv.it/vitty</u></string>
+    <string name="instructions_2">2. Log in with the same account as shown above.</string>
+    <string name="instructions_3">3. Follow the instructions and upload your timetable.</string>
     <string name="instructions_3_a">\u25CB Ensure that the screenshot is taken directly from VTOP. It should fit in one single image.</string>
     <string name="instructions_3_b">\u25CB DO NOT upload a screenshot that has been compressed or sent through social media.</string>
     <string name="instructions_4">4. Review it.</string>
     <string name="instructions_4_a">\u25CB Individual slot data can be edited by clicking on the edit button.</string>
     <string name="instructions_4_b">\u25CB If unsatisfied, click on the three dots and select Upload as Text.</string>
-    <string name="instructions_5">5. When done, click on Upload.</string>
+    <string name="instructions_5">5. When done, click on Confirm.</string>
     <string name="instructions_6">BRAVO! That\'s it. You did it!</string>
     <string name="instructions_7">In addition to this, you can have a sneak peek at your upcoming classes via the Widget.</string>
     <string name="logout">Logout</string>
@@ -45,6 +45,7 @@
     <string name="follow_instructions">Please follow the instructions!</string>
     <string name="updated">Updating…</string>
     <string name="battery">Battery</string>
+    <string name="nav">Navigation</string>
     <string name="new_updates">What\'s New?</string>
     <string name="account_details">Account Details</string>
     <string name="notif_group">Courses</string>
@@ -54,7 +55,8 @@
     <string name="about_widgets">Go to your home screen, long press and add widget!\n\nYou have two widgets to choose from:\n1. Today\'s Schedule: This shows your current day\'s classes.\n2. Next class: This gives you the details about your next upcoming class.</string>
     <string name="about_notifications">Get control of the notifications by tapping on ⋮ > Settings > Notifications.\n\nThere you can:\n1. Turn on Exam/Holiday Mode to pause your class notifications.\n2. Individually turn on/off notifications for your classes (Android 8+ only).</string>
     <string name="about_battery">To get notifications on time, keep the battery optimisations for the app turned off.\n\nTo change this setting, tap on ⋮ > Settings > Battery.</string>
-    <string name="about_new_updates">Out on a vacation and don\'t want your class\' notifications to ruin your mood? or are your CATs/FATs going on?\nGo to ⋮ > Settings > Turn on Exam/Holiday Mode to pause them.</string>
+    <string name="about_nav">Don\'t know which class is where? Don\'t worry, we\'ve got you covered!\n\nNow you can hit the directions button on the Next Class widget or tap on a room number in the app to start navigation to your class!</string>
+    <string name="about_new_updates">1. Instructions for timetable upload via website added\n2. Minor UI changes</string>
     <string name="final_heading">Let\'s go!</string>
     <string name="about_final">You\'re all set to start using the app.</string>
     <string name="congratulations">Congratulations!</string>
@@ -76,4 +78,19 @@
     <string name="exam_mode_alert">Exam/Holiday Mode Turned On</string>
     <string name="default_notification_channel_name">Updates</string>
     <string name="default_notification_channel_id">con.dscvit.vitty-Updates</string>
+    <string name="directions">Directions</string>
+    <string-array name="no_classes_today_subtext_list">
+        <item>Don\'t you have a quiz coming up?</item>
+        <item>Finish your DAs!</item>
+        <item>Chill and relax in hostel</item>
+        <item>Let\'s chill at Foodys!</item>
+        <item>Ready to run to Tarama?</item>
+        <item>Do grocery shopping at Allmart</item>
+    </string-array>
+    <string-array name="no_classes_today_subtext_list_online">
+        <item>Don\'t you have a quiz coming up?</item>
+        <item>Finish your DAs!</item>
+        <item>Read a book</item>
+        <item>Catch up on some sleep</item>
+    </string-array>
 </resources>

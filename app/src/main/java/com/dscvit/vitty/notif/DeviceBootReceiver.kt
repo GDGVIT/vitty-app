@@ -7,6 +7,7 @@ import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import com.dscvit.vitty.util.Constants
+import com.dscvit.vitty.util.Constants.ALARM_INTENT
 import com.dscvit.vitty.util.Constants.EXAM_MODE
 import com.dscvit.vitty.util.Constants.USER_INFO
 import java.util.Date
@@ -23,7 +24,10 @@ class DeviceBootReceiver : BroadcastReceiver() {
             if (!prefs?.getBoolean(EXAM_MODE, false)!!) {
                 val i = Intent(context, AlarmReceiver::class.java)
                 val pendingIntent =
-                    PendingIntent.getBroadcast(context, 0, i, 0)
+                    PendingIntent.getBroadcast(
+                        context, ALARM_INTENT, i,
+                        PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
+                    )
                 val alarmManager =
                     context.getSystemService(AppCompatActivity.ALARM_SERVICE) as AlarmManager
                 val date = Date().time

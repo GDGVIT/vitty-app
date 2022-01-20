@@ -13,6 +13,7 @@ import com.dscvit.vitty.R
 import com.dscvit.vitty.adapter.PeriodAdapter
 import com.dscvit.vitty.databinding.FragmentDayBinding
 import com.dscvit.vitty.model.PeriodDetails
+import com.dscvit.vitty.util.Quote
 import com.google.firebase.firestore.FirebaseFirestore
 import timber.log.Timber
 
@@ -56,6 +57,7 @@ class DayFragment : Fragment() {
                     for (document in result) {
                         try {
                             val pd = PeriodDetails(
+                                document.getString("courseCode")!!,
                                 document.getString("courseName")!!,
                                 document.getTimestamp("startTime")!!,
                                 document.getTimestamp("endTime")!!,
@@ -81,6 +83,7 @@ class DayFragment : Fragment() {
                 dayList.adapter = PeriodAdapter(courseList, fragID)
                 dayList.layoutManager = LinearLayoutManager(context)
             } else {
+                binding.quoteLine.text = Quote.getLine(requireContext())
                 noPeriod.visibility = View.VISIBLE
             }
         }

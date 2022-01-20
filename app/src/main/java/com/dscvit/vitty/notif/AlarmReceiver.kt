@@ -6,6 +6,8 @@ import android.content.Intent
 import android.content.SharedPreferences
 import com.dscvit.vitty.model.PeriodDetails
 import com.dscvit.vitty.util.Constants
+import com.dscvit.vitty.util.Constants.NOTIF_START
+import com.dscvit.vitty.util.RemoteConfigUtils
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.runBlocking
@@ -20,6 +22,7 @@ class AlarmReceiver : BroadcastReceiver() {
 
     override fun onReceive(context: Context?, intent: Intent?) {
         if (context != null) {
+            RemoteConfigUtils.init()
             prefs = context.getSharedPreferences(Constants.USER_INFO, 0)
             val days =
                 listOf("monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday")
@@ -45,7 +48,7 @@ class AlarmReceiver : BroadcastReceiver() {
         start: Calendar
     ) {
 
-        var notifId = prefs.getInt("notif_id", 1)
+        var notifId = prefs.getInt("notif_id", NOTIF_START)
 
         val diff = start.timeInMillis - calendar.timeInMillis
         if (diff < 1000 * 60 * 22 && diff > -(1000 * 60 * 5)) {
@@ -61,10 +64,11 @@ class AlarmReceiver : BroadcastReceiver() {
                         pd.courseName,
                         "You have ${pd.courseName} at $sTime",
                         pd.courseName,
-                        notifId++
+                        notifId++,
+                        pd.roomNo,
                     )
-                    if (notifId == Integer.MAX_VALUE - 1)
-                        notifId = 1
+                    if (notifId == Integer.MAX_VALUE - 2 || notifId < NOTIF_START)
+                        notifId = NOTIF_START
                     prefs.edit().putInt("notif_id", notifId).apply()
                 }
             }
@@ -117,6 +121,7 @@ class AlarmReceiver : BroadcastReceiver() {
                                     end[Calendar.MINUTE] = e[Calendar.MINUTE]
                                     if (end.time > calendar.time) {
                                         pd = PeriodDetails(
+                                            document.getString("courseCode")!!,
                                             document.getString("courseName")!!,
                                             document.getTimestamp("startTime")!!,
                                             document.getTimestamp("endTime")!!,
