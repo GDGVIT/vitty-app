@@ -41,7 +41,7 @@
             android:layout_height="match_parent"
             android:alpha="0.6"
             android:contentDescription="@string/active_background"
-            android:src="@drawable/tab_selected_background"
+            android:src="@drawable/next_class_background"
             android:visibility="invisible" />
 
         <LinearLayout
@@ -76,6 +76,17 @@
                         tools:text="@string/sample_course" />
 
                     <TextView
+                        android:id="@+id/course_code"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text='@={periodDetails.courseCode}'
+                        android:textSize="11sp"
+                        android:layout_marginBottom="4dp"
+                        android:visibility="gone"
+                        android:alpha="0.9"
+                        tools:text="@string/sample_course" />
+
+                    <TextView
                         android:id="@+id/period_time"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -101,7 +112,7 @@
                 android:id="@+id/more_info"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="22dp"
+                android:layout_marginTop="12dp"
                 android:gravity="center"
                 android:orientation="horizontal"
                 android:visibility="gone"
@@ -114,20 +125,19 @@
                     android:layout_weight="1"
                     android:orientation="vertical">
 
-                    <TextView
-                        android:id="@+id/course_code"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text='@{"Code: "+periodDetails.courseCode}'
-                        android:textSize="11sp"
-                        tools:text="@string/sample_course" />
+                    <!--                    <TextView-->
+                    <!--                        android:id="@+id/course_code"-->
+                    <!--                        android:layout_width="wrap_content"-->
+                    <!--                        android:layout_height="wrap_content"-->
+                    <!--                        android:text='@{"Code: "+periodDetails.courseCode}'-->
+                    <!--                        android:textSize="11sp"-->
+                    <!--                        tools:text="@string/sample_course" />-->
 
                     <TextView
                         android:id="@+id/slot_id"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text='@{"Slot: "+periodDetails.slot}'
-                        android:textSize="11sp"
+                        android:text='@={periodDetails.slot}'
                         tools:text="@string/sample_slot" />
                 </LinearLayout>
 

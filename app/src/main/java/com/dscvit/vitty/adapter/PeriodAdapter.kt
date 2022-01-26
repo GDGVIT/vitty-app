@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.dscvit.vitty.R
 import com.dscvit.vitty.databinding.CardPeriodBinding
 import com.dscvit.vitty.model.PeriodDetails
+import com.dscvit.vitty.util.Effects.vibrateOnClick
 import com.dscvit.vitty.util.RemoteConfigUtils
 import com.dscvit.vitty.util.VITMap
 import java.text.SimpleDateFormat
@@ -31,6 +32,7 @@ class PeriodAdapter(private val dataSet: ArrayList<PeriodDetails>, private val d
         val periodTime = binding.periodTime
         val classNav = binding.classNav
         val classIdOnline = binding.classIdOnline
+        val courseCode = binding.courseCode
         fun bind(data: PeriodDetails) {
             binding.periodDetails = data
         }
@@ -96,20 +98,25 @@ class PeriodAdapter(private val dataSet: ArrayList<PeriodDetails>, private val d
         }
 
         val isExpanded = position == mExpandedPosition
-        if (isExpanded) {
-            holder.expandedBackground.visibility = View.VISIBLE
-            holder.moreInfo.visibility = View.VISIBLE
-            holder.arrow.rotation = 180F
-        } else {
-            holder.moreInfo.visibility = View.GONE
-            holder.expandedBackground.visibility = View.GONE
-            holder.arrow.rotation = 0F
+        holder.apply {
+            if (isExpanded) {
+                expandedBackground.visibility = View.VISIBLE
+                moreInfo.visibility = View.VISIBLE
+                courseCode.visibility = View.VISIBLE
+                arrow.rotation = 180F
+            } else {
+                moreInfo.visibility = View.GONE
+                expandedBackground.visibility = View.GONE
+                courseCode.visibility = View.GONE
+                arrow.rotation = 0F
+            }
+            itemView.isActivated = isExpanded
         }
-        holder.itemView.isActivated = isExpanded
 
         if (isExpanded) previousExpandedPosition = position
 
         holder.itemView.setOnClickListener {
+            vibrateOnClick(holder.itemView.context)
             mExpandedPosition = if (isExpanded) -1 else position
             notifyItemChanged(previousExpandedPosition)
             notifyItemChanged(position)

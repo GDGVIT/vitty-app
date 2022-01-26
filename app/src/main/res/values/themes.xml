@@ -17,7 +17,7 @@
         <item name="android:windowBackground">@color/background</item>
         <item name="android:navigationBarColor">@color/background</item>
         <item name="android:textColorSecondary">@color/white</item>
-        <item name="popupMenuBackground">@color/tab_back</item>
+        <item name="popupMenuBackground">@drawable/menu_background</item>
     </style>
 
     <style name="Theme.VITTY.SettingsScreen" parent="Theme.VITTY">
