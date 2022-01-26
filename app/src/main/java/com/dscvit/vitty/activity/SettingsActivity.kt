@@ -14,6 +14,7 @@ import com.dscvit.vitty.databinding.ActivitySettingsBinding
 import com.dscvit.vitty.ui.settings.SettingsFragment
 import com.dscvit.vitty.util.Constants.VITTY_APP_URL
 import com.dscvit.vitty.util.RemoteConfigUtils
+import com.dscvit.vitty.util.Report
 
 class SettingsActivity : AppCompatActivity() {
     private lateinit var binding: ActivitySettingsBinding
@@ -66,8 +67,7 @@ class SettingsActivity : AppCompatActivity() {
                 }
             }
             setOnLongClickListener {
-                val versionDetails =
-                    "App Name: ${context.getString(R.string.app_name)}\nApp ID: ${BuildConfig.APPLICATION_ID}\nVersion Name: ${BuildConfig.VERSION_NAME}\nVersion Code: ${BuildConfig.VERSION_CODE}\nCollege Mode: ${RemoteConfigUtils.getOnlineModeDetails()}"
+                val versionDetails = Report.details(context)
                 Toast.makeText(
                     context,
                     "App Details Copied",
