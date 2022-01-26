@@ -54,7 +54,6 @@ class AuthActivity : AppCompatActivity() {
 
     override fun onStart() {
         super.onStart()
-        RemoteConfigUtils.init()
         val user = FirebaseAuth.getInstance().currentUser
         if (user != null) {
             val intent = Intent(this, InstructionsActivity::class.java)

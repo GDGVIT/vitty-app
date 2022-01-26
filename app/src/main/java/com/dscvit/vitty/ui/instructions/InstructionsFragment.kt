@@ -86,17 +86,5 @@ class InstructionsFragment : Fragment() {
                 }
             }
         }
-//        binding.instructions1Link.setOnLongClickListener {
-//            val shareIntent = Intent().apply {
-//                action = Intent.ACTION_SEND
-//                type = "text/plain"
-//            }
-//            shareIntent.putExtra(
-//                Intent.EXTRA_TEXT,
-//                context?.getString(R.string.share_text)
-//            )
-//            startActivity(Intent.createChooser(shareIntent, "Share"))
-//            true
-//        }
     }
 }

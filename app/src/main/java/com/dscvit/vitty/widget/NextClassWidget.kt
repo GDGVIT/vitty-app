@@ -57,7 +57,6 @@ internal fun updateNextClassWidget(
     appWidgetId: Int,
     pd: PeriodDetails?
 ) {
-    RemoteConfigUtils.init()
     val views = RemoteViews(context.packageName, R.layout.next_class_widget)
     val intent = Intent(context, AuthActivity::class.java)
     val pendingIntent = PendingIntent.getActivity(

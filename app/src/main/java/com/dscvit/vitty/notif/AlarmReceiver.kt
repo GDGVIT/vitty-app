@@ -7,7 +7,6 @@ import android.content.SharedPreferences
 import com.dscvit.vitty.model.PeriodDetails
 import com.dscvit.vitty.util.Constants
 import com.dscvit.vitty.util.Constants.NOTIF_START
-import com.dscvit.vitty.util.RemoteConfigUtils
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.runBlocking
@@ -22,7 +21,6 @@ class AlarmReceiver : BroadcastReceiver() {
 
     override fun onReceive(context: Context?, intent: Intent?) {
         if (context != null) {
-            RemoteConfigUtils.init()
             prefs = context.getSharedPreferences(Constants.USER_INFO, 0)
             val days =
                 listOf("monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday")
