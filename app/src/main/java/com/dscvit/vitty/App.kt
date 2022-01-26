@@ -26,7 +26,6 @@ class App : Application() {
         remoteConfig = getFirebaseRemoteConfig()
     }
 
-
     private fun getFirebaseRemoteConfig(): FirebaseRemoteConfig {
         val remoteConfig = Firebase.remoteConfig
         val configSettings = remoteConfigSettings {
@@ -46,5 +45,4 @@ class App : Application() {
 
         return remoteConfig
     }
-
 }

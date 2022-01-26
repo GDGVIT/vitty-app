@@ -15,7 +15,6 @@ import com.dscvit.vitty.databinding.ActivityAuthBinding
 import com.dscvit.vitty.util.Constants.TOKEN
 import com.dscvit.vitty.util.Constants.UID
 import com.dscvit.vitty.util.Constants.USER_INFO
-import com.dscvit.vitty.util.RemoteConfigUtils
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInClient

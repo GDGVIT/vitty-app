@@ -31,4 +31,5 @@ object Constants {
     const val NEXT_CLASS_NAV_INTENT = 3
     const val NOTIF_INTENT = 4
     const val NOTIF_START = 5
+    const val DEFAULT_QUOTE = "Catch up on some sleep"
 }
