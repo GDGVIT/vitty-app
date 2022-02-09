@@ -32,4 +32,5 @@ object Constants {
     const val NOTIF_INTENT = 4
     const val NOTIF_START = 5
     const val DEFAULT_QUOTE = "Catch up on some sleep"
+    const val VIBRATION_MODE = "vib_mode"
 }

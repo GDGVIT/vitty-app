@@ -31,6 +31,18 @@
 
     </PreferenceCategory>
 
+
+    <PreferenceCategory
+        app:iconSpaceReserved="false"
+        app:title="Effects">
+
+        <SwitchPreferenceCompat
+            app:icon="@drawable/ic_vibration"
+            app:key="vib_mode"
+            app:summary="Vibrate on selecting a card"
+            app:title="Vibration" />
+    </PreferenceCategory>
+
     <PreferenceCategory
         app:iconSpaceReserved="false"
         app:title="Battery">

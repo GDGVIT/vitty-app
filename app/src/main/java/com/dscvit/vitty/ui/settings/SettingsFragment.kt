@@ -92,6 +92,19 @@ class SettingsFragment : PreferenceFragmentCompat() {
         }
     }
 
+    private fun setupEffects() {
+        val examMode: SwitchPreferenceCompat? = findPreference(Constants.VIBRATION_MODE)
+        examMode?.setOnPreferenceChangeListener { _, newValue ->
+            val prefs = requireContext().getSharedPreferences(Constants.USER_INFO, 0)
+            if (newValue.toString() == "true") {
+                prefs.edit().putBoolean(Constants.VIBRATION_MODE, true).apply()
+            } else {
+                prefs.edit().putBoolean(Constants.VIBRATION_MODE, false).apply()
+            }
+            true
+        }
+    }
+
     private fun setupBattery() {
         val batteryOptimization: Preference? = findPreference(Constants.BATTERY_OPTIM)
         val pm: PowerManager = context?.getSystemService(Context.POWER_SERVICE) as PowerManager
@@ -158,6 +171,7 @@ class SettingsFragment : PreferenceFragmentCompat() {
     private fun setupPreferences() {
         setupAccountDetails()
         setupNotifications()
+        setupEffects()
         setupBattery()
         setupAbout()
     }
