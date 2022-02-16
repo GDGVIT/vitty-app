@@ -1,7 +1,5 @@
 package com.dscvit.vitty.ui.settings
 
-import android.app.AlarmManager
-import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
@@ -11,15 +9,13 @@ import android.os.PowerManager
 import android.provider.Settings
 import android.view.View
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
 import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
 import androidx.preference.SwitchPreferenceCompat
 import com.dscvit.vitty.R
-import com.dscvit.vitty.notif.AlarmReceiver
+import com.dscvit.vitty.notif.NotificationHelper
 import com.dscvit.vitty.util.Constants
 import com.dscvit.vitty.util.LogoutHelper
-import java.util.Date
 
 class SettingsFragment : PreferenceFragmentCompat() {
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
@@ -33,45 +29,15 @@ class SettingsFragment : PreferenceFragmentCompat() {
         rv.setPadding(24, 0, 24, 0)
     }
 
-    private fun setAlarm() {
-        val intent = Intent(context, AlarmReceiver::class.java)
-        val pendingIntent = PendingIntent.getBroadcast(
-            context,
-            Constants.ALARM_INTENT,
-            intent,
-            PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
-        )
-        val alarmManager =
-            requireContext().getSystemService(AppCompatActivity.ALARM_SERVICE) as AlarmManager
-        val date = Date().time
-        alarmManager.setRepeating(
-            AlarmManager.RTC_WAKEUP,
-            date,
-            (1000 * 60 * Constants.NOTIF_DELAY).toLong(),
-            pendingIntent
-        )
-    }
-
-    private fun cancelAlarm() {
-        val alarmManager =
-            requireContext().getSystemService(Context.ALARM_SERVICE) as AlarmManager
-        val intent = Intent(context, AlarmReceiver::class.java)
-        val pendingIntent = PendingIntent.getBroadcast(
-            context, Constants.ALARM_INTENT, intent,
-            PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
-        )
-        alarmManager.cancel(pendingIntent)
-    }
-
     private fun setupNotifications() {
         val examMode: SwitchPreferenceCompat? = findPreference(Constants.EXAM_MODE)
         examMode?.setOnPreferenceChangeListener { _, newValue ->
             val prefs = requireContext().getSharedPreferences(Constants.USER_INFO, 0)
             if (newValue.toString() == "true") {
-                cancelAlarm()
+                NotificationHelper.cancelAlarm(requireContext())
                 prefs.edit().putBoolean(Constants.EXAM_MODE, true).apply()
             } else {
-                setAlarm()
+                NotificationHelper.setAlarm(requireContext())
                 prefs.edit().putBoolean(Constants.EXAM_MODE, false).apply()
             }
             true

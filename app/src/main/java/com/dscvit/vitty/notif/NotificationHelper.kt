@@ -1,5 +1,6 @@
 package com.dscvit.vitty.notif
 
+import android.app.AlarmManager
 import android.app.NotificationChannel
 import android.app.NotificationChannelGroup
 import android.app.NotificationManager
@@ -7,13 +8,16 @@ import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
 import android.os.Build
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import androidx.core.content.ContextCompat
 import com.dscvit.vitty.R
 import com.dscvit.vitty.activity.AuthActivity
+import com.dscvit.vitty.util.Constants
 import com.dscvit.vitty.util.Constants.NOTIF_INTENT
 import com.dscvit.vitty.util.RemoteConfigUtils
+import java.util.Date
 
 object NotificationHelper {
     fun createNotificationChannel(
@@ -108,5 +112,35 @@ object NotificationHelper {
         with(NotificationManagerCompat.from(context)) {
             notify(notificationId, builder.build())
         }
+    }
+
+    fun setAlarm(context: Context) {
+        val intent = Intent(context, AlarmReceiver::class.java)
+        val pendingIntent = PendingIntent.getBroadcast(
+            context,
+            Constants.ALARM_INTENT,
+            intent,
+            PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
+        )
+        val alarmManager =
+            context.getSystemService(AppCompatActivity.ALARM_SERVICE) as AlarmManager
+        val date = Date().time
+        alarmManager.setRepeating(
+            AlarmManager.RTC_WAKEUP,
+            date,
+            (1000 * 60 * Constants.NOTIF_DELAY).toLong(),
+            pendingIntent
+        )
+    }
+
+    fun cancelAlarm(context: Context) {
+        val alarmManager =
+            context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
+        val intent = Intent(context, AlarmReceiver::class.java)
+        val pendingIntent = PendingIntent.getBroadcast(
+            context, Constants.ALARM_INTENT, intent,
+            PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
+        )
+        alarmManager.cancel(pendingIntent)
     }
 }
