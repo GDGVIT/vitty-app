@@ -30,9 +30,12 @@ class SettingsFragment : PreferenceFragmentCompat() {
     }
 
     private fun setupNotifications() {
+        val prefs = requireContext().getSharedPreferences(Constants.USER_INFO, 0)
         val examMode: SwitchPreferenceCompat? = findPreference(Constants.EXAM_MODE)
+        if (examMode != null) {
+            examMode.isChecked = prefs.getBoolean(Constants.EXAM_MODE, false)
+        }
         examMode?.setOnPreferenceChangeListener { _, newValue ->
-            val prefs = requireContext().getSharedPreferences(Constants.USER_INFO, 0)
             if (newValue.toString() == "true") {
                 NotificationHelper.cancelAlarm(requireContext())
                 prefs.edit().putBoolean(Constants.EXAM_MODE, true).apply()
@@ -137,7 +140,7 @@ class SettingsFragment : PreferenceFragmentCompat() {
     private fun setupPreferences() {
         setupAccountDetails()
         setupNotifications()
-        setupEffects()
+//        setupEffects()
         setupBattery()
         setupAbout()
     }

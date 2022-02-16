@@ -13,11 +13,15 @@ class TileService : TileService() {
         super.onClick()
         changeExamMode()
         checkExamMode()
-        // Called when the user click the tile
     }
 
     override fun onTileAdded() {
         super.onTileAdded()
+        checkExamMode()
+    }
+
+    override fun onStartListening() {
+        super.onStartListening()
         checkExamMode()
     }
 
