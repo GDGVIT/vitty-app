@@ -1,4 +1,4 @@
-package com.dscvit.vitty.notif
+package com.dscvit.vitty.receiver
 
 import android.content.BroadcastReceiver
 import android.content.Context
@@ -7,6 +7,7 @@ import android.content.SharedPreferences
 import com.dscvit.vitty.model.PeriodDetails
 import com.dscvit.vitty.util.Constants
 import com.dscvit.vitty.util.Constants.NOTIF_START
+import com.dscvit.vitty.util.NotificationHelper
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.runBlocking

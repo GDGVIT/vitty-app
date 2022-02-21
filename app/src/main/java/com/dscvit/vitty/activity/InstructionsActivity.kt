@@ -18,8 +18,8 @@ import androidx.databinding.DataBindingUtil
 import com.dscvit.vitty.BuildConfig
 import com.dscvit.vitty.R
 import com.dscvit.vitty.databinding.ActivityInstructionsBinding
-import com.dscvit.vitty.notif.AlarmReceiver
-import com.dscvit.vitty.notif.NotificationHelper
+import com.dscvit.vitty.receiver.AlarmReceiver
+import com.dscvit.vitty.util.NotificationHelper
 import com.dscvit.vitty.util.ArraySaverLoader.loadArray
 import com.dscvit.vitty.util.ArraySaverLoader.saveArray
 import com.dscvit.vitty.util.Constants.ALARM_INTENT

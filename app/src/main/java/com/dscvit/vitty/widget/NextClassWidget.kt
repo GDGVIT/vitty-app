@@ -9,6 +9,7 @@ import android.view.View
 import android.widget.RemoteViews
 import com.dscvit.vitty.R
 import com.dscvit.vitty.activity.AuthActivity
+import com.dscvit.vitty.activity.NavigationActivity
 import com.dscvit.vitty.model.PeriodDetails
 import com.dscvit.vitty.util.Constants.NEXT_CLASS_INTENT
 import com.dscvit.vitty.util.Constants.NEXT_CLASS_NAV_INTENT
@@ -99,7 +100,7 @@ internal fun updateNextClassWidget(
                     R.id.class_nav_button,
                     View.VISIBLE
                 )
-                val clickIntent = Intent(context, AuthActivity::class.java)
+                val clickIntent = Intent(context, NavigationActivity::class.java)
                 clickIntent.putExtra("classId", pd.roomNo)
                 val mapPendingIntent = PendingIntent.getActivity(
                     context,

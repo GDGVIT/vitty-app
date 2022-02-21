@@ -43,10 +43,6 @@ class AuthActivity : AppCompatActivity() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_auth)
         firebaseAuth = FirebaseAuth.getInstance()
         sharedPref = getSharedPreferences(USER_INFO, Context.MODE_PRIVATE)
-        if (intent.extras != null && intent.extras!!.getString("classId") != "")
-            sharedPref.edit().putString("openClassId", intent.extras!!.getString("classId")).apply()
-        else
-            sharedPref.edit().putString("openClassId", "").apply()
         configureGoogleSignIn()
         setupUI()
     }

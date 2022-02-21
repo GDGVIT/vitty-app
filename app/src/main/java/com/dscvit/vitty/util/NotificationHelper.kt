@@ -1,4 +1,4 @@
-package com.dscvit.vitty.notif
+package com.dscvit.vitty.util
 
 import android.app.AlarmManager
 import android.app.NotificationChannel
@@ -7,6 +7,8 @@ import android.app.NotificationManager
 import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
+import android.media.AudioAttributes
+import android.net.Uri
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.NotificationCompat
@@ -14,10 +16,11 @@ import androidx.core.app.NotificationManagerCompat
 import androidx.core.content.ContextCompat
 import com.dscvit.vitty.R
 import com.dscvit.vitty.activity.AuthActivity
-import com.dscvit.vitty.util.Constants
+import com.dscvit.vitty.activity.NavigationActivity
+import com.dscvit.vitty.receiver.AlarmReceiver
 import com.dscvit.vitty.util.Constants.NOTIF_INTENT
-import com.dscvit.vitty.util.RemoteConfigUtils
 import java.util.Date
+
 
 object NotificationHelper {
     fun createNotificationChannel(
@@ -33,6 +36,15 @@ object NotificationHelper {
                 description = descriptionText
                 group = groupId
             }
+
+            val audioAttributes = AudioAttributes.Builder()
+                .setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION)
+                .setUsage(AudioAttributes.USAGE_ALARM)
+                .build()
+            channel.setSound(
+                Uri.parse("android.resource://" + context.packageName + "/" + R.raw.notification),
+                audioAttributes
+            )
             val notificationManager: NotificationManager =
                 context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
             notificationManager.createNotificationChannel(channel)
@@ -98,7 +110,7 @@ object NotificationHelper {
             .setAutoCancel(true)
 
         if (classId != "" && !RemoteConfigUtils.getOnlineMode()) {
-            val clickIntent = Intent(context, AuthActivity::class.java)
+            val clickIntent = Intent(context, NavigationActivity::class.java)
             clickIntent.putExtra("classId", classId)
             val mapPendingIntent = PendingIntent.getActivity(
                 context,
@@ -106,7 +118,7 @@ object NotificationHelper {
                 clickIntent,
                 PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
             )
-            builder.addAction(R.drawable.ic_nav, "Directions", mapPendingIntent)
+            builder.addAction(R.drawable.ic_nav, "Directions to $classId", mapPendingIntent)
         }
 
         with(NotificationManagerCompat.from(context)) {

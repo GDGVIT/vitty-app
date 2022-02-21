@@ -3,7 +3,7 @@ package com.dscvit.vitty.service
 import android.content.SharedPreferences
 import android.service.quicksettings.Tile
 import android.service.quicksettings.TileService
-import com.dscvit.vitty.notif.NotificationHelper
+import com.dscvit.vitty.util.NotificationHelper
 import com.dscvit.vitty.util.Constants
 
 class TileService : TileService() {

@@ -1,4 +1,4 @@
-package com.dscvit.vitty.notif
+package com.dscvit.vitty.receiver
 
 import android.app.AlarmManager
 import android.app.PendingIntent

@@ -1,6 +1,7 @@
-package com.dscvit.vitty.notif
+package com.dscvit.vitty.service
 
 import com.dscvit.vitty.R
+import com.dscvit.vitty.util.NotificationHelper
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
 import timber.log.Timber

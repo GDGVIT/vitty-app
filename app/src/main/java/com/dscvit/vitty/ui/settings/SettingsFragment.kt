@@ -13,7 +13,7 @@ import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
 import androidx.preference.SwitchPreferenceCompat
 import com.dscvit.vitty.R
-import com.dscvit.vitty.notif.NotificationHelper
+import com.dscvit.vitty.util.NotificationHelper
 import com.dscvit.vitty.util.Constants
 import com.dscvit.vitty.util.LogoutHelper
 

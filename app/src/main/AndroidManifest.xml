@@ -7,6 +7,14 @@
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <uses-permission android:name="android.permission.VIBRATE" />
 
+    <queries>
+        <intent>
+            <action android:name="android.intent.action.VIEW" />
+
+            <data android:scheme="geo" />
+        </intent>
+    </queries>
+
     <application
         android:name=".App"
         android:allowBackup="true"
@@ -17,18 +25,21 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.VITTY">
         <activity
+            android:name=".activity.NavigationActivity"
+            android:exported="false" />
+        <activity
             android:name=".activity.SettingsActivity"
             android:exported="false"
             android:label="@string/title_activity_settings"
             android:theme="@style/Theme.VITTY.SettingsScreen" />
+
         <service
-            android:name=".notif.FCMService"
+            android:name=".service.FCMService"
             android:exported="false">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
                 <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
             </intent-filter>
-
         </service>
 
         <meta-data
@@ -84,19 +95,18 @@
             android:screenOrientation="portrait" />
 
         <receiver
-            android:name=".notif.DeviceBootReceiver"
+            android:name=".receiver.DeviceBootReceiver"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
                 <action android:name="android.intent.action.MY_PACKAGE_REPLACED" />
             </intent-filter>
         </receiver>
-        <receiver android:name=".notif.AlarmReceiver" />
+        <receiver android:name=".receiver.AlarmReceiver" />
 
         <service
             android:name=".service.TodayWidgetService"
             android:permission="android.permission.BIND_REMOTEVIEWS" />
-
         <service
             android:name=".service.TileService"
             android:exported="true"
@@ -108,10 +118,5 @@
             </intent-filter>
         </service>
     </application>
-    <queries>
-        <intent>
-            <action android:name="android.intent.action.VIEW" />
-            <data android:scheme="geo" />
-        </intent>
-    </queries>
+
 </manifest>
