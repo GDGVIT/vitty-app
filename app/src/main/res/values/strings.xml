@@ -56,7 +56,7 @@
     <string name="about_notifications">Get control of the notifications by tapping on ⋮ > Settings > Notifications.\n\nThere you can:\n1. Turn on Exam/Holiday Mode to pause your class notifications.\n2. Individually turn on/off notifications for your classes (Android 8+ only).</string>
     <string name="about_battery">To get notifications on time, keep the battery optimisations for the app turned off.\n\nTo change this setting, tap on ⋮ > Settings > Battery.</string>
     <string name="about_nav">Don\'t know which class is where? Don\'t worry, we\'ve got you covered!\n\nNow you can hit the directions button on the Next Class widget or tap on a room number in the app to start navigation to your class!</string>
-    <string name="about_new_updates">1. Instructions for timetable upload via website added\n2. Minor UI changes</string>
+    <string name="about_new_updates">1.  Introducing Class Navigation - get directions to your class in one click!\n2. Quick settings tile added to easily turn on/off exam/holiday mode.\n3. Minor UI changes and bug fixes.</string>
     <string name="final_heading">Let\'s go!</string>
     <string name="about_final">You\'re all set to start using the app.</string>
     <string name="congratulations">Congratulations!</string>
