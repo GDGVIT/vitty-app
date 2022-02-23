@@ -10,6 +10,7 @@ import android.content.Intent
 import android.media.AudioAttributes
 import android.net.Uri
 import android.os.Build
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
@@ -18,6 +19,7 @@ import com.dscvit.vitty.R
 import com.dscvit.vitty.activity.AuthActivity
 import com.dscvit.vitty.activity.NavigationActivity
 import com.dscvit.vitty.receiver.AlarmReceiver
+import com.dscvit.vitty.util.Constants.GROUP_ID_2
 import com.dscvit.vitty.util.Constants.NOTIF_INTENT
 import java.util.Date
 
@@ -47,7 +49,21 @@ object NotificationHelper {
             )
             val notificationManager: NotificationManager =
                 context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-            notificationManager.createNotificationChannel(channel)
+            try {
+                notificationManager.createNotificationChannel(channel)
+            } catch (e: Exception) {
+                try {
+                    var groupName = context.getString(R.string.notif_group)
+                    if (groupId == GROUP_ID_2) {
+                        groupName = context.getString(R.string.gdscvit)
+                    }
+                    createNotificationGroup(context, groupName, groupId)
+                    notificationManager.createNotificationChannel(channel)
+                } catch (e: Exception) {
+                    Toast.makeText(context, "An unknown error occurred :(", Toast.LENGTH_SHORT)
+                        .show()
+                }
+            }
         }
     }
 

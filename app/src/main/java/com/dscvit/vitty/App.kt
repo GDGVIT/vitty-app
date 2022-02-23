@@ -17,7 +17,7 @@ class App : Application() {
     private val defaultConfig: HashMap<String, Any> =
         hashMapOf(
             LATEST_VERSION to BuildConfig.VERSION_CODE,
-            ONLINE_MODE to true
+            ONLINE_MODE to false
         )
 
     override fun onCreate() {
