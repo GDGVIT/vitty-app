@@ -20,7 +20,6 @@ import com.dscvit.vitty.util.Quote
 import com.google.firebase.firestore.FirebaseFirestore
 import timber.log.Timber
 
-
 class DayFragment : Fragment() {
 
     private lateinit var binding: FragmentDayBinding

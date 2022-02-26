@@ -13,14 +13,13 @@ import com.dscvit.vitty.util.Constants.USER_INFO
 import com.dscvit.vitty.util.UtilFunctions.reloadWidgets
 import java.util.Date
 
-
 class DeviceBootReceiver : BroadcastReceiver() {
     override fun onReceive(context: Context?, intent: Intent?) {
         if (intent!!.action.equals(
                 "android.intent.action.BOOT_COMPLETED"
             ) || intent.action.equals(
-                "android.intent.action.MY_PACKAGE_REPLACED"
-            )
+                    "android.intent.action.MY_PACKAGE_REPLACED"
+                )
         ) {
             val prefs = context?.getSharedPreferences(USER_INFO, 0)
             if (!prefs?.getBoolean(EXAM_MODE, false)!!) {

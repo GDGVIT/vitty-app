@@ -9,7 +9,6 @@ import android.widget.Toast
 import com.dscvit.vitty.widget.NextClassWidget
 import com.dscvit.vitty.widget.TodayWidget
 
-
 object UtilFunctions {
 
     fun openLink(context: Context, url: String) {

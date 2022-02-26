@@ -23,7 +23,6 @@ import com.dscvit.vitty.util.Constants.GROUP_ID_2
 import com.dscvit.vitty.util.Constants.NOTIF_INTENT
 import java.util.Date
 
-
 object NotificationHelper {
     fun createNotificationChannel(
         context: Context,
