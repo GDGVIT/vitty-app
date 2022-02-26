@@ -9,13 +9,16 @@ import android.os.PowerManager
 import android.provider.Settings
 import android.view.View
 import android.widget.Toast
+import androidx.preference.DropDownPreference
 import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
 import androidx.preference.SwitchPreferenceCompat
 import com.dscvit.vitty.R
-import com.dscvit.vitty.util.NotificationHelper
 import com.dscvit.vitty.util.Constants
+import com.dscvit.vitty.util.Constants.SAT_MODE
 import com.dscvit.vitty.util.LogoutHelper
+import com.dscvit.vitty.util.NotificationHelper
+import com.dscvit.vitty.util.UtilFunctions.reloadWidgets
 
 class SettingsFragment : PreferenceFragmentCompat() {
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
@@ -137,8 +140,19 @@ class SettingsFragment : PreferenceFragmentCompat() {
         openWebsite(Constants.GDSCVIT_TAG, Constants.GDSCVIT_WEBSITE)
     }
 
+    private fun setupClass() {
+        val prefs = requireContext().getSharedPreferences(Constants.USER_INFO, 0)
+        val satClass: DropDownPreference? = findPreference("sat_mode")
+        satClass?.setOnPreferenceChangeListener { _, newValue ->
+            prefs.edit().putString(SAT_MODE, newValue.toString()).apply()
+            reloadWidgets(requireContext())
+            true
+        }
+    }
+
     private fun setupPreferences() {
         setupAccountDetails()
+        setupClass()
         setupNotifications()
 //        setupEffects()
         setupBattery()

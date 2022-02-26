@@ -24,7 +24,7 @@
     <string name="your_next_class">Your Next Class</string>
     <string name="today_schedule">Today\'s Schedule</string>
     <string name="share">Share</string>
-    <string name="share_text">Are you having trouble staying on top of your hectic college schedule or don\'t know where your classes are? VITTY has got you covered, with VITTY you can have easy access to your timetable no matter where you are!\n\nSimply upload your VIT timetable as text or image and never miss another class again!\n\nGet VITTY Now!\n\nWebsite: https://dscv.it/vitty\n\nChrome Extension: https://dscv.it/vitty-extension\n\nAndroid App: https://dscv.it/vitty-app\n\niOS App: https://dscv.it/vitty-ios</string>
+    <string name="share_text">Are you having trouble staying on top of your hectic college schedule? Don\'t know where your classes are? VITTY has got you covered, with VITTY you can have easy access to your timetable no matter where you are!\n\nSimply upload your VIT timetable as text or image and never miss another class again!\n\nGet VITTY Now!\n\nWebsite: https://dscv.it/vitty\n\nChrome Extension: https://dscv.it/vitty-extension\n\nAndroid App: https://dscv.it/vitty-app\n\niOS App: https://dscv.it/vitty-ios</string>
     <string name="instructions_1">1. Upload the timetable on:</string>
     <string name="instructions_1_link"><u>https://dscv.it/vitty</u></string>
     <string name="instructions_2">2. Log in with the same account as shown above.</string>
@@ -56,7 +56,7 @@
     <string name="about_notifications">Get control of the notifications by tapping on ⋮ > Settings > Notifications.\n\nThere you can:\n1. Turn on Exam/Holiday Mode to pause your class notifications.\n2. Individually turn on/off notifications for your classes (Android 8+ only).</string>
     <string name="about_battery">To get notifications on time, keep the battery optimisations for the app turned off.\n\nTo change this setting, tap on ⋮ > Settings > Battery.</string>
     <string name="about_nav">Don\'t know which class is where? Don\'t worry, we\'ve got you covered!\n\nNow you can hit the directions button on the Next Class widget or tap on a room number in the app to start navigation to your class!</string>
-    <string name="about_new_updates">1.  Introducing Class Navigation - get directions to your class in one click!\n2. Quick settings tile added to easily turn on/off exam/holiday mode.\n3. Minor UI changes and bug fixes.</string>
+    <string name="about_new_updates">1.  Introducing Class Navigation - Get directions to your class in one click!\n2. Have a class on Saturday? No problem! Go to settings and select your timetable order!\n3. Quick settings tile added to easily turn on/off exam/holiday mode.\n3. Minor UI changes and bug fixes.</string>
     <string name="final_heading">Let\'s go!</string>
     <string name="about_final">You\'re all set to start using the app.</string>
     <string name="congratulations">Congratulations!</string>
@@ -96,5 +96,21 @@
         <item>Finish your DAs!</item>
         <item>Read a book</item>
         <item>Catch up on some sleep</item>
+    </string-array>
+    <string-array name="sat_order">
+        <item>No Class</item>
+        <item>Monday Order</item>
+        <item>Tuesday Order</item>
+        <item>Wednesday Order</item>
+        <item>Thursday Order</item>
+        <item>Friday Order</item>
+    </string-array>
+    <string-array name="sat_order_values">
+        <item>saturday</item>
+        <item>monday</item>
+        <item>tuesday</item>
+        <item>wednesday</item>
+        <item>thursday</item>
+        <item>friday</item>
     </string-array>
 </resources>

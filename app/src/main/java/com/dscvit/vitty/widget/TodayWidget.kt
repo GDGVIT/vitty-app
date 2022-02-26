@@ -11,6 +11,7 @@ import com.dscvit.vitty.R
 import com.dscvit.vitty.activity.AuthActivity
 import com.dscvit.vitty.service.TodayWidgetService
 import com.dscvit.vitty.util.ArraySaverLoader.saveArray
+import com.dscvit.vitty.util.Constants
 import com.dscvit.vitty.util.Constants.PERIODS
 import com.dscvit.vitty.util.Constants.TIME_SLOTS
 import com.dscvit.vitty.util.Constants.TODAY_INTENT
@@ -114,13 +115,14 @@ fun fetchTodayFirestore(
 
 suspend fun fetchTodayData(
     context: Context,
-    day: String,
+    oldDay: String,
     appWidgetManager: AppWidgetManager,
     appWidgetId: Int,
 ) =
     coroutineScope {
         val db = FirebaseFirestore.getInstance()
         val sharedPref = context.getSharedPreferences("login_info", Context.MODE_PRIVATE)!!
+        val day = if (oldDay == "saturday") sharedPref.getString(Constants.SAT_MODE, "saturday").toString() else oldDay
         val uid = sharedPref.getString("uid", "")
         val courseList: ArrayList<String> = ArrayList()
         val timeList: ArrayList<String> = ArrayList()

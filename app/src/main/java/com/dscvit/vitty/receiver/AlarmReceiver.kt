@@ -89,12 +89,13 @@ class AlarmReceiver : BroadcastReceiver() {
 
     private suspend fun fetchData(
         context: Context,
-        day: String,
+        oldDay: String,
         calendar: Calendar,
     ) =
         coroutineScope {
             val db = FirebaseFirestore.getInstance()
             val sharedPref = context.getSharedPreferences("login_info", Context.MODE_PRIVATE)!!
+            val day = if (oldDay == "saturday") sharedPref.getString(Constants.SAT_MODE, "saturday").toString() else oldDay
             val uid = sharedPref.getString("uid", "")
             var pd = PeriodDetails()
             val start = Calendar.getInstance()

@@ -14,6 +14,19 @@
 
     <PreferenceCategory
         app:iconSpaceReserved="false"
+        app:title="Class Settings">
+
+        <DropDownPreference
+            app:entries="@array/sat_order"
+            app:entryValues="@array/sat_order_values"
+            app:icon="@drawable/ic_vibration"
+            app:key="sat_mode"
+            app:title="Saturday Class"
+            app:useSimpleSummaryProvider="true" />
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        app:iconSpaceReserved="false"
         app:title="Notifications">
 
         <SwitchPreferenceCompat
@@ -31,16 +44,16 @@
 
     </PreferenceCategory>
 
-<!--    <PreferenceCategory-->
-<!--        app:iconSpaceReserved="false"-->
-<!--        app:title="Effects">-->
+    <!--    <PreferenceCategory-->
+    <!--        app:iconSpaceReserved="false"-->
+    <!--        app:title="Effects">-->
 
-<!--        <SwitchPreferenceCompat-->
-<!--            app:icon="@drawable/ic_vibration"-->
-<!--            app:key="vib_mode"-->
-<!--            app:summary="Vibrate on selecting a card"-->
-<!--            app:title="Vibration" />-->
-<!--    </PreferenceCategory>-->
+    <!--        <SwitchPreferenceCompat-->
+    <!--            app:icon="@drawable/ic_vibration"-->
+    <!--            app:key="vib_mode"-->
+    <!--            app:summary="Vibrate on selecting a card"-->
+    <!--            app:title="Vibration" />-->
+    <!--    </PreferenceCategory>-->
 
     <PreferenceCategory
         app:iconSpaceReserved="false"

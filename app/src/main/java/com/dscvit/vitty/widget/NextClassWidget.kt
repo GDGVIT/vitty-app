@@ -11,6 +11,7 @@ import com.dscvit.vitty.R
 import com.dscvit.vitty.activity.AuthActivity
 import com.dscvit.vitty.activity.NavigationActivity
 import com.dscvit.vitty.model.PeriodDetails
+import com.dscvit.vitty.util.Constants
 import com.dscvit.vitty.util.Constants.NEXT_CLASS_INTENT
 import com.dscvit.vitty.util.Constants.NEXT_CLASS_NAV_INTENT
 import com.dscvit.vitty.util.Quote
@@ -149,7 +150,7 @@ fun fetchFirestore(
 
 suspend fun fetchData(
     context: Context,
-    day: String,
+    oldDay: String,
     calendar: Calendar,
     appWidgetManager: AppWidgetManager,
     appWidgetId: Int,
@@ -157,6 +158,7 @@ suspend fun fetchData(
     coroutineScope {
         val db = FirebaseFirestore.getInstance()
         val sharedPref = context.getSharedPreferences("login_info", Context.MODE_PRIVATE)!!
+        val day = if (oldDay == "saturday") sharedPref.getString(Constants.SAT_MODE, "saturday").toString() else oldDay
         val uid = sharedPref.getString("uid", "")
         var pd = PeriodDetails()
         if (uid != null && uid != "") {
