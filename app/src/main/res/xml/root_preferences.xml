@@ -16,10 +16,10 @@
         app:iconSpaceReserved="false"
         app:title="Class Settings">
 
-        <DropDownPreference
+        <ListPreference
             app:entries="@array/sat_order"
             app:entryValues="@array/sat_order_values"
-            app:icon="@drawable/ic_vibration"
+            app:icon="@drawable/ic_saturday_mode"
             app:key="sat_mode"
             app:title="Saturday Class"
             app:useSimpleSummaryProvider="true" />

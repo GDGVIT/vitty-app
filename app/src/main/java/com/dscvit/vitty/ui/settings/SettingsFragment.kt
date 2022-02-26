@@ -9,7 +9,7 @@ import android.os.PowerManager
 import android.provider.Settings
 import android.view.View
 import android.widget.Toast
-import androidx.preference.DropDownPreference
+import androidx.preference.ListPreference
 import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
 import androidx.preference.SwitchPreferenceCompat
@@ -142,7 +142,7 @@ class SettingsFragment : PreferenceFragmentCompat() {
 
     private fun setupClass() {
         val prefs = requireContext().getSharedPreferences(Constants.USER_INFO, 0)
-        val satClass: DropDownPreference? = findPreference("sat_mode")
+        val satClass: ListPreference? = findPreference("sat_mode")
         satClass?.setOnPreferenceChangeListener { _, newValue ->
             prefs.edit().putString(SAT_MODE, newValue.toString()).apply()
             reloadWidgets(requireContext())
