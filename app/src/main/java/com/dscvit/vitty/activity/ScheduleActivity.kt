@@ -24,6 +24,7 @@ import com.dscvit.vitty.util.Constants.UPDATE_CODE
 import com.dscvit.vitty.util.Constants.USER_INFO
 import com.dscvit.vitty.util.LogoutHelper
 import com.dscvit.vitty.util.RemoteConfigUtils
+import com.dscvit.vitty.util.UtilFunctions.openLink
 import com.dscvit.vitty.util.VITMap
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.tabs.TabLayoutMediator
@@ -114,6 +115,10 @@ class ScheduleActivity : FragmentActivity() {
                 }
                 R.id.settings -> {
                     startActivity(Intent(this, SettingsActivity::class.java))
+                    true
+                }
+                R.id.support -> {
+                    openLink(this, getString(R.string.telegram_link))
                     true
                 }
                 R.id.share -> {

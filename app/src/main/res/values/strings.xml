@@ -24,7 +24,7 @@
     <string name="your_next_class">Your Next Class</string>
     <string name="today_schedule">Today\'s Schedule</string>
     <string name="share">Share</string>
-    <string name="share_text">Download the VITTY extension and app now!\nExtension: https://dscv.it/vitty-extension\nAndroid App: https://dscv.it/app/vitty</string>
+    <string name="share_text">Are you having trouble staying on top of your hectic college schedule or don\'t know where your classes are? VITTY has got you covered, with VITTY you can have easy access to your timetable no matter where you are!\n\nSimply upload your VIT timetable as text or image and never miss another class again!\n\nGet VITTY Now!\n\nWebsite: https://dscv.it/vitty\n\nChrome Extension: https://dscv.it/vitty-extension\n\nAndroid App: https://dscv.it/vitty-app\n\niOS App: https://dscv.it/vitty-ios</string>
     <string name="instructions_1">1. Upload the timetable on:</string>
     <string name="instructions_1_link"><u>https://dscv.it/vitty</u></string>
     <string name="instructions_2">2. Log in with the same account as shown above.</string>
@@ -82,6 +82,7 @@
     <string name="facing_issues_title">Facing any issues? Contact us!</string>
     <string name="facing_issues_description">We are available on Telegram throughout the day ready to fix your problems!</string>
     <string name="telegram_link"><u>https://dscv.it/telegram</u></string>
+    <string name="support">Support</string>
     <string-array name="no_classes_today_subtext_list">
         <item>Don\'t you have a quiz coming up?</item>
         <item>Finish your DAs!</item>

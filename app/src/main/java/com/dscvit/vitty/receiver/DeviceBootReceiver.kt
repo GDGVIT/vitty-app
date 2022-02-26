@@ -2,6 +2,7 @@ package com.dscvit.vitty.receiver
 
 import android.app.AlarmManager
 import android.app.PendingIntent
+import android.appwidget.AppWidgetManager
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
@@ -10,15 +11,18 @@ import com.dscvit.vitty.util.Constants
 import com.dscvit.vitty.util.Constants.ALARM_INTENT
 import com.dscvit.vitty.util.Constants.EXAM_MODE
 import com.dscvit.vitty.util.Constants.USER_INFO
+import com.dscvit.vitty.widget.NextClassWidget
+import com.dscvit.vitty.widget.TodayWidget
 import java.util.Date
+
 
 class DeviceBootReceiver : BroadcastReceiver() {
     override fun onReceive(context: Context?, intent: Intent?) {
         if (intent!!.action.equals(
                 "android.intent.action.BOOT_COMPLETED"
             ) || intent.action.equals(
-                    "android.intent.action.MY_PACKAGE_REPLACED"
-                )
+                "android.intent.action.MY_PACKAGE_REPLACED"
+            )
         ) {
             val prefs = context?.getSharedPreferences(USER_INFO, 0)
             if (!prefs?.getBoolean(EXAM_MODE, false)!!) {
@@ -38,6 +42,15 @@ class DeviceBootReceiver : BroadcastReceiver() {
                     pendingIntent
                 )
             }
+
+            val i = Intent(context, NextClassWidget::class.java)
+            i.action = AppWidgetManager.ACTION_APPWIDGET_UPDATE
+            context.sendBroadcast(i)
+
+            val i2 = Intent(context, TodayWidget::class.java)
+            i2.action = AppWidgetManager.ACTION_APPWIDGET_UPDATE
+            context.sendBroadcast(i2)
+
         }
     }
 }

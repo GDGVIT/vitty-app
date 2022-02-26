@@ -3,8 +3,13 @@
     <item
         android:id="@+id/logout"
         android:icon="@drawable/ic_logout"
-        android:orderInCategory="3"
+        android:orderInCategory="4"
         android:title="@string/logout" />
+
+    <item
+        android:id="@+id/support"
+        android:orderInCategory="3"
+        android:title="@string/support" />
 
     <item
         android:id="@+id/share"

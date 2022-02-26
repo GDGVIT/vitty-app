@@ -3,9 +3,7 @@ package com.dscvit.vitty.ui.instructions
 import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.Context
-import android.content.Intent
 import android.content.SharedPreferences
-import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -18,6 +16,7 @@ import coil.transform.CircleCropTransformation
 import com.dscvit.vitty.R
 import com.dscvit.vitty.databinding.FragmentInstructionsBinding
 import com.dscvit.vitty.model.UserDetails
+import com.dscvit.vitty.util.UtilFunctions.openLink
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
@@ -57,7 +56,7 @@ class InstructionsFragment : Fragment() {
             }
             instructions1Link.apply {
                 setOnClickListener {
-                    openLink(context.getString(R.string.instructions_1_link))
+                    openLink(context, context.getString(R.string.instructions_1_link))
                 }
                 setOnLongClickListener {
                     copyLink(
@@ -69,7 +68,7 @@ class InstructionsFragment : Fragment() {
             }
             telegramIssueLink.apply {
                 setOnClickListener {
-                    openLink(context.getString(R.string.telegram_link))
+                    openLink(context, context.getString(R.string.telegram_link))
                 }
                 setOnLongClickListener {
                     copyLink(
@@ -79,19 +78,6 @@ class InstructionsFragment : Fragment() {
                     true
                 }
             }
-        }
-    }
-
-    private fun openLink(url: String) {
-        try {
-            startActivity(
-                Intent(
-                    Intent.ACTION_VIEW,
-                    Uri.parse(url)
-                )
-            )
-        } catch (e: Exception) {
-            Toast.makeText(context, "Browser not found!", Toast.LENGTH_LONG).show()
         }
     }
 
