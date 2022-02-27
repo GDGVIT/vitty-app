@@ -14,9 +14,9 @@ import com.dscvit.vitty.adapter.PeriodAdapter
 import com.dscvit.vitty.databinding.FragmentDayBinding
 import com.dscvit.vitty.model.PeriodDetails
 import com.dscvit.vitty.util.Constants.DEFAULT_QUOTE
-import com.dscvit.vitty.util.Constants.SAT_MODE
 import com.dscvit.vitty.util.Constants.USER_INFO
 import com.dscvit.vitty.util.Quote
+import com.dscvit.vitty.util.UtilFunctions
 import com.google.firebase.firestore.FirebaseFirestore
 import timber.log.Timber
 
@@ -51,7 +51,10 @@ class DayFragment : Fragment() {
         sharedPref = activity?.getSharedPreferences(USER_INFO, Context.MODE_PRIVATE)!!
         courseList.clear()
         val uid = sharedPref.getString("uid", "")
-        day = if (days[fragID] == "saturday") sharedPref.getString(SAT_MODE, "saturday").toString() else days[fragID]
+        day = if (days[fragID] == "saturday") sharedPref.getString(
+            UtilFunctions.getSatModeCode(),
+            "saturday"
+        ).toString() else days[fragID]
         if (uid != null) {
             db.collection("users")
                 .document(uid)
@@ -102,7 +105,11 @@ class DayFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
-        if (days[fragID] == "saturday" && day != sharedPref.getString(SAT_MODE, "saturday").toString()) {
+        if (days[fragID] == "saturday" && day != sharedPref.getString(
+                UtilFunctions.getSatModeCode(),
+                "saturday"
+            ).toString()
+        ) {
             getData()
         }
     }

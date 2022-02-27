@@ -79,11 +79,11 @@
                         android:id="@+id/course_code"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginBottom="4dp"
+                        android:alpha="0.9"
                         android:text='@={periodDetails.courseCode}'
                         android:textSize="11sp"
-                        android:layout_marginBottom="4dp"
                         android:visibility="gone"
-                        android:alpha="0.9"
                         tools:text="@string/sample_course" />
 
                     <TextView

@@ -15,9 +15,9 @@ import androidx.preference.PreferenceFragmentCompat
 import androidx.preference.SwitchPreferenceCompat
 import com.dscvit.vitty.R
 import com.dscvit.vitty.util.Constants
-import com.dscvit.vitty.util.Constants.SAT_MODE
 import com.dscvit.vitty.util.LogoutHelper
 import com.dscvit.vitty.util.NotificationHelper
+import com.dscvit.vitty.util.UtilFunctions.getSatModeCode
 import com.dscvit.vitty.util.UtilFunctions.reloadWidgets
 
 class SettingsFragment : PreferenceFragmentCompat() {
@@ -143,8 +143,9 @@ class SettingsFragment : PreferenceFragmentCompat() {
     private fun setupClass() {
         val prefs = requireContext().getSharedPreferences(Constants.USER_INFO, 0)
         val satClass: ListPreference? = findPreference("sat_mode")
+        satClass?.value = prefs.getString(getSatModeCode(), "saturday")
         satClass?.setOnPreferenceChangeListener { _, newValue ->
-            prefs.edit().putString(SAT_MODE, newValue.toString()).apply()
+            prefs.edit().putString(getSatModeCode(), newValue.toString()).apply()
             reloadWidgets(requireContext())
             true
         }

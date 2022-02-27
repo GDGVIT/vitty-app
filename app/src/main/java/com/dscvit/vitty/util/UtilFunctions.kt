@@ -6,8 +6,10 @@ import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.widget.Toast
+import com.dscvit.vitty.util.Constants.SAT_MODE
 import com.dscvit.vitty.widget.NextClassWidget
 import com.dscvit.vitty.widget.TodayWidget
+import java.util.Calendar
 
 object UtilFunctions {
 
@@ -35,5 +37,14 @@ object UtilFunctions {
         val ids = AppWidgetManager.getInstance(context).getAppWidgetIds(ComponentName(context, cls))
         intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, ids)
         context.sendBroadcast(intent)
+    }
+
+    fun getWeekYear(): String {
+        val now: Calendar = Calendar.getInstance()
+        return now.get(Calendar.WEEK_OF_YEAR).toString() + now.get(Calendar.YEAR).toString()
+    }
+
+    fun getSatModeCode(): String {
+        return SAT_MODE + getWeekYear()
     }
 }
