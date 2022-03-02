@@ -122,7 +122,7 @@ class AlarmReceiver : BroadcastReceiver() {
                                     if (end.time > calendar.time) {
                                         pd = PeriodDetails(
                                             document.getString("courseCode")!!,
-                                            document.getString("courseName")!!,
+                                            if ((document.getString("slot")!!).startsWith("L")) (document.getString("courseName")!! + " Lab") else document.getString("courseName")!!,
                                             document.getTimestamp("startTime")!!,
                                             document.getTimestamp("endTime")!!,
                                             document.getString("slot")!!,

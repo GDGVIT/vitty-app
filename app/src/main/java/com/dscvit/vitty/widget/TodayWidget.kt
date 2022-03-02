@@ -143,7 +143,7 @@ suspend fun fetchTodayData(
                             val eTime: String =
                                 simpleDateFormat.format(endTime).uppercase()
 
-                            courseList.add(document.getString("courseName")!!)
+                            courseList.add(if ((document.getString("slot")!!).startsWith("L")) (document.getString("courseName")!! + " Lab") else document.getString("courseName")!!)
                             timeList.add("$sTime - $eTime")
                         } catch (e: Exception) {
                             Timber.d("Error: $e")
