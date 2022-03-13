@@ -9,11 +9,13 @@ import android.view.View
 import android.widget.RemoteViews
 import com.dscvit.vitty.R
 import com.dscvit.vitty.activity.AuthActivity
+import com.dscvit.vitty.activity.NavigationActivity
 import com.dscvit.vitty.model.PeriodDetails
 import com.dscvit.vitty.util.Constants.NEXT_CLASS_INTENT
 import com.dscvit.vitty.util.Constants.NEXT_CLASS_NAV_INTENT
 import com.dscvit.vitty.util.Quote
 import com.dscvit.vitty.util.RemoteConfigUtils
+import com.dscvit.vitty.util.UtilFunctions
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.runBlocking
@@ -57,7 +59,6 @@ internal fun updateNextClassWidget(
     appWidgetId: Int,
     pd: PeriodDetails?
 ) {
-    RemoteConfigUtils.init()
     val views = RemoteViews(context.packageName, R.layout.next_class_widget)
     val intent = Intent(context, AuthActivity::class.java)
     val pendingIntent = PendingIntent.getActivity(
@@ -100,7 +101,7 @@ internal fun updateNextClassWidget(
                     R.id.class_nav_button,
                     View.VISIBLE
                 )
-                val clickIntent = Intent(context, AuthActivity::class.java)
+                val clickIntent = Intent(context, NavigationActivity::class.java)
                 clickIntent.putExtra("classId", pd.roomNo)
                 val mapPendingIntent = PendingIntent.getActivity(
                     context,
@@ -149,7 +150,7 @@ fun fetchFirestore(
 
 suspend fun fetchData(
     context: Context,
-    day: String,
+    oldDay: String,
     calendar: Calendar,
     appWidgetManager: AppWidgetManager,
     appWidgetId: Int,
@@ -157,6 +158,11 @@ suspend fun fetchData(
     coroutineScope {
         val db = FirebaseFirestore.getInstance()
         val sharedPref = context.getSharedPreferences("login_info", Context.MODE_PRIVATE)!!
+        val day = if (oldDay == "saturday") sharedPref.getString(
+            UtilFunctions.getSatModeCode(),
+            "saturday"
+        )
+            .toString() else oldDay
         val uid = sharedPref.getString("uid", "")
         var pd = PeriodDetails()
         if (uid != null && uid != "") {

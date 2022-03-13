@@ -1,13 +1,20 @@
 package com.dscvit.vitty.activity
 
+import android.content.ClipData
+import android.content.ClipboardManager
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import com.dscvit.vitty.BuildConfig
 import com.dscvit.vitty.R
 import com.dscvit.vitty.databinding.ActivitySettingsBinding
 import com.dscvit.vitty.ui.settings.SettingsFragment
+import com.dscvit.vitty.util.Constants.VITTY_APP_URL
 import com.dscvit.vitty.util.RemoteConfigUtils
+import com.dscvit.vitty.util.Report
 
 class SettingsActivity : AppCompatActivity() {
     private lateinit var binding: ActivitySettingsBinding
@@ -43,6 +50,38 @@ class SettingsActivity : AppCompatActivity() {
             "College Mode: ${RemoteConfigUtils.getOnlineModeDetails()}\nApp Version: ${BuildConfig.VERSION_NAME}"
         if (RemoteConfigUtils.getLatestVersion() > BuildConfig.VERSION_CODE)
             details += " (Update Available)"
-        binding.settingDetails.text = details
+        binding.settingDetails.apply {
+            text = details
+            setOnClickListener {
+                try {
+                    startActivity(
+                        Intent(
+                            Intent.ACTION_VIEW,
+                            Uri.parse(VITTY_APP_URL)
+                        )
+                    )
+                    true
+                } catch (e: Exception) {
+                    Toast.makeText(context, "Browser not found!", Toast.LENGTH_LONG).show()
+                    false
+                }
+            }
+            setOnLongClickListener {
+                val versionDetails = Report.details(context)
+                Toast.makeText(
+                    context,
+                    "App Details Copied",
+                    Toast.LENGTH_SHORT
+                ).show()
+                val clipboard: ClipboardManager? =
+                    context?.getSystemService(CLIPBOARD_SERVICE) as ClipboardManager?
+                val clip = ClipData.newPlainText(
+                    "APP-VERSION",
+                    versionDetails
+                )
+                clipboard?.setPrimaryClip(clip)
+                true
+            }
+        }
     }
 }

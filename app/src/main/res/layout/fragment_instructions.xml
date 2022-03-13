@@ -89,7 +89,6 @@
                             tools:src="@tools:sample/avatars" />
                     </LinearLayout>
                 </LinearLayout>
-
             </com.google.android.material.card.MaterialCardView>
 
             <com.google.android.material.card.MaterialCardView
@@ -153,26 +152,6 @@
                         android:lineSpacingExtra="3dp"
                         android:text="@string/instructions_3" />
 
-                    <!--            <TextView-->
-                    <!--                android:id="@+id/instructions3a"-->
-                    <!--                android:layout_width="match_parent"-->
-                    <!--                android:layout_height="wrap_content"-->
-                    <!--                android:layout_marginStart="35dp"-->
-                    <!--                android:layout_marginTop="10dp"-->
-                    <!--                android:layout_marginEnd="25dp"-->
-                    <!--                android:lineSpacingExtra="3dp"-->
-                    <!--                android:text="@string/instructions_3_a" />-->
-
-                    <!--            <TextView-->
-                    <!--                android:id="@+id/instructions3b"-->
-                    <!--                android:layout_width="match_parent"-->
-                    <!--                android:layout_height="wrap_content"-->
-                    <!--                android:layout_marginStart="35dp"-->
-                    <!--                android:layout_marginTop="10dp"-->
-                    <!--                android:layout_marginEnd="25dp"-->
-                    <!--                android:lineSpacingExtra="3dp"-->
-                    <!--                android:text="@string/instructions_3_b" />-->
-
                     <TextView
                         android:id="@+id/instructions4"
                         android:layout_width="match_parent"
@@ -181,25 +160,6 @@
                         android:lineSpacingExtra="3dp"
                         android:text="@string/instructions_4" />
 
-                    <!--            <TextView-->
-                    <!--                android:id="@+id/instructions5a"-->
-                    <!--                android:layout_width="match_parent"-->
-                    <!--                android:layout_height="wrap_content"-->
-                    <!--                android:layout_marginStart="35dp"-->
-                    <!--                android:layout_marginTop="10dp"-->
-                    <!--                android:layout_marginEnd="25dp"-->
-                    <!--                android:lineSpacingExtra="3dp"-->
-                    <!--                android:text="@string/instructions_4_a" />-->
-
-                    <!--            <TextView-->
-                    <!--                android:id="@+id/instructions5b"-->
-                    <!--                android:layout_width="match_parent"-->
-                    <!--                android:layout_height="wrap_content"-->
-                    <!--                android:layout_marginStart="35dp"-->
-                    <!--                android:layout_marginTop="10dp"-->
-                    <!--                android:layout_marginEnd="25dp"-->
-                    <!--                android:lineSpacingExtra="3dp"-->
-                    <!--                android:text="@string/instructions_4_b" />-->
 
                     <TextView
                         android:id="@+id/instructions5"
@@ -218,23 +178,62 @@
                         android:lineSpacingExtra="3dp"
                         android:text="@string/instructions_6"
                         android:textColor="@color/translucent_imp" />
-
-
-                    <!--            <TextView-->
-                    <!--                android:id="@+id/instructions7"-->
-                    <!--                android:layout_width="match_parent"-->
-                    <!--                android:layout_height="wrap_content"-->
-                    <!--                android:layout_marginStart="25dp"-->
-                    <!--                android:layout_marginTop="12dp"-->
-                    <!--                android:layout_marginEnd="25dp"-->
-                    <!--                android:layout_marginBottom="10dp"-->
-                    <!--                android:fontFamily="@font/poppins_500"-->
-                    <!--                android:lineSpacingExtra="3dp"-->
-                    <!--                android:text="@string/instructions_7"-->
-                    <!--                android:textColor="@color/translucent_imp" />-->
                 </LinearLayout>
 
             </com.google.android.material.card.MaterialCardView>
+
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/setup_facing_issues"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginBottom="20dp"
+                app:cardBackgroundColor="@color/background">
+
+                <ImageView
+                    android:id="@+id/expanded_background3"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:contentDescription="@string/title_instructions"
+                    android:src="@drawable/expanded_background" />
+
+                <LinearLayout
+                    android:id="@+id/facing_issues_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="15dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/facing_issues"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="12dp"
+                        android:fontFamily="@font/poppins_500"
+                        android:text="@string/facing_issues_title"
+                        android:textColor="@color/translucent_head"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:id="@+id/issues1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp"
+                        android:text="@string/facing_issues_description" />
+
+                    <TextView
+                        android:id="@+id/telegram_issue_link"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/poppins_500"
+                        android:text="@string/telegram_link" />
+
+                </LinearLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+
         </LinearLayout>
     </ScrollView>
 </layout>

@@ -1,7 +1,5 @@
 package com.dscvit.vitty.ui.settings
 
-import android.app.AlarmManager
-import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
@@ -11,15 +9,16 @@ import android.os.PowerManager
 import android.provider.Settings
 import android.view.View
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
+import androidx.preference.ListPreference
 import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
 import androidx.preference.SwitchPreferenceCompat
 import com.dscvit.vitty.R
-import com.dscvit.vitty.notif.AlarmReceiver
 import com.dscvit.vitty.util.Constants
 import com.dscvit.vitty.util.LogoutHelper
-import java.util.Date
+import com.dscvit.vitty.util.NotificationHelper
+import com.dscvit.vitty.util.UtilFunctions.getSatModeCode
+import com.dscvit.vitty.util.UtilFunctions.reloadWidgets
 
 class SettingsFragment : PreferenceFragmentCompat() {
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
@@ -33,45 +32,18 @@ class SettingsFragment : PreferenceFragmentCompat() {
         rv.setPadding(24, 0, 24, 0)
     }
 
-    private fun setAlarm() {
-        val intent = Intent(context, AlarmReceiver::class.java)
-        val pendingIntent = PendingIntent.getBroadcast(
-            context,
-            Constants.ALARM_INTENT,
-            intent,
-            PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
-        )
-        val alarmManager =
-            requireContext().getSystemService(AppCompatActivity.ALARM_SERVICE) as AlarmManager
-        val date = Date().time
-        alarmManager.setRepeating(
-            AlarmManager.RTC_WAKEUP,
-            date,
-            (1000 * 60 * Constants.NOTIF_DELAY).toLong(),
-            pendingIntent
-        )
-    }
-
-    private fun cancelAlarm() {
-        val alarmManager =
-            requireContext().getSystemService(Context.ALARM_SERVICE) as AlarmManager
-        val intent = Intent(context, AlarmReceiver::class.java)
-        val pendingIntent = PendingIntent.getBroadcast(
-            context, Constants.ALARM_INTENT, intent,
-            PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
-        )
-        alarmManager.cancel(pendingIntent)
-    }
-
     private fun setupNotifications() {
+        val prefs = requireContext().getSharedPreferences(Constants.USER_INFO, 0)
         val examMode: SwitchPreferenceCompat? = findPreference(Constants.EXAM_MODE)
+        if (examMode != null) {
+            examMode.isChecked = prefs.getBoolean(Constants.EXAM_MODE, false)
+        }
         examMode?.setOnPreferenceChangeListener { _, newValue ->
-            val prefs = requireContext().getSharedPreferences(Constants.USER_INFO, 0)
             if (newValue.toString() == "true") {
-                cancelAlarm()
+                NotificationHelper.cancelAlarm(requireContext())
                 prefs.edit().putBoolean(Constants.EXAM_MODE, true).apply()
             } else {
-                setAlarm()
+                NotificationHelper.setAlarm(requireContext())
                 prefs.edit().putBoolean(Constants.EXAM_MODE, false).apply()
             }
             true
@@ -87,6 +59,19 @@ class SettingsFragment : PreferenceFragmentCompat() {
                         .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
                         .putExtra(Settings.EXTRA_APP_PACKAGE, context?.packageName)
                 startActivity(settingsIntent)
+            }
+            true
+        }
+    }
+
+    private fun setupEffects() {
+        val examMode: SwitchPreferenceCompat? = findPreference(Constants.VIBRATION_MODE)
+        examMode?.setOnPreferenceChangeListener { _, newValue ->
+            val prefs = requireContext().getSharedPreferences(Constants.USER_INFO, 0)
+            if (newValue.toString() == "true") {
+                prefs.edit().putBoolean(Constants.VIBRATION_MODE, true).apply()
+            } else {
+                prefs.edit().putBoolean(Constants.VIBRATION_MODE, false).apply()
             }
             true
         }
@@ -155,9 +140,22 @@ class SettingsFragment : PreferenceFragmentCompat() {
         openWebsite(Constants.GDSCVIT_TAG, Constants.GDSCVIT_WEBSITE)
     }
 
+    private fun setupClass() {
+        val prefs = requireContext().getSharedPreferences(Constants.USER_INFO, 0)
+        val satClass: ListPreference? = findPreference("sat_mode")
+        satClass?.value = prefs.getString(getSatModeCode(), "saturday")
+        satClass?.setOnPreferenceChangeListener { _, newValue ->
+            prefs.edit().putString(getSatModeCode(), newValue.toString()).apply()
+            reloadWidgets(requireContext())
+            true
+        }
+    }
+
     private fun setupPreferences() {
         setupAccountDetails()
+        setupClass()
         setupNotifications()
+//        setupEffects()
         setupBattery()
         setupAbout()
     }

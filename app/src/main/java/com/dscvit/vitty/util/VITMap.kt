@@ -13,7 +13,7 @@ object VITMap {
         blocks["CDMM"] = "Centre+For+Disaster+Mitigation+And+Management,+$VIT"
         blocks["SJT"] = "SJT+Building+%2F+Silver+Jubilee+Towers,+$VIT"
         blocks["MB"] = "MB+-+Main+Building,+$VIT"
-        blocks["MGB"] = "Mahatma+Gandhi+Block,+$VIT"
+        blocks["MGB"] = "Mahatma+Gandhi+Block,+VIT+University,+$VIT"
         blocks["TT"] = "Technology+Tower+-+TT,+$VIT"
         blocks["SMV"] = "SMV,+$VIT"
         blocks["PLB"] = "12.971272,79.166357"

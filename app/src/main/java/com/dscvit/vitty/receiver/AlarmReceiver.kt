@@ -1,4 +1,4 @@
-package com.dscvit.vitty.notif
+package com.dscvit.vitty.receiver
 
 import android.content.BroadcastReceiver
 import android.content.Context
@@ -7,7 +7,8 @@ import android.content.SharedPreferences
 import com.dscvit.vitty.model.PeriodDetails
 import com.dscvit.vitty.util.Constants
 import com.dscvit.vitty.util.Constants.NOTIF_START
-import com.dscvit.vitty.util.RemoteConfigUtils
+import com.dscvit.vitty.util.NotificationHelper
+import com.dscvit.vitty.util.UtilFunctions
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.runBlocking
@@ -22,7 +23,6 @@ class AlarmReceiver : BroadcastReceiver() {
 
     override fun onReceive(context: Context?, intent: Intent?) {
         if (context != null) {
-            RemoteConfigUtils.init()
             prefs = context.getSharedPreferences(Constants.USER_INFO, 0)
             val days =
                 listOf("monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday")
@@ -90,12 +90,16 @@ class AlarmReceiver : BroadcastReceiver() {
 
     private suspend fun fetchData(
         context: Context,
-        day: String,
+        oldDay: String,
         calendar: Calendar,
     ) =
         coroutineScope {
             val db = FirebaseFirestore.getInstance()
             val sharedPref = context.getSharedPreferences("login_info", Context.MODE_PRIVATE)!!
+            val day = if (oldDay == "saturday") sharedPref.getString(
+                UtilFunctions.getSatModeCode(),
+                "saturday"
+            ).toString() else oldDay
             val uid = sharedPref.getString("uid", "")
             var pd = PeriodDetails()
             val start = Calendar.getInstance()

@@ -1,4 +1,4 @@
-package com.dscvit.vitty.notif
+package com.dscvit.vitty.receiver
 
 import android.app.AlarmManager
 import android.app.PendingIntent
@@ -10,6 +10,7 @@ import com.dscvit.vitty.util.Constants
 import com.dscvit.vitty.util.Constants.ALARM_INTENT
 import com.dscvit.vitty.util.Constants.EXAM_MODE
 import com.dscvit.vitty.util.Constants.USER_INFO
+import com.dscvit.vitty.util.UtilFunctions.reloadWidgets
 import java.util.Date
 
 class DeviceBootReceiver : BroadcastReceiver() {
@@ -38,6 +39,7 @@ class DeviceBootReceiver : BroadcastReceiver() {
                     pendingIntent
                 )
             }
+            reloadWidgets(context)
         }
     }
 }

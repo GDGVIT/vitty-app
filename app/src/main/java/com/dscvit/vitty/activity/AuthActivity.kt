@@ -15,7 +15,6 @@ import com.dscvit.vitty.databinding.ActivityAuthBinding
 import com.dscvit.vitty.util.Constants.TOKEN
 import com.dscvit.vitty.util.Constants.UID
 import com.dscvit.vitty.util.Constants.USER_INFO
-import com.dscvit.vitty.util.RemoteConfigUtils
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
@@ -44,17 +43,12 @@ class AuthActivity : AppCompatActivity() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_auth)
         firebaseAuth = FirebaseAuth.getInstance()
         sharedPref = getSharedPreferences(USER_INFO, Context.MODE_PRIVATE)
-        if (intent.extras != null && intent.extras!!.getString("classId") != "")
-            sharedPref.edit().putString("openClassId", intent.extras!!.getString("classId")).apply()
-        else
-            sharedPref.edit().putString("openClassId", "").apply()
         configureGoogleSignIn()
         setupUI()
     }
 
     override fun onStart() {
         super.onStart()
-        RemoteConfigUtils.init()
         val user = FirebaseAuth.getInstance().currentUser
         if (user != null) {
             val intent = Intent(this, InstructionsActivity::class.java)

@@ -3,10 +3,7 @@ package com.dscvit.vitty.ui.instructions
 import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.Context
-import android.content.Context.CLIPBOARD_SERVICE
-import android.content.Intent
 import android.content.SharedPreferences
-import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -19,6 +16,7 @@ import coil.transform.CircleCropTransformation
 import com.dscvit.vitty.R
 import com.dscvit.vitty.databinding.FragmentInstructionsBinding
 import com.dscvit.vitty.model.UserDetails
+import com.dscvit.vitty.util.UtilFunctions.openLink
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
@@ -58,45 +56,40 @@ class InstructionsFragment : Fragment() {
             }
             instructions1Link.apply {
                 setOnClickListener {
-                    try {
-                        startActivity(
-                            Intent(
-                                Intent.ACTION_VIEW,
-                                Uri.parse(context?.getString(R.string.instructions_1_link))
-                            )
-                        )
-                    } catch (e: Exception) {
-                        Toast.makeText(context, "Browser not found!", Toast.LENGTH_LONG).show()
-                    }
+                    openLink(context, context.getString(R.string.instructions_1_link))
                 }
                 setOnLongClickListener {
-                    Toast.makeText(
-                        context,
-                        "Link Copied",
-                        Toast.LENGTH_LONG
-                    ).show()
-                    val clipboard: ClipboardManager? =
-                        context?.getSystemService(CLIPBOARD_SERVICE) as ClipboardManager?
-                    val clip = ClipData.newPlainText(
-                        "EXTENSION-LINK",
-                        context?.getString(R.string.instructions_1_link)
+                    copyLink(
+                        "GDSC_WEBSITE_LINK",
+                        context.getString(R.string.instructions_1_link)
                     )
-                    clipboard?.setPrimaryClip(clip)
+                    true
+                }
+            }
+            telegramIssueLink.apply {
+                setOnClickListener {
+                    openLink(context, context.getString(R.string.telegram_link))
+                }
+                setOnLongClickListener {
+                    copyLink(
+                        "GDSC_TELEGRAM_LINK",
+                        context.getString(R.string.telegram_link)
+                    )
                     true
                 }
             }
         }
-//        binding.instructions1Link.setOnLongClickListener {
-//            val shareIntent = Intent().apply {
-//                action = Intent.ACTION_SEND
-//                type = "text/plain"
-//            }
-//            shareIntent.putExtra(
-//                Intent.EXTRA_TEXT,
-//                context?.getString(R.string.share_text)
-//            )
-//            startActivity(Intent.createChooser(shareIntent, "Share"))
-//            true
-//        }
+    }
+
+    private fun copyLink(label: String, url: String) {
+        Toast.makeText(
+            context,
+            "Link Copied",
+            Toast.LENGTH_LONG
+        ).show()
+        val clipboard: ClipboardManager? =
+            context?.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager?
+        val clip = ClipData.newPlainText(label, url)
+        clipboard?.setPrimaryClip(clip)
     }
 }

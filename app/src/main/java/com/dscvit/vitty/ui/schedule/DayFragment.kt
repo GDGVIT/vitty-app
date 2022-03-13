@@ -13,7 +13,10 @@ import com.dscvit.vitty.R
 import com.dscvit.vitty.adapter.PeriodAdapter
 import com.dscvit.vitty.databinding.FragmentDayBinding
 import com.dscvit.vitty.model.PeriodDetails
+import com.dscvit.vitty.util.Constants.DEFAULT_QUOTE
+import com.dscvit.vitty.util.Constants.USER_INFO
 import com.dscvit.vitty.util.Quote
+import com.dscvit.vitty.util.UtilFunctions
 import com.google.firebase.firestore.FirebaseFirestore
 import timber.log.Timber
 
@@ -26,6 +29,7 @@ class DayFragment : Fragment() {
     private val db = FirebaseFirestore.getInstance()
     private val days =
         listOf("monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday")
+    lateinit var day: String
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -44,13 +48,18 @@ class DayFragment : Fragment() {
     }
 
     private fun getData() {
-        sharedPref = activity?.getSharedPreferences("login_info", Context.MODE_PRIVATE)!!
+        sharedPref = activity?.getSharedPreferences(USER_INFO, Context.MODE_PRIVATE)!!
+        courseList.clear()
         val uid = sharedPref.getString("uid", "")
+        day = if (days[fragID] == "saturday") sharedPref.getString(
+            UtilFunctions.getSatModeCode(),
+            "saturday"
+        ).toString() else days[fragID]
         if (uid != null) {
             db.collection("users")
                 .document(uid)
                 .collection("timetable")
-                .document(days[fragID])
+                .document(day)
                 .collection("periods")
                 .get()
                 .addOnSuccessListener { result ->
@@ -82,10 +91,26 @@ class DayFragment : Fragment() {
                 dayList.scheduleLayoutAnimation()
                 dayList.adapter = PeriodAdapter(courseList, fragID)
                 dayList.layoutManager = LinearLayoutManager(context)
+                noPeriod.visibility = View.INVISIBLE
             } else {
-                binding.quoteLine.text = Quote.getLine(requireContext())
+                binding.quoteLine.text = try {
+                    Quote.getLine(context)
+                } catch (_: Exception) {
+                    DEFAULT_QUOTE
+                }
                 noPeriod.visibility = View.VISIBLE
             }
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        if (days[fragID] == "saturday" && day != sharedPref.getString(
+                UtilFunctions.getSatModeCode(),
+                "saturday"
+            ).toString()
+        ) {
+            getData()
         }
     }
 }
