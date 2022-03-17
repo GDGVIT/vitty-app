@@ -34,6 +34,7 @@ import com.dscvit.vitty.util.Constants.USER_INFO
 import com.dscvit.vitty.util.Constants.VERSION_CODE
 import com.dscvit.vitty.util.LogoutHelper
 import com.dscvit.vitty.util.NotificationHelper
+import com.dscvit.vitty.util.UtilFunctions
 import com.google.firebase.firestore.FirebaseFirestore
 import timber.log.Timber
 import java.util.Date
@@ -150,6 +151,7 @@ class InstructionsActivity : AppCompatActivity() {
             .set(updated)
             .addOnSuccessListener {
                 setAlarm()
+                UtilFunctions.reloadWidgets(this)
                 val pm: PowerManager = getSystemService(Context.POWER_SERVICE) as PowerManager
                 if (!pm.isIgnoringBatteryOptimizations(packageName)) {
                     Toast.makeText(

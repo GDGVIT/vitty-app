@@ -1,8 +1,10 @@
 package com.dscvit.vitty.activity
 
 import android.app.Activity
+import android.app.PendingIntent
 import android.content.Intent
 import android.content.SharedPreferences
+import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -16,8 +18,10 @@ import com.dscvit.vitty.BuildConfig
 import com.dscvit.vitty.R
 import com.dscvit.vitty.adapter.DayAdapter
 import com.dscvit.vitty.databinding.ActivityScheduleBinding
+import com.dscvit.vitty.receiver.ShareReceiver
 import com.dscvit.vitty.util.Constants.EXAM_MODE
 import com.dscvit.vitty.util.Constants.FIRST_TIME_SETUP
+import com.dscvit.vitty.util.Constants.SHARE_INTENT
 import com.dscvit.vitty.util.Constants.TIMETABLE_AVAILABLE
 import com.dscvit.vitty.util.Constants.UPDATE
 import com.dscvit.vitty.util.Constants.UPDATE_CODE
@@ -130,7 +134,24 @@ class ScheduleActivity : FragmentActivity() {
                         Intent.EXTRA_TEXT,
                         getString(R.string.share_text)
                     )
-                    startActivity(Intent.createChooser(shareIntent, "Share"))
+                    val pendingIntent = PendingIntent.getBroadcast(
+                        this,
+                        SHARE_INTENT,
+                        Intent(this, ShareReceiver::class.java),
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S)
+                            PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_MUTABLE
+                        else
+                            PendingIntent.FLAG_UPDATE_CURRENT
+                    )
+//                    val broadcastReceiver: BroadcastReceiver = ShareReceiver()
+//                    registerReceiver(broadcastReceiver, IntentFilter(SHARE_ACTION))
+                    startActivity(
+                        Intent.createChooser(
+                            shareIntent,
+                            null,
+                            pendingIntent.intentSender
+                        )
+                    )
                     true
                 }
                 else -> false

@@ -50,6 +50,7 @@ class SettingsActivity : AppCompatActivity() {
             "College Mode: ${RemoteConfigUtils.getOnlineModeDetails()}\nApp Version: ${BuildConfig.VERSION_NAME}"
         if (RemoteConfigUtils.getLatestVersion() > BuildConfig.VERSION_CODE)
             details += " (Update Available)"
+//        details += "\n\n[Long press to copy app details]"
         binding.settingDetails.apply {
             text = details
             setOnClickListener {
@@ -60,10 +61,8 @@ class SettingsActivity : AppCompatActivity() {
                             Uri.parse(VITTY_APP_URL)
                         )
                     )
-                    true
                 } catch (e: Exception) {
                     Toast.makeText(context, "Browser not found!", Toast.LENGTH_LONG).show()
-                    false
                 }
             }
             setOnLongClickListener {
