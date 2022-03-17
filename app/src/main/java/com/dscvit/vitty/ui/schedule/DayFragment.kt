@@ -18,6 +18,7 @@ import com.dscvit.vitty.util.Constants.USER_INFO
 import com.dscvit.vitty.util.Quote
 import com.dscvit.vitty.util.UtilFunctions
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.Source
 import timber.log.Timber
 
 class DayFragment : Fragment() {
@@ -61,7 +62,7 @@ class DayFragment : Fragment() {
                 .collection("timetable")
                 .document(day)
                 .collection("periods")
-                .get()
+                .get(Source.CACHE)
                 .addOnSuccessListener { result ->
                     for (document in result) {
                         try {

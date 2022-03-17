@@ -11,6 +11,7 @@ import com.dscvit.vitty.util.Constants.NOTIF_START
 import com.dscvit.vitty.util.NotificationHelper
 import com.dscvit.vitty.util.UtilFunctions
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.Source
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.runBlocking
 import timber.log.Timber
@@ -114,7 +115,7 @@ class AlarmReceiver : BroadcastReceiver() {
                     .collection("timetable")
                     .document(day)
                     .collection("periods")
-                    .get()
+                    .get(Source.CACHE)
                     .addOnSuccessListener { result ->
                         for (document in result) {
                             try {

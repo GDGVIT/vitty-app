@@ -16,6 +16,7 @@ import com.dscvit.vitty.util.Constants.TIME_SLOTS
 import com.dscvit.vitty.util.Constants.TODAY_INTENT
 import com.dscvit.vitty.util.UtilFunctions
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.Source
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.runBlocking
 import timber.log.Timber
@@ -35,7 +36,7 @@ class TodayWidget : AppWidgetProvider() {
     ) {
         // There may be multiple widgets active, so update all of them
         for (appWidgetId in appWidgetIds) {
-            updateTodayWidget(context, appWidgetManager, appWidgetId, null, null)
+            updateTodayWidget(context, appWidgetManager, appWidgetId, null, null, null)
         }
     }
 
@@ -53,7 +54,8 @@ internal fun updateTodayWidget(
     appWidgetManager: AppWidgetManager,
     appWidgetId: Int,
     courseList: ArrayList<String>?,
-    timeList: ArrayList<String>?
+    timeList: ArrayList<String>?,
+    roomList: ArrayList<String>?
 ) {
     // Construct the RemoteViews object
     val views = RemoteViews(context.packageName, R.layout.today_widget)
@@ -83,6 +85,7 @@ internal fun updateTodayWidget(
     } else if (courseList.isNotEmpty() || courseList.isEmpty()) {
         saveArray(courseList, "courses_today", context)
         saveArray(timeList!!, "time_today", context)
+        saveArray(roomList!!, "class_rooms", context)
         val serviceIntent = Intent(context, TodayWidgetService::class.java)
         serviceIntent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetId)
         val bundle1 = Bundle()
@@ -129,13 +132,14 @@ suspend fun fetchTodayData(
         val uid = sharedPref.getString("uid", "")
         val courseList: ArrayList<String> = ArrayList()
         val timeList: ArrayList<String> = ArrayList()
+        val roomList: ArrayList<String> = ArrayList()
         if (uid != null && uid != "") {
             db.collection("users")
                 .document(uid)
                 .collection("timetable")
                 .document(day)
                 .collection("periods")
-                .get()
+                .get(Source.CACHE)
                 .addOnSuccessListener { result ->
                     for (document in result) {
                         try {
@@ -150,16 +154,17 @@ suspend fun fetchTodayData(
 
                             courseList.add(document.getString("courseName")!!)
                             timeList.add("$sTime - $eTime")
+                            roomList.add(document.getString("location")!!)
                         } catch (e: Exception) {
                             Timber.d("Error: $e")
                         }
                     }
-                    updateTodayWidget(context, appWidgetManager, appWidgetId, courseList, timeList)
+                    updateTodayWidget(context, appWidgetManager, appWidgetId, courseList, timeList, roomList)
                 }
                 .addOnFailureListener { e ->
                     Timber.d("Error YO: $e")
                 }
         } else {
-            updateTodayWidget(context, appWidgetManager, appWidgetId, courseList, timeList)
+            updateTodayWidget(context, appWidgetManager, appWidgetId, courseList, timeList, roomList)
         }
     }

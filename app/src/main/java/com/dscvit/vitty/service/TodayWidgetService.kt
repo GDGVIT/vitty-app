@@ -23,11 +23,13 @@ class AppWidgetListView(
 ) : RemoteViewsService.RemoteViewsFactory {
     private var dataList: Array<String?>
     private var timeList: Array<String?>
+    private var roomList: Array<String?>
     private var appWidgetId: Int
 
     init {
         dataList = loadArray("courses_today", context)
         timeList = loadArray("time_today", context)
+        roomList = loadArray("class_rooms", context)
         appWidgetId = intent.getIntExtra(
             AppWidgetManager.EXTRA_APPWIDGET_ID,
             AppWidgetManager.INVALID_APPWIDGET_ID
@@ -55,6 +57,7 @@ class AppWidgetListView(
             if (dataList.isNotEmpty()) {
                 views.setTextViewText(R.id.course_name_widget, dataList[position])
                 views.setTextViewText(R.id.period_time, timeList[position])
+                views.setTextViewText(R.id.room_num, roomList[position])
             }
         } catch (e: ArrayIndexOutOfBoundsException) {
             Timber.d(e.toString())
