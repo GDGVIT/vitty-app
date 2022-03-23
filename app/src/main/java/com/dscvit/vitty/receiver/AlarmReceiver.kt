@@ -5,11 +5,13 @@ import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import com.dscvit.vitty.model.PeriodDetails
+import com.dscvit.vitty.util.Analytics
 import com.dscvit.vitty.util.Constants
 import com.dscvit.vitty.util.Constants.NOTIF_START
 import com.dscvit.vitty.util.NotificationHelper
 import com.dscvit.vitty.util.UtilFunctions
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.Source
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.runBlocking
 import timber.log.Timber
@@ -67,6 +69,7 @@ class AlarmReceiver : BroadcastReceiver() {
                         notifId++,
                         pd.roomNo,
                     )
+                    Analytics.notification(pd.courseName)
                     if (notifId == Integer.MAX_VALUE - 2 || notifId < NOTIF_START)
                         notifId = NOTIF_START
                     prefs.edit().putInt("notif_id", notifId).apply()
@@ -112,7 +115,7 @@ class AlarmReceiver : BroadcastReceiver() {
                     .collection("timetable")
                     .document(day)
                     .collection("periods")
-                    .get()
+                    .get(Source.CACHE)
                     .addOnSuccessListener { result ->
                         for (document in result) {
                             try {

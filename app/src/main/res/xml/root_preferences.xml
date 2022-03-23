@@ -23,6 +23,12 @@
             app:key="sat_mode"
             app:title="Saturday Class"
             app:useSimpleSummaryProvider="true" />
+
+        <Preference
+            app:icon="@drawable/ic_change_timetable"
+            app:key="change_timetable"
+            app:summary="Keep your timetable up to date to not miss your classes"
+            app:title="Edit Timetable" />
     </PreferenceCategory>
 
     <PreferenceCategory
@@ -57,13 +63,19 @@
 
     <PreferenceCategory
         app:iconSpaceReserved="false"
-        app:title="Battery">
+        app:title="Troubleshoot">
 
         <Preference
             app:icon="@drawable/ic_battery"
             app:key="battery_optim"
             app:summary="@string/battery_summary"
             app:title="@string/battery_opt" />
+
+        <Preference
+            app:icon="@drawable/ic_refresh"
+            app:key="refresh_widgets"
+            app:summary="Force refresh widgets if they are not updating automatically"
+            app:title="Force Refresh Widgets" />
 
     </PreferenceCategory>
 

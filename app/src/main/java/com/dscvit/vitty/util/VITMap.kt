@@ -35,6 +35,10 @@ object VITMap {
                 val gmmIntentUri = Uri.parse("google.navigation:q=$classLocation&mode=w")
                 val mapIntent = Intent(Intent.ACTION_VIEW, gmmIntentUri)
                 mapIntent.setPackage("com.google.android.apps.maps")
+                try {
+                    Analytics.navigation(classBlock)
+                } catch (e: Exception) {
+                }
                 mapIntent.resolveActivity(context.packageManager)?.let {
                     context.startActivity(mapIntent)
                 }

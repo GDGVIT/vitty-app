@@ -4,11 +4,13 @@ import android.appwidget.AppWidgetManager
 import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.net.Uri
 import android.widget.Toast
 import com.dscvit.vitty.util.Constants.SAT_MODE
 import com.dscvit.vitty.widget.NextClassWidget
 import com.dscvit.vitty.widget.TodayWidget
+import com.google.firebase.firestore.DocumentSnapshot
 import java.util.Calendar
 
 object UtilFunctions {
@@ -39,12 +41,25 @@ object UtilFunctions {
         context.sendBroadcast(intent)
     }
 
-    fun getWeekYear(): String {
+    private fun getWeekYear(): String {
         val now: Calendar = Calendar.getInstance()
         return now.get(Calendar.WEEK_OF_YEAR).toString() + now.get(Calendar.YEAR).toString()
     }
 
     fun getSatModeCode(): String {
         return SAT_MODE + getWeekYear()
+    }
+
+    fun isUpdated(document: DocumentSnapshot, preferences: SharedPreferences): Boolean {
+        return try {
+            val oldTimetableVersion = preferences.getLong("TIMETABLE_VERSION", 0)
+            val timetableVersion = document.getLong("timetableVersion")
+            if (timetableVersion!! > 0)
+                oldTimetableVersion < timetableVersion
+            else
+                document.getBoolean("isUpdated") == true
+        } catch (e: Exception) {
+            document.getBoolean("isUpdated") == true
+        }
     }
 }

@@ -83,6 +83,7 @@
     <string name="facing_issues_description">We are available on Telegram throughout the day ready to fix your problems!</string>
     <string name="telegram_link"><u>https://dscv.it/telegram</u></string>
     <string name="support">Support</string>
+    <string name="sample_room">SJT101</string>
     <string-array name="no_classes_today_subtext_list">
         <item>Don\'t you have a quiz coming up?</item>
         <item>Finish your DAs!</item>

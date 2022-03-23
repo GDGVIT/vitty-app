@@ -34,7 +34,9 @@ import com.dscvit.vitty.util.Constants.USER_INFO
 import com.dscvit.vitty.util.Constants.VERSION_CODE
 import com.dscvit.vitty.util.LogoutHelper
 import com.dscvit.vitty.util.NotificationHelper
+import com.dscvit.vitty.util.UtilFunctions
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.Source
 import timber.log.Timber
 import java.util.Date
 
@@ -112,7 +114,7 @@ class InstructionsActivity : AppCompatActivity() {
                 .collection("timetable")
                 .document(day)
                 .collection("periods")
-                .get()
+                .get(Source.SERVER)
                 .addOnSuccessListener { result ->
                     for (document in result) {
                         var cn = document.getString("courseName")
@@ -150,6 +152,7 @@ class InstructionsActivity : AppCompatActivity() {
             .set(updated)
             .addOnSuccessListener {
                 setAlarm()
+                UtilFunctions.reloadWidgets(this)
                 val pm: PowerManager = getSystemService(Context.POWER_SERVICE) as PowerManager
                 if (!pm.isIgnoringBatteryOptimizations(packageName)) {
                     Toast.makeText(

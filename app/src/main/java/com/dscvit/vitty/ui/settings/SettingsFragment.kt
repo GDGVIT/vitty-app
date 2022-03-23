@@ -136,8 +136,9 @@ class SettingsFragment : PreferenceFragmentCompat() {
     }
 
     private fun setupAbout() {
-        openWebsite(Constants.GITHUB_REPO, Constants.GITHUB_REPO_LINK)
         openWebsite(Constants.GDSCVIT_TAG, Constants.GDSCVIT_WEBSITE)
+        openWebsite(Constants.GITHUB_REPO, Constants.GITHUB_REPO_LINK)
+        openWebsite(Constants.CHANGE_TIMETABLE, Constants.VITTY_URL)
     }
 
     private fun setupClass() {
@@ -151,12 +152,25 @@ class SettingsFragment : PreferenceFragmentCompat() {
         }
     }
 
+    private fun setupRefreshWidgets() {
+        val pref: Preference? = findPreference("refresh_widgets")
+        pref?.setOnPreferenceClickListener {
+            reloadWidgets(requireContext())
+//            Toast.makeText(context, "Refreshed!", Toast.LENGTH_LONG).show()
+            pref.isEnabled = false
+            pref.isSelectable = false
+            pref.summary = "Refreshed!"
+            true
+        }
+    }
+
     private fun setupPreferences() {
         setupAccountDetails()
         setupClass()
         setupNotifications()
 //        setupEffects()
         setupBattery()
+        setupRefreshWidgets()
         setupAbout()
     }
 }

@@ -17,6 +17,7 @@ import com.dscvit.vitty.util.Quote
 import com.dscvit.vitty.util.RemoteConfigUtils
 import com.dscvit.vitty.util.UtilFunctions
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.Source
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.runBlocking
 import timber.log.Timber
@@ -171,7 +172,7 @@ suspend fun fetchData(
                 .collection("timetable")
                 .document(day)
                 .collection("periods")
-                .get()
+                .get(Source.CACHE)
                 .addOnSuccessListener { result ->
                     for (document in result) {
                         try {
