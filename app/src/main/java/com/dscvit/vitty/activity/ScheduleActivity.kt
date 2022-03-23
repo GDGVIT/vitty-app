@@ -28,6 +28,7 @@ import com.dscvit.vitty.util.Constants.UPDATE_CODE
 import com.dscvit.vitty.util.Constants.USER_INFO
 import com.dscvit.vitty.util.LogoutHelper
 import com.dscvit.vitty.util.RemoteConfigUtils
+import com.dscvit.vitty.util.UtilFunctions.isUpdated
 import com.dscvit.vitty.util.UtilFunctions.openLink
 import com.dscvit.vitty.util.VITMap
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
@@ -88,7 +89,7 @@ class ScheduleActivity : FragmentActivity() {
             .document(uid)
             .get()
             .addOnSuccessListener { document ->
-                if (document.getBoolean("isUpdated") == true) {
+                if (isUpdated(document, prefs)) {
                     prefs.edit().putInt(TIMETABLE_AVAILABLE, 0).apply()
                     prefs.edit().putInt(UPDATE, 1).apply()
                     val intent = Intent(this, InstructionsActivity::class.java)

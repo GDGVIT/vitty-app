@@ -38,7 +38,6 @@ object VITMap {
                 try {
                     Analytics.navigation(classBlock)
                 } catch (e: Exception) {
-
                 }
                 mapIntent.resolveActivity(context.packageManager)?.let {
                     context.startActivity(mapIntent)
