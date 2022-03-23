@@ -1,8 +1,8 @@
 <p align="center">
 <a href="https://dscvit.com">
-	<img src="https://user-images.githubusercontent.com/30529572/72455010-fb38d400-37e7-11ea-9c1e-8cdeb5f5906e.png" alt="DSC VIT"/>
+	<img width="400" src="https://user-images.githubusercontent.com/56252312/159312411-58410727-3933-4224-b43e-4e9b627838a3.png#gh-light-mode-only" alt="GDSC VIT"/>
 </a>
-	<h2 align="center">VITTY</h2>
+	<h2 align="center">VITTY - VIT Timetable App</h2>
 	<h4 align="center">An Android app for your VIT timetable with homescreen widgets and in-app notifications for your classes</h4>
 </p>
 
