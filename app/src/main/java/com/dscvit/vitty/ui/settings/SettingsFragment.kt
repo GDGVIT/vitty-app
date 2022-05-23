@@ -46,6 +46,7 @@ class SettingsFragment : PreferenceFragmentCompat() {
                 NotificationHelper.setAlarm(requireContext())
                 prefs.edit().putBoolean(Constants.EXAM_MODE, false).apply()
             }
+            reloadWidgets(requireContext())
             true
         }
         val individualNotification: Preference? = findPreference(Constants.IND_NOTIF)

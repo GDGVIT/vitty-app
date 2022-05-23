@@ -5,6 +5,7 @@ import android.service.quicksettings.Tile
 import android.service.quicksettings.TileService
 import com.dscvit.vitty.util.Constants
 import com.dscvit.vitty.util.NotificationHelper
+import com.dscvit.vitty.util.UtilFunctions.reloadWidgets
 
 class TileService : TileService() {
     private lateinit var prefs: SharedPreferences
@@ -45,5 +46,6 @@ class TileService : TileService() {
         } else {
             NotificationHelper.setAlarm(this)
         }
+        reloadWidgets(this)
     }
 }

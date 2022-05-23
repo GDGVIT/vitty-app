@@ -32,7 +32,7 @@ class PeriodAdapter(private val dataSet: ArrayList<PeriodDetails>, private val d
         val periodTime = binding.periodTime
         val classNav = binding.classNav
         val classIdOnline = binding.classIdOnline
-        val courseCode = binding.courseCode
+//        val courseCode = binding.courseCode
         fun bind(data: PeriodDetails) {
             binding.periodDetails = data
         }
@@ -102,12 +102,12 @@ class PeriodAdapter(private val dataSet: ArrayList<PeriodDetails>, private val d
             if (isExpanded) {
                 expandedBackground.visibility = View.VISIBLE
                 moreInfo.visibility = View.VISIBLE
-                courseCode.visibility = View.VISIBLE
+//                courseCode.visibility = View.VISIBLE
                 arrow.rotation = 180F
             } else {
                 moreInfo.visibility = View.GONE
                 expandedBackground.visibility = View.GONE
-                courseCode.visibility = View.GONE
+//                courseCode.visibility = View.GONE
                 arrow.rotation = 0F
             }
             itemView.isActivated = isExpanded

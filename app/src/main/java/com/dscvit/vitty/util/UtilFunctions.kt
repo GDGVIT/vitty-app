@@ -5,13 +5,20 @@ import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
+import android.graphics.Bitmap
+import android.graphics.Canvas
 import android.net.Uri
+import android.provider.MediaStore
+import android.view.View
 import android.widget.Toast
 import com.dscvit.vitty.util.Constants.SAT_MODE
 import com.dscvit.vitty.widget.NextClassWidget
 import com.dscvit.vitty.widget.TodayWidget
 import com.google.firebase.firestore.DocumentSnapshot
+import java.text.SimpleDateFormat
 import java.util.Calendar
+import java.util.Date
+import java.util.Locale
 
 object UtilFunctions {
 
@@ -61,5 +68,35 @@ object UtilFunctions {
         } catch (e: Exception) {
             document.getBoolean("isUpdated") == true
         }
+    }
+
+    fun getBitmapFromView(view: View): Bitmap {
+        val bitmap =
+            Bitmap.createBitmap(view.width, view.height, Bitmap.Config.ARGB_8888)
+        val canvas = Canvas(bitmap)
+        view.draw(canvas)
+        return bitmap
+    }
+
+    fun takeScreenshotAndShare(context: Context, bitmap: Bitmap) {
+        val dateFormatter = SimpleDateFormat(
+            "yyyy-MM-dd 'at' HH-mm-ss z", Locale.getDefault()
+        )
+        val bitmapPath: String =
+            MediaStore.Images.Media.insertImage(
+                context.contentResolver, bitmap,
+                "VITTY Schedule taken on ${
+                dateFormatter.format(
+                    Date()
+                )
+                }",
+                null
+            )
+        val bitmapUri = Uri.parse(bitmapPath)
+
+        val intent = Intent(Intent.ACTION_SEND)
+        intent.type = "image/png"
+        intent.putExtra(Intent.EXTRA_STREAM, bitmapUri)
+        context.startActivity(Intent.createChooser(intent, "Share"))
     }
 }
