@@ -16,7 +16,8 @@ object VITMap {
         blocks["MGB"] = "Mahatma+Gandhi+Block,+VIT+University,+$VIT"
         blocks["TT"] = "Technology+Tower+-+TT,+$VIT"
         blocks["SMV"] = "SMV,+$VIT"
-        blocks["PLB"] = "12.971272,79.166357"
+        blocks["PRP"] = "12.971272,79.166357"
+//        blocks["PLB"] = ""
         blocks["CBMR"] = "CBMR+block,+$VIT"
         blocks["GDN"] = "GDN,+$VIT"
     }

@@ -6,6 +6,7 @@
     <color name="tab_back">#071F33</color>
     <color name="tab_selected">#E6126AFC</color>
     <color name="tab_selected_2">#1A126AFC</color>
+    <color name="fab_color">#082F63</color>
     <color name="background">#041727</color>
     <color name="translucent">#688FBC</color>
     <color name="translucent_imp">#9DBADC</color>

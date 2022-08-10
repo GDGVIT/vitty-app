@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="20dp"
+    android:layout_marginTop="10dp"
+    android:layout_marginEnd="20dp"
+    android:layout_marginBottom="7dp"
+    android:animateLayoutChanges="true"
+    app:cardBackgroundColor="@color/tab_back"
+    app:cardCornerRadius="14dp"
+    app:cardElevation="0dp"
+    app:rippleColor="@android:color/transparent">
+
+    <ImageView
+        android:id="@+id/expanded_background"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:contentDescription="@string/exp_background"
+        android:src="@drawable/expanded_background"
+        android:visibility="invisible" />
+
+    <ImageView
+        android:id="@+id/active_period"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:alpha="0.6"
+        android:contentDescription="@string/active_background"
+        android:src="@drawable/next_class_background"
+        android:visibility="invisible" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingStart="25dp"
+        android:paddingTop="22dp"
+        android:paddingEnd="22dp"
+        android:paddingBottom="20dp">
+
+        <TextView
+            android:id="@+id/event_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_600"
+            android:text="@={periodDetails.courseName}"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            tools:text="WomenTechies '22" />
+
+
+        <TextView
+            android:id="@+id/event_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text=""
+            android:textSize="15sp"
+            tools:text="10:00 AM" />
+
+    </LinearLayout>
+</com.google.android.material.card.MaterialCardView>

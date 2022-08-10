@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -84,6 +85,36 @@
                 android:paddingEnd="5dp"
                 android:text="@string/exam_mode_alert" />
         </LinearLayout>
+
+        <ImageButton
+            android:id="@+id/VITEventsButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/shareTimeTableButton"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="4dp"
+            android:background="@drawable/fab_share"
+            android:padding="12dp"
+            android:src="@drawable/ic_vitevents"
+            android:tooltipText="VIT Events"
+            app:elevation="0dp" />
+
+        <ImageButton
+            android:id="@+id/shareTimeTableButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/exam_mode_alert"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/fab_share"
+            android:padding="16dp"
+            android:src="@drawable/ic_share"
+            android:tooltipText="Share Timetable"
+            app:elevation="0dp" />
 
     </RelativeLayout>
 </layout>

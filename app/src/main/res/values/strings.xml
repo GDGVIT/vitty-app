@@ -53,10 +53,10 @@
     <string name="skip">Skip</string>
     <string name="widgets">Widgets</string>
     <string name="about_widgets">Go to your home screen, long press and add widget!\n\nYou have two widgets to choose from:\n1. Today\'s Schedule: This shows your current day\'s classes.\n2. Next class: This gives you the details about your next upcoming class.</string>
-    <string name="about_notifications">Get control of the notifications by tapping on ⋮ > Settings > Notifications.\n\nThere you can:\n1. Turn on Exam/Holiday Mode to pause your class notifications.\n2. Individually turn on/off notifications for your classes (Android 8+ only).</string>
+    <string name="about_notifications">Get control of the notifications by tapping on ⋮ > Settings > Notifications.\n\nThere you can:\n1. Turn on No CLasses Mode to pause your class notifications.\n2. Individually turn on/off notifications for your classes (Android 8+ only).</string>
     <string name="about_battery">To get notifications on time, keep the battery optimisations for the app turned off.\n\nTo change this setting, tap on ⋮ > Settings > Battery.</string>
     <string name="about_nav">Don\'t know which class is where? Don\'t worry, we\'ve got you covered!\n\nNow you can hit the directions button on the Next Class widget or tap on a room number in the app to start navigation to your class!</string>
-    <string name="about_new_updates">1.  Introducing Class Navigation - Get directions to your class in one click!\n2. Have a class on Saturday? No problem! Go to settings and select your timetable order!\n3. Quick settings tile added to easily turn on/off exam/holiday mode.\n4. Minor UI changes and bug fixes.</string>
+    <string name="about_new_updates">1. VIT Events is now available on VITTY.\n2. Share your timetable with your friends.\n3. Exam/Holiday Mode is now called No Classes Mode.</string>
     <string name="final_heading">Let\'s go!</string>
     <string name="about_final">You\'re all set to start using the app.</string>
     <string name="congratulations">Congratulations!</string>
@@ -66,16 +66,16 @@
     <string name="settings">Settings</string>
     <string name="title_next_class">Next Class</string>
     <string name="close">Close</string>
-    <string name="exam_mode_summary_off">Turns off class notifications</string>
-    <string name="exam_mode_summary_on">Class notifications turned off</string>
-    <string name="exam_mode">Exam/Holiday Mode</string>
+    <string name="exam_mode_summary_off">Turns off class notifications (formerly Exam/Holiday Mode)</string>
+    <string name="exam_mode_summary_on">Class notifications turned off (formerly Exam/Holiday Mode)</string>
+    <string name="exam_mode">No Classes Mode</string>
     <string name="ind_notif_summary">Turn on/off individual class\' notifications</string>
     <string name="ind_notif">Notification Settings</string>
     <string name="battery_summary">Turn off battery optimizations to receive notifications on time</string>
     <string name="battery_opt">Battery Optimizations</string>
     <string name="github_repo">GitHub Repository</string>
     <string name="gdscvit">GDSC VIT</string>
-    <string name="exam_mode_alert">Exam/Holiday Mode Turned On</string>
+    <string name="exam_mode_alert">No Classes Mode Turned On</string>
     <string name="default_notification_channel_name">Updates</string>
     <string name="default_notification_channel_id">con.dscvit.vitty-Updates</string>
     <string name="directions">Directions</string>
@@ -99,7 +99,7 @@
         <item>Catch up on some sleep</item>
     </string-array>
     <string-array name="sat_order">
-        <item>No Class</item>
+        <item>No Classes</item>
         <item>Monday Order</item>
         <item>Tuesday Order</item>
         <item>Wednesday Order</item>

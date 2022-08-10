@@ -9,7 +9,9 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.Button
+import android.widget.RelativeLayout
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.core.content.edit
 import androidx.databinding.DataBindingUtil
@@ -28,8 +30,10 @@ import com.dscvit.vitty.util.Constants.UPDATE_CODE
 import com.dscvit.vitty.util.Constants.USER_INFO
 import com.dscvit.vitty.util.LogoutHelper
 import com.dscvit.vitty.util.RemoteConfigUtils
+import com.dscvit.vitty.util.UtilFunctions.getBitmapFromView
 import com.dscvit.vitty.util.UtilFunctions.isUpdated
 import com.dscvit.vitty.util.UtilFunctions.openLink
+import com.dscvit.vitty.util.UtilFunctions.takeScreenshotAndShare
 import com.dscvit.vitty.util.VITMap
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.tabs.TabLayoutMediator
@@ -70,13 +74,25 @@ class ScheduleActivity : FragmentActivity() {
 
     private fun checkExamMode() {
         if (!prefs.getBoolean(EXAM_MODE, false)) {
-            binding.examModeAlert.visibility = View.GONE
+            binding.examModeAlert.apply {
+                visibility = View.INVISIBLE
+                layoutParams =
+                    RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, 0).apply {
+                        addRule(RelativeLayout.ALIGN_PARENT_BOTTOM)
+                    }
+            }
             window.navigationBarColor = getColor(R.color.background)
             return
         }
         window.navigationBarColor = getColor(R.color.tab_back)
         binding.examModeAlert.apply {
             visibility = View.VISIBLE
+            layoutParams = RelativeLayout.LayoutParams(
+                RelativeLayout.LayoutParams.MATCH_PARENT,
+                RelativeLayout.LayoutParams.WRAP_CONTENT
+            ).apply {
+                addRule(RelativeLayout.ALIGN_PARENT_BOTTOM)
+            }
             setOnClickListener {
                 startActivity(Intent(context, SettingsActivity::class.java))
             }
@@ -110,6 +126,18 @@ class ScheduleActivity : FragmentActivity() {
             Calendar.SATURDAY -> 5
             Calendar.SUNDAY -> 6
             else -> 0
+        }
+
+        binding.VITEventsButton.setOnClickListener {
+            val intent = Intent(this, VITEventsActivity::class.java)
+            startActivity(intent)
+        }
+
+        binding.shareTimeTableButton.setOnClickListener {
+            Toast.makeText(this, "Share Timetable Alpha", Toast.LENGTH_LONG).show()
+            val rootView = window.decorView.findViewById<View>(R.id.pager)
+            rootView.setBackgroundColor(getColor(R.color.background))
+            takeScreenshotAndShare(this, getBitmapFromView(rootView))
         }
 
         binding.scheduleToolbar.setOnMenuItemClickListener { menuItem ->

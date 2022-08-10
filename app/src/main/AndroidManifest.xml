@@ -25,6 +25,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.VITTY">
         <activity
+            android:name=".activity.VITEventsActivity"
+            android:exported="false" />
+        <activity
             android:name=".activity.NavigationActivity"
             android:exported="false" />
         <activity
@@ -104,7 +107,6 @@
         </receiver>
         <receiver android:name=".receiver.AlarmReceiver" />
         <receiver android:name=".receiver.ShareReceiver" />
-
 
         <service
             android:name=".service.TodayWidgetService"

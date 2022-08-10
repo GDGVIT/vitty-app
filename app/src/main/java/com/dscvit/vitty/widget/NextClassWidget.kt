@@ -11,6 +11,7 @@ import com.dscvit.vitty.R
 import com.dscvit.vitty.activity.AuthActivity
 import com.dscvit.vitty.activity.NavigationActivity
 import com.dscvit.vitty.model.PeriodDetails
+import com.dscvit.vitty.util.Constants
 import com.dscvit.vitty.util.Constants.NEXT_CLASS_INTENT
 import com.dscvit.vitty.util.Constants.NEXT_CLASS_NAV_INTENT
 import com.dscvit.vitty.util.Quote
@@ -69,6 +70,30 @@ internal fun updateNextClassWidget(
         PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
     )
     views.setOnClickPendingIntent(R.id.next_class_widget, pendingIntent)
+
+    val sharedPref = context.getSharedPreferences("login_info", Context.MODE_PRIVATE)!!
+    if (sharedPref.getBoolean(Constants.EXAM_MODE, false)) {
+        views.setTextViewText(
+            R.id.course_name,
+            "No classes mode turned on"
+        )
+        views.setTextViewText(
+            R.id.period_time,
+            "Turn it off to get notifications"
+        )
+        views.setViewVisibility(
+            R.id.class_nav_button,
+            View.GONE
+        )
+        views.setViewVisibility(
+            R.id.class_id,
+            View.GONE
+        )
+
+        // Instruct the widget manager to update the widget
+        appWidgetManager.updateAppWidget(appWidgetId, views)
+        return
+    }
 
     val days = listOf("monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday")
     val calendar: Calendar = Calendar.getInstance()
@@ -131,6 +156,10 @@ internal fun updateNextClassWidget(
                 View.GONE
             )
         }
+        views.setViewVisibility(
+            R.id.class_id,
+            View.VISIBLE
+        )
         views.setTextViewText(R.id.class_id, pd.roomNo)
     }
 

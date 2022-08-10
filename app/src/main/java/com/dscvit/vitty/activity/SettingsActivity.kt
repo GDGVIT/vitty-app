@@ -47,7 +47,7 @@ class SettingsActivity : AppCompatActivity() {
 
     private fun setupDetails() {
         var details =
-            "College Mode: ${RemoteConfigUtils.getOnlineModeDetails()}\nApp Version: ${BuildConfig.VERSION_NAME}"
+            "Version ${BuildConfig.VERSION_NAME}"
         if (RemoteConfigUtils.getLatestVersion() > BuildConfig.VERSION_CODE)
             details += " (Update Available)"
 //        details += "\n\n[Long press to copy app details]"

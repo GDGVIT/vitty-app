@@ -27,8 +27,8 @@ android {
         applicationId "com.dscvit.vitty"
         minSdkVersion 24
         targetSdkVersion 31
-        versionCode 29
-        versionName "1.3.8"
+        versionCode 32
+        versionName "1.4.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         signingConfig signingConfigs.release
     }
@@ -86,6 +86,11 @@ dependencies {
 
     // Crashlytics
     releaseImplementation 'com.google.firebase:firebase-crashlytics-ktx'
+
+    // Retrofit
+    implementation 'com.squareup.retrofit2:retrofit:2.5.0'
+    implementation 'com.squareup.okhttp3:logging-interceptor:3.11.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.5.0'
 
     // Loading Animations
     implementation 'com.github.ybq:Android-SpinKit:1.4.0'

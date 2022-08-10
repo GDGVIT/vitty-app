@@ -14,7 +14,7 @@
             android:clipToPadding="false"
             android:layoutAnimation="@anim/layout_animation"
             android:paddingTop="10dp"
-            android:paddingBottom="150dp"
+            android:paddingBottom="180dp"
             app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
         <RelativeLayout

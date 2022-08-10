@@ -8,6 +8,7 @@
         <entry key="..\:/Android/AndroidStudioProjects/VITTY/app/src/main/res/layout/card_period.xml" value="0.23645833333333333" />
         <entry key="..\:/Android/AndroidStudioProjects/VITTY/app/src/main/res/layout/fragment_instructions.xml" value="0.264" />
         <entry key="..\:/Android/AndroidStudioProjects/VITTY/app/src/main/res/layout/item_period.xml" value="0.23645833333333333" />
+        <entry key="..\:/AndroidStudioProjects/DSCProjects/VITTY/app/src/main/res/layout/card_period.xml" value="0.6" />
         <entry key="..\:/Users/iamyajat/dev/AndroidStudioProjects/DSCProjects/VITTY/app/src/main/res/drawable/ic_battery.xml" value="0.26614583333333336" />
         <entry key="..\:/Users/iamyajat/dev/AndroidStudioProjects/DSCProjects/VITTY/app/src/main/res/drawable/ic_close.xml" value="0.26614583333333336" />
         <entry key="..\:/Users/iamyajat/dev/AndroidStudioProjects/DSCProjects/VITTY/app/src/main/res/drawable/ic_gdscvit.xml" value="0.26614583333333336" />
@@ -46,6 +47,21 @@
         <entry key="..\:/Users/iamyajat/dev/AndroidStudioProjects/DSCProjects/VITTY/app/src/main/res/menu/schedule_menu.xml" value="0.25" />
         <entry key="..\:/Users/iamyajat/dev/AndroidStudioProjects/DSCProjects/VITTY/app/src/main/res/menu/settings_menu.xml" value="0.25" />
         <entry key="..\:/Users/iamyajat/dev/AndroidStudioProjects/DSCProjects/VITTY/app/src/main/res/xml/root_preferences.xml" value="0.4" />
+        <entry key="app/src/main/res/drawable/expanded_background.xml" value="0.17" />
+        <entry key="app/src/main/res/drawable/fab_share.xml" value="0.17" />
+        <entry key="app/src/main/res/drawable/ic_share.xml" value="0.17" />
+        <entry key="app/src/main/res/drawable/ic_vitevents.xml" value="0.261" />
+        <entry key="app/src/main/res/layout/activity_auth.xml" value="0.36041666666666666" />
+        <entry key="app/src/main/res/layout/activity_instructions.xml" value="0.36041666666666666" />
+        <entry key="app/src/main/res/layout/activity_schedule.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/activity_settings.xml" value="0.36041666666666666" />
+        <entry key="app/src/main/res/layout/activity_vitevents.xml" value="0.36041666666666666" />
+        <entry key="app/src/main/res/layout/card_event.xml" value="0.36041666666666666" />
+        <entry key="app/src/main/res/layout/card_period.xml" value="0.36041666666666666" />
+        <entry key="app/src/main/res/layout/fragment_day.xml" value="0.36041666666666666" />
+        <entry key="app/src/main/res/layout/item_event.xml" value="0.36041666666666666" />
+        <entry key="app/src/main/res/layout/item_period.xml" value="0.36041666666666666" />
+        <entry key="app/src/main/res/layout/today_widget.xml" value="0.36041666666666666" />
       </map>
     </option>
   </component>
