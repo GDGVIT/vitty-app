@@ -1,4 +1,4 @@
-package com.dscvit.vitty.activity
+package com.dscvit.vitty.ui.schedule
 
 import android.app.Activity
 import android.app.PendingIntent
@@ -8,72 +8,71 @@ import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import android.widget.Button
 import android.widget.RelativeLayout
 import android.widget.TextView
-import android.widget.Toast
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.core.content.edit
-import androidx.databinding.DataBindingUtil
-import androidx.fragment.app.FragmentActivity
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import com.dscvit.vitty.BuildConfig
 import com.dscvit.vitty.R
+import com.dscvit.vitty.activity.InstructionsActivity
+import com.dscvit.vitty.activity.SettingsActivity
+import com.dscvit.vitty.activity.VITEventsActivity
 import com.dscvit.vitty.adapter.DayAdapter
-import com.dscvit.vitty.databinding.ActivityScheduleBinding
+import com.dscvit.vitty.databinding.FragmentScheduleBinding
 import com.dscvit.vitty.receiver.ShareReceiver
-import com.dscvit.vitty.util.Constants.EXAM_MODE
-import com.dscvit.vitty.util.Constants.FIRST_TIME_SETUP
-import com.dscvit.vitty.util.Constants.SHARE_INTENT
-import com.dscvit.vitty.util.Constants.TIMETABLE_AVAILABLE
-import com.dscvit.vitty.util.Constants.UPDATE
-import com.dscvit.vitty.util.Constants.UPDATE_CODE
-import com.dscvit.vitty.util.Constants.USER_INFO
+import com.dscvit.vitty.util.Constants
 import com.dscvit.vitty.util.LogoutHelper
 import com.dscvit.vitty.util.RemoteConfigUtils
-import com.dscvit.vitty.util.UtilFunctions.getBitmapFromView
-import com.dscvit.vitty.util.UtilFunctions.isUpdated
-import com.dscvit.vitty.util.UtilFunctions.openLink
-import com.dscvit.vitty.util.UtilFunctions.takeScreenshotAndShare
+import com.dscvit.vitty.util.UtilFunctions
 import com.dscvit.vitty.util.VITMap
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.tabs.TabLayoutMediator
 import com.google.firebase.firestore.FirebaseFirestore
 import java.util.Calendar
 
-class ScheduleActivity : FragmentActivity() {
+class ScheduleFragment : Fragment() {
 
-    private lateinit var binding: ActivityScheduleBinding
+    private var _binding: FragmentScheduleBinding? = null
     private val days = listOf("Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun")
     private lateinit var prefs: SharedPreferences
     private var uid = ""
     private val db = FirebaseFirestore.getInstance()
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_schedule)
-        prefs = getSharedPreferences(USER_INFO, 0)
+    // This property is only valid between onCreateView and
+    // onDestroyView.
+    private val binding get() = _binding!!
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        val scheduleViewModel =
+            ViewModelProvider(this)[ScheduleViewModel::class.java]
+
+        _binding = FragmentScheduleBinding.inflate(inflater, container, false)
+        val root: View = binding.root
+
+        prefs = requireContext().getSharedPreferences(Constants.USER_INFO, 0)
         uid = prefs.getString("uid", "").toString()
         val classLocation = prefs.getString("openClassId", "").toString()
         if (classLocation != "") {
             prefs.edit().putString("openClassId", "").apply()
-            VITMap.openClassMap(this, classLocation)
+            VITMap.openClassMap(requireContext(), classLocation)
         }
         pageSetup()
         firstTimeSetup()
+
+        return root
     }
 
-    override fun onStart() {
-        super.onStart()
-        setupOnStart()
-    }
-
-    override fun onResume() {
-        super.onResume()
-        checkExamMode()
-    }
 
     private fun checkExamMode() {
-        if (!prefs.getBoolean(EXAM_MODE, false)) {
+        if (!prefs.getBoolean(Constants.EXAM_MODE, false)) {
             binding.examModeAlert.apply {
                 visibility = View.INVISIBLE
                 layoutParams =
@@ -81,10 +80,10 @@ class ScheduleActivity : FragmentActivity() {
                         addRule(RelativeLayout.ALIGN_PARENT_BOTTOM)
                     }
             }
-            window.navigationBarColor = getColor(R.color.background)
+//            window.navigationBarColor = getColor(R.color.background)
             return
         }
-        window.navigationBarColor = getColor(R.color.tab_back)
+//        window.navigationBarColor = getColor(R.color.tab_back)
         binding.examModeAlert.apply {
             visibility = View.VISIBLE
             layoutParams = RelativeLayout.LayoutParams(
@@ -97,7 +96,7 @@ class ScheduleActivity : FragmentActivity() {
                 startActivity(Intent(context, SettingsActivity::class.java))
             }
         }
-        binding.examModeAlertIcon.setColorFilter(getColor(R.color.translucent))
+        binding.examModeAlertIcon.setColorFilter(requireContext().getColor(R.color.translucent))
     }
 
     private fun setupOnStart() {
@@ -105,12 +104,12 @@ class ScheduleActivity : FragmentActivity() {
             .document(uid)
             .get()
             .addOnSuccessListener { document ->
-                if (isUpdated(document, prefs)) {
-                    prefs.edit().putInt(TIMETABLE_AVAILABLE, 0).apply()
-                    prefs.edit().putInt(UPDATE, 1).apply()
-                    val intent = Intent(this, InstructionsActivity::class.java)
+                if (UtilFunctions.isUpdated(document, prefs)) {
+                    prefs.edit().putInt(Constants.TIMETABLE_AVAILABLE, 0).apply()
+                    prefs.edit().putInt(Constants.UPDATE, 1).apply()
+                    val intent = Intent(context, InstructionsActivity::class.java)
                     startActivity(intent)
-                    finish()
+                    requireActivity().finish()
                 }
             }
     }
@@ -129,29 +128,29 @@ class ScheduleActivity : FragmentActivity() {
         }
 
         binding.VITEventsButton.setOnClickListener {
-            val intent = Intent(this, VITEventsActivity::class.java)
+            val intent = Intent(context, VITEventsActivity::class.java)
             startActivity(intent)
         }
 
-        binding.shareTimeTableButton.setOnClickListener {
-            Toast.makeText(this, "Share Timetable Alpha", Toast.LENGTH_LONG).show()
-            val rootView = window.decorView.findViewById<View>(R.id.pager)
-            rootView.setBackgroundColor(getColor(R.color.background))
-            takeScreenshotAndShare(this, getBitmapFromView(rootView))
-        }
+//        binding.shareTimeTableButton.setOnClickListener {
+//            Toast.makeText(context, "Share Timetable Alpha", Toast.LENGTH_LONG).show()
+//            val rootView = window.decorView.findViewById<View>(R.id.pager)
+//            rootView.setBackgroundColor(getColor(R.color.background))
+//            UtilFunctions.takeScreenshotAndShare(this, UtilFunctions.getBitmapFromView(rootView))
+//        }
 
         binding.scheduleToolbar.setOnMenuItemClickListener { menuItem ->
             when (menuItem.itemId) {
                 R.id.logout -> {
-                    LogoutHelper.logout(this, this as Activity, prefs)
+                    LogoutHelper.logout(requireContext(), requireContext() as Activity, prefs)
                     true
                 }
                 R.id.settings -> {
-                    startActivity(Intent(this, SettingsActivity::class.java))
+                    startActivity(Intent(context, SettingsActivity::class.java))
                     true
                 }
                 R.id.support -> {
-                    openLink(this, getString(R.string.telegram_link))
+                    UtilFunctions.openLink(requireContext(), getString(R.string.telegram_link))
                     true
                 }
                 R.id.share -> {
@@ -164,9 +163,9 @@ class ScheduleActivity : FragmentActivity() {
                         getString(R.string.share_text)
                     )
                     val pendingIntent = PendingIntent.getBroadcast(
-                        this,
-                        SHARE_INTENT,
-                        Intent(this, ShareReceiver::class.java),
+                        context,
+                        Constants.SHARE_INTENT,
+                        Intent(context, ShareReceiver::class.java),
                         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S)
                             PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_MUTABLE
                         else
@@ -197,18 +196,22 @@ class ScheduleActivity : FragmentActivity() {
     }
 
     private fun firstTimeSetup() {
-        var max = 6
-        val upCode = prefs.getInt(UPDATE_CODE, 0)
-        if (!prefs.getBoolean(FIRST_TIME_SETUP, false) || upCode != BuildConfig.VERSION_CODE) {
+        val max = 6
+        val upCode = prefs.getInt(Constants.UPDATE_CODE, 0)
+        if (!prefs.getBoolean(
+                Constants.FIRST_TIME_SETUP,
+                false
+            ) || upCode != BuildConfig.VERSION_CODE
+        ) {
             var count = 1
             val v: View = LayoutInflater
-                .from(this)
+                .from(context)
                 .inflate(R.layout.dialog_setup_complete, null)
-            val dialog = MaterialAlertDialogBuilder(this)
+            val dialog = MaterialAlertDialogBuilder(requireContext())
                 .setView(v)
                 .setBackground(
                     AppCompatResources.getDrawable(
-                        this,
+                        requireContext(),
                         R.color.transparent
                     )
                 )
@@ -221,7 +224,11 @@ class ScheduleActivity : FragmentActivity() {
             val title = v.findViewById<TextView>(R.id.title)
             val desc = v.findViewById<TextView>(R.id.description)
 
-            if (prefs.getBoolean(FIRST_TIME_SETUP, false) && upCode < BuildConfig.VERSION_CODE) {
+            if (prefs.getBoolean(
+                    Constants.FIRST_TIME_SETUP,
+                    false
+                ) && upCode < BuildConfig.VERSION_CODE
+            ) {
                 val msg = introMessage(max - 1)
                 title.text = msg[0]
                 desc.text = msg[1]
@@ -232,8 +239,8 @@ class ScheduleActivity : FragmentActivity() {
 
             skip.setOnClickListener {
                 prefs.edit {
-                    putBoolean(FIRST_TIME_SETUP, true)
-                    putInt(UPDATE_CODE, BuildConfig.VERSION_CODE)
+                    putBoolean(Constants.FIRST_TIME_SETUP, true)
+                    putInt(Constants.UPDATE_CODE, BuildConfig.VERSION_CODE)
                     apply()
                 }
                 dialog.dismiss()
@@ -250,8 +257,8 @@ class ScheduleActivity : FragmentActivity() {
                 }
                 if (count > max) {
                     prefs.edit {
-                        putBoolean(FIRST_TIME_SETUP, true)
-                        putInt(UPDATE_CODE, BuildConfig.VERSION_CODE)
+                        putBoolean(Constants.FIRST_TIME_SETUP, true)
+                        putInt(Constants.UPDATE_CODE, BuildConfig.VERSION_CODE)
                         apply()
                     }
                     dialog.dismiss()
@@ -260,6 +267,7 @@ class ScheduleActivity : FragmentActivity() {
             }
         }
     }
+
 
     private fun introMessage(pos: Int): List<String> {
         return when (pos) {
@@ -271,5 +279,20 @@ class ScheduleActivity : FragmentActivity() {
             5 -> listOf(getString(R.string.new_updates), getString(R.string.about_new_updates))
             else -> listOf(getString(R.string.final_heading), getString(R.string.about_final))
         }
+    }
+
+    override fun onStart() {
+        super.onStart()
+        setupOnStart()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        checkExamMode()
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }

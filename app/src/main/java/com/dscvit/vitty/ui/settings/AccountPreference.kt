@@ -12,14 +12,14 @@ import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 
-class AccountPreference(context: Context?, attrs: AttributeSet?) : Preference(context, attrs) {
+class AccountPreference(context: Context, attrs: AttributeSet?) : Preference(context, attrs) {
     private val firebaseUser: FirebaseUser = Firebase.auth.currentUser!!
 
-    override fun onBindViewHolder(holder: PreferenceViewHolder?) {
+    override fun onBindViewHolder(holder: PreferenceViewHolder) {
         super.onBindViewHolder(holder)
-        holder?.itemView?.findViewById<TextView>(R.id.title)?.text = firebaseUser.displayName
-        holder?.itemView?.findViewById<TextView>(R.id.summary)?.text = firebaseUser.email
-        holder?.itemView?.findViewById<ImageView>(R.id.icon)?.load(firebaseUser.photoUrl)
+        holder.itemView.findViewById<TextView>(R.id.title)?.text = firebaseUser.displayName
+        holder.itemView.findViewById<TextView>(R.id.summary)?.text = firebaseUser.email
+        holder.itemView.findViewById<ImageView>(R.id.icon)?.load(firebaseUser.photoUrl)
     }
 
     init {

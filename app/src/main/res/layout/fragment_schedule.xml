@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".ui.schedule.ScheduleFragment">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -65,7 +66,9 @@
             android:elevation="12dp"
             android:gravity="center"
             android:orientation="horizontal"
-            android:padding="5dp">
+            android:padding="5dp"
+            android:visibility="gone"
+            tools:visibility="visible">
 
             <ImageView
                 android:id="@+id/exam_mode_alert_icon"
@@ -98,6 +101,7 @@
             android:padding="12dp"
             android:src="@drawable/ic_vitevents"
             android:tooltipText="VIT Events"
+            android:visibility="gone"
             app:elevation="0dp" />
 
         <ImageButton
@@ -114,6 +118,7 @@
             android:padding="16dp"
             android:src="@drawable/ic_share"
             android:tooltipText="Share Timetable"
+            android:visibility="gone"
             app:elevation="0dp" />
 
     </RelativeLayout>
