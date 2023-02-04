@@ -72,7 +72,7 @@ class InstructionsActivity : AppCompatActivity() {
         }
         if (prefs.getInt(TIMETABLE_AVAILABLE, 0) == 1) {
             setAlarm()
-            val intent = Intent(this, ScheduleActivity::class.java)
+            val intent = Intent(this, HomeActivity::class.java)
             startActivity(intent)
             finish()
         }
@@ -164,7 +164,7 @@ class InstructionsActivity : AppCompatActivity() {
                     pmIntent.action = Settings.ACTION_IGNORE_BATTERY_OPTIMIZATION_SETTINGS
                     startActivity(pmIntent)
                 } else {
-                    val intent = Intent(this, ScheduleActivity::class.java)
+                    val intent = Intent(this, HomeActivity::class.java)
                     startActivity(intent)
                     finish()
                 }

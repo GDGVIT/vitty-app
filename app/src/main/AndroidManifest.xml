@@ -80,22 +80,17 @@
                 android:resource="@xml/next_class_widget_info" />
         </receiver>
 
-        <activity
-            android:name=".activity.InstructionsActivity"
-            android:screenOrientation="portrait" />
+        <activity android:name=".activity.InstructionsActivity" />
         <activity
             android:name=".activity.AuthActivity"
-            android:exported="true"
-            android:screenOrientation="portrait">
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".activity.ScheduleActivity"
-            android:screenOrientation="portrait" />
+        <activity android:name=".activity.HomeActivity" />
 
         <receiver
             android:name=".receiver.DeviceBootReceiver"

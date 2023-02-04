@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@id/navigation_schedule">
+
+    <fragment
+        android:id="@+id/navigation_schedule"
+        android:name="com.dscvit.vitty.ui.schedule.ScheduleFragment"
+        android:label="@string/title_schedule"
+        tools:layout="@layout/fragment_schedule" />
+    <fragment
+        android:id="@+id/navigation_community"
+        android:name="com.dscvit.vitty.ui.community.CommunityFragment"
+        android:label="@string/title_community"
+        tools:layout="@layout/fragment_community" >
+        <action
+            android:id="@+id/action_navigation_community_to_navigation_requests"
+            app:destination="@id/navigation_requests" />
+    </fragment>
+    <fragment
+        android:id="@+id/navigation_requests"
+        android:name="com.dscvit.vitty.ui.community.RequestsFragment"
+        android:label="Requests"
+        tools:layout="@layout/fragment_requests" />
+</navigation>

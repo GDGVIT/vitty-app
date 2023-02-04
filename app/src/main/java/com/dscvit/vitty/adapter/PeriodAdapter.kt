@@ -10,6 +10,7 @@ import com.dscvit.vitty.databinding.CardPeriodBinding
 import com.dscvit.vitty.model.PeriodDetails
 import com.dscvit.vitty.util.Effects.vibrateOnClick
 import com.dscvit.vitty.util.RemoteConfigUtils
+import com.dscvit.vitty.util.UtilFunctions.copyItem
 import com.dscvit.vitty.util.VITMap
 import java.text.SimpleDateFormat
 import java.util.Calendar
@@ -32,7 +33,8 @@ class PeriodAdapter(private val dataSet: ArrayList<PeriodDetails>, private val d
         val periodTime = binding.periodTime
         val classNav = binding.classNav
         val classIdOnline = binding.classIdOnline
-//        val courseCode = binding.courseCode
+
+        //        val courseCode = binding.courseCode
         fun bind(data: PeriodDetails) {
             binding.periodDetails = data
         }
@@ -85,8 +87,19 @@ class PeriodAdapter(private val dataSet: ArrayList<PeriodDetails>, private val d
         holder.apply {
             periodTime.text = "$sTime - $eTime"
             activePeriod.visibility = View.INVISIBLE
-            classNav.setOnClickListener {
-                VITMap.openClassMap(classNav.context, item.roomNo)
+            classNav.apply {
+                setOnClickListener {
+                    VITMap.openClassMap(classNav.context, item.roomNo)
+                }
+                setOnLongClickListener {
+                    copyItem(
+                        context,
+                        "Room Number",
+                        "ROOM_NUMBER_ITEM",
+                        item.roomNo
+                    )
+                    true
+                }
             }
         }
 
@@ -115,12 +128,22 @@ class PeriodAdapter(private val dataSet: ArrayList<PeriodDetails>, private val d
 
         if (isExpanded) previousExpandedPosition = position
 
-        holder.itemView.setOnClickListener {
-            vibrateOnClick(holder.itemView.context)
-            mExpandedPosition = if (isExpanded) -1 else position
-            notifyItemChanged(previousExpandedPosition)
-            notifyItemChanged(position)
+        holder.itemView.apply {
+            setOnClickListener {
+                vibrateOnClick(holder.itemView.context)
+                mExpandedPosition = if (isExpanded) -1 else position
+                notifyItemChanged(previousExpandedPosition)
+                notifyItemChanged(position)
+            }
+            setOnLongClickListener {
+                mExpandedPosition = position
+                notifyItemChanged(previousExpandedPosition)
+                notifyItemChanged(position)
+                true
+            }
         }
+
+
     }
 
     override fun getItemCount() = dataSet.size

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/navigation_schedule"
+        android:icon="@drawable/ic_timetable_selector"
+        android:title="@string/title_schedule" />
+
+    <item
+        android:id="@+id/navigation_community"
+        android:icon="@drawable/ic_community_selector"
+        android:title="@string/title_community" />
+
+</menu>

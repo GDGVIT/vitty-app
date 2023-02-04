@@ -1,6 +1,8 @@
 package com.dscvit.vitty.util
 
 import android.appwidget.AppWidgetManager
+import android.content.ClipData
+import android.content.ClipboardManager
 import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
@@ -33,6 +35,18 @@ object UtilFunctions {
         } catch (e: Exception) {
             Toast.makeText(context, "Browser not found!", Toast.LENGTH_LONG).show()
         }
+    }
+
+    fun copyItem(context: Context, item: String, label: String, url: String) {
+        Toast.makeText(
+            context,
+            "$item Copied",
+            Toast.LENGTH_LONG
+        ).show()
+        val clipboard: ClipboardManager? =
+            context.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager?
+        val clip = ClipData.newPlainText(label, url)
+        clipboard?.setPrimaryClip(clip)
     }
 
     fun reloadWidgets(context: Context) {

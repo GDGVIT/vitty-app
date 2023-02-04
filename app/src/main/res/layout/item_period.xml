@@ -49,7 +49,7 @@
             android:paddingStart="5dp"
             android:paddingEnd="20dp"
             android:text="@string/sample_room"
-            android:textSize="15sp" />
+            android:textSize="14sp" />
     </LinearLayout>
 
 </LinearLayout>
