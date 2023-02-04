@@ -7,20 +7,19 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.findNavController
 import com.dscvit.vitty.R
-import com.dscvit.vitty.databinding.FragmentCommunityBinding
+import com.dscvit.vitty.databinding.FragmentRequestsBinding
 import com.dscvit.vitty.util.Constants
 
-class CommunityFragment : Fragment() {
+class RequestsFragment : Fragment() {
 
-    private var _binding: FragmentCommunityBinding? = null
-    private lateinit var prefs: SharedPreferences
-
+    private var _binding: FragmentRequestsBinding? = null
 
     // This property is only valid between onCreateView and
     // onDestroyView.
     private val binding get() = _binding!!
+    private lateinit var prefs: SharedPreferences
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -30,16 +29,15 @@ class CommunityFragment : Fragment() {
         val communityViewModel =
             ViewModelProvider(this)[CommunityViewModel::class.java]
 
-        _binding = FragmentCommunityBinding.inflate(inflater, container, false)
+        _binding = FragmentRequestsBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
         prefs = requireContext().getSharedPreferences(Constants.USER_INFO, 0)
 
-        binding.communityToolbar.setOnMenuItemClickListener { menuItem ->
+        binding.scheduleToolbar.setOnMenuItemClickListener { menuItem ->
             when (menuItem.itemId) {
-                R.id.requests -> {
-                    requireView().findNavController()
-                        .navigate(R.id.action_navigation_community_to_navigation_requests)
+                R.id.close -> {
+                    requireActivity().onBackPressed()
                     true
                 }
                 else -> {
@@ -48,16 +46,15 @@ class CommunityFragment : Fragment() {
             }
         }
 
-        if (!prefs.getBoolean("KRISH", false)) {
-            binding.krish.visibility = View.GONE
-        } else {
-            binding.krish.visibility = View.VISIBLE
+        binding.logout.setOnClickListener {
+            prefs.edit().putBoolean("KRISH", true).apply()
+            binding.reqKrish.visibility = View.GONE
         }
 
-        binding.krish.setOnLongClickListener {
-            prefs.edit().putBoolean("KRISH", false).apply()
-            binding.krish.visibility = View.GONE
-            true
+        if (prefs.getBoolean("KRISH", false)) {
+            binding.reqKrish.visibility = View.GONE
+        } else {
+            binding.reqKrish.visibility = View.VISIBLE
         }
 
         return root

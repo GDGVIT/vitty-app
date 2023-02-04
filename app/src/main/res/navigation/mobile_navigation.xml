@@ -14,5 +14,14 @@
         android:id="@+id/navigation_community"
         android:name="com.dscvit.vitty.ui.community.CommunityFragment"
         android:label="@string/title_community"
-        tools:layout="@layout/fragment_community" />
+        tools:layout="@layout/fragment_community" >
+        <action
+            android:id="@+id/action_navigation_community_to_navigation_requests"
+            app:destination="@id/navigation_requests" />
+    </fragment>
+    <fragment
+        android:id="@+id/navigation_requests"
+        android:name="com.dscvit.vitty.ui.community.RequestsFragment"
+        android:label="Requests"
+        tools:layout="@layout/fragment_requests" />
 </navigation>
