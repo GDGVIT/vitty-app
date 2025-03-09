@@ -9,29 +9,34 @@ plugins {
 
 def keystorePropertiesFile = rootProject.file("keystore.properties")
 def keystoreProperties = new Properties()
-keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
+
+if (keystorePropertiesFile.exists()) {
+    keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
+} else {
+    throw new GradleException("Missing keystore.properties file!")
+}
 
 android {
-//    signingConfigs {
-//        release {
-//            keyAlias keystoreProperties['keyAlias']
-//            keyPassword keystoreProperties['keyPassword']
-//            storeFile file(keystoreProperties['storeFile'])
-//            storePassword keystoreProperties['storePassword']
-//        }
-//    }
     compileSdk 35
-//    buildToolsVersion "30.0.3"
+
+    signingConfigs {
+        release {
+            keyAlias keystoreProperties["keyAlias"]
+            keyPassword keystoreProperties["keyPassword"]
+            storeFile file(keystoreProperties["storeFile"])
+            storePassword keystoreProperties["storePassword"]
+        }
+    }
+    //    buildToolsVersion "30.0.3"
 
     defaultConfig {
         namespace "com.dscvit.vitty"
         minSdkVersion 24
-        //noinspection OldTargetApi
-        targetSdkVersion 33
-        versionCode 37
-        versionName "2.0.1"
+        targetSdkVersion 35
+        versionCode 40
+        versionName "2.0.3"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-//        signingConfig signingConfigs.release
+        signingConfig signingConfigs.release
     }
 
     buildTypes {

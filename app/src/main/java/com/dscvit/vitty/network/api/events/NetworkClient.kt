@@ -1,7 +1,7 @@
 package com.dscvit.vitty.network.api.events
 
-import com.dscvit.vitty.util.APIConstants.BASE_URL
-import com.dscvit.vitty.util.APIConstants.TIMEOUT
+import com.dscvit.vitty.util.WebConstants.COMMUNITY_BASE_URL
+import com.dscvit.vitty.util.WebConstants.TIMEOUT
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -17,7 +17,7 @@ object NetworkClient {
                 val okHttpClientBuilder = OkHttpClient.Builder()
                 okHttpClientBuilder.connectTimeout(TIMEOUT.toLong(), TimeUnit.SECONDS)
                 retrofit = Retrofit.Builder()
-                    .baseUrl(BASE_URL)
+                    .baseUrl(COMMUNITY_BASE_URL)
                     .addConverterFactory(GsonConverterFactory.create())
                     .client(okHttpClientBuilder.build())
                     .build()
