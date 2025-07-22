@@ -233,6 +233,9 @@ fun NoteScreenContent(
                                 .fillMaxSize()
                                 .verticalScroll(rememberScrollState()),
                         style = MaterialTheme.typography.bodyMedium.copy(color = TextColor),
+                        checkboxColor = TextColor.copy(alpha = 0.7f), // Unchecked checkbox border
+                        checkedCheckboxColor = Accent, // Checked checkbox fill color
+                        checkmarkColor = Background, // Checkmark color (your dark background)
                     )
                 } else {
                     BasicTextField(

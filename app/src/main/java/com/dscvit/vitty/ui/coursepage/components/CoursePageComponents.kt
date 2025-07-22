@@ -213,6 +213,9 @@ fun NoteItem(
                     style = MaterialTheme.typography.bodyMedium.copy(color = TextColor),
                     truncateOnTextOverflow = true,
                     maxLines = 3,
+                    checkboxColor = TextColor.copy(alpha = 0.7f),
+                    checkedCheckboxColor = Accent,
+                    checkmarkColor = Background,
                 )
             }
         }
