@@ -135,7 +135,8 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-runtime-compose:2.9.2"
 
     implementation 'androidx.dynamicanimation:dynamicanimation-ktx:1.1.0'
-    implementation 'com.github.jeziellago:compose-markdown:0.5.7'
+    
+    implementation project(':markdowntext')
 
     // QR Code generation
     implementation 'com.google.zxing:core:3.5.3'
