@@ -172,6 +172,9 @@ fun AcademicsScreenContent(
                     alertDaysBefore,
                     attachmentUrl,
                     ->
+                    coursePageViewModel.setCourseId(selectedCourseForReminder!!.code)
+                    coursePageViewModel.setCourseTitle(selectedCourseForReminder!!.title)
+
                     coursePageViewModel.addReminder(
                         title = title,
                         description = description,
