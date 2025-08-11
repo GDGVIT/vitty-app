@@ -410,7 +410,7 @@ private fun DayContent(
         ) {
             items(
                 items = periods,
-                key = { period -> "${periods.indexOf(period)}${period.startTime}_${period.courseCode}_${period.slot}_${period.endTime}" },
+                key = { period -> period.id },
             ) { period ->
                 PeriodCard(
                     period = period,
