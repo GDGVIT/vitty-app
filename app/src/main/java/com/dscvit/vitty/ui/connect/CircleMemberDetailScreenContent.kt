@@ -398,7 +398,7 @@ private fun DayScheduleContent(
         ) {
             items(
                 items = periods,
-                key = { period -> "${period.courseCode}_${period.slot}" },
+                key = { period -> period.id },
             ) { period ->
                 CircleMemberPeriodCard(
                     period = period,

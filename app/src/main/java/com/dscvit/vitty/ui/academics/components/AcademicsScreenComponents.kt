@@ -470,7 +470,6 @@ fun CourseCard(
     }
 }
 
-@RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun RemindersContent(
     reminders: List<Reminder>,
